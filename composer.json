@@ -1,0 +1,17 @@
+{
+    "name": "jhon/loja_online",
+    "description": "loja online",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "core\\": "core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jhon-lennon",
+            "email": "jhoninfornet@gmail.com"
+        }
+    ],
+    "require": {}
+}
