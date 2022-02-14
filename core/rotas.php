@@ -5,6 +5,8 @@
 $rotas = [
             'inicio'    =>     'main@index',
             'loja'      =>     'main@loja',
+            'criar_conta' =>    'main@criar_conta',
+            'cadastrar_conta' => 'main@cadastrar_conta',
             'carrinho'  =>     'carrinho@carrinho'
 ];
 $acao = 'inicio';

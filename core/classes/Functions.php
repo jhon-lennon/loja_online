@@ -22,4 +22,9 @@ class Functions{
         }
     }
 
+    public static function clienteLogado(){
+
+        return isset($_SESSION['cliente']);
+    }
+
 }

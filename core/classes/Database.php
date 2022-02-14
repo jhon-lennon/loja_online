@@ -49,6 +49,7 @@ class Database{
             return false;
         }
         $this->desligar();
+        
         return $resultados;
     }
 
