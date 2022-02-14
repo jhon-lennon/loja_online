@@ -49,48 +49,67 @@ public function criar_conta(){
 
 ];
 
-$dados = ['titulo'=> 'esse é o titulo'];
 
-Functions::layout($views, $dados);
+Functions::layout($views,);
 }
 public function cadastrar_conta(){
     if(isset($_SESSION['usuario'])){
         $this->index();
         return;
     }
-    
-    $parametros = [
-        ':email' => $_POST['text_email']
-    ];
-   // 
-    $usuario = new Database();
-    $usuario->select("SELECT * FROM produtos");
-    print_r($usuario);
-    
-    die('fim');
     if($_SERVER['REQUEST_METHOD']!= 'POST'){
         $this->index();
         return;
     }
-    if($_POST['text_senha1'] != $_POST['text_senha2']){
-        $_SESSION['erro'] = "Senha e confirmar senha devem ser iguais.";
+
+    $nome = $_POST['text_nome'];
+    $email = $_POST['text_email'];
+    $telefone = $_POST['text_telefone'];
+    $senha1 = $_POST['text_senha1'];
+    $senha2 = $_POST['text_senha2'];
+    //verificar se o wmail ja esta cadastrado
+    $parametros = [
+        ':email' => strtolower(trim($_POST['text_email'])) 
+    ];
+   
+    $db= new Database();
+    $usuario = $db->select("SELECT email FROM clientes WHERE email = :email" , $parametros);
+    if(count($usuario) > 0){
+        $_SESSION['erro'] = "Email ja está cadastrado.";
         $this->criar_conta();
     }
-    if( strlen($_POST['text_senha1']) < 8 ){
+    //verificar se o nome foi requerido
+    if($nome = null || strlen($nome) < 8 ){
+        $_SESSION['erro'] = "O nome deve ter no minimo 10 caracteres.";
+        $this->criar_conta();
+        return;
+    }
+    //verificar se o telefone foi requerido
+    if($telefone = null || strlen($telefone) < 11 ){
+        $_SESSION['erro'] = "O telefone deve ter 11 digitos";
+        $this->criar_conta();
+        return;
+    }
+    
+    //verificar se a senha tem menos de 8 caracters
+    if( strlen($senha1) < 8 ){
         $_SESSION['erro'] = "A senha deve ter no minimo 8 caracters.";
         $this->criar_conta();
+        return;
+    }
+    
+    //verificando se a senha e confirmar senha sao iguais
+    if($senha1!= $senha2){
+        $_SESSION['erro'] = "Senha e confirmar senha devem ser iguais.";
+        $this->criar_conta();
+        return;
     }
 
 
     echo"<pre>";
-   echo $_POST['text_nome'];
+  print_r($_POST);
+   die('fim');
 }
 
 }
 
-/*[text_nome] => 
-    [text_email] => 
-    [text_telefone] => 
-    [text_senha1] => 
-    [text_senha2] => 
-) */
