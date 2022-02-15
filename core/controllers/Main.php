@@ -1,12 +1,15 @@
 <?php
-namespace core\controladores;
+namespace core\controllers;
 
 use core\classes\Database;
+use core\classes\EnviarEmail;
 use core\classes\Functions;
+use core\models\Clientes;
 
 class Main{
 
 public function index(){
+
     $views = [
         'layouts/html_head',
         'head',
@@ -35,6 +38,20 @@ $dados = ['titulo'=> 'esse é o titulo'];
 
 Functions::layout($views, $dados);
 }
+
+public function login(){
+    $views = [
+        'layouts/html_head',
+        'head',
+        'login',
+        'rodape',
+        'layouts/html_footer'
+
+];
+
+Functions::layout($views,);
+}
+
 public function criar_conta(){
     if(isset($_SESSION['usuario'])){
         $this->index();
@@ -67,17 +84,15 @@ public function cadastrar_conta(){
     $telefone = $_POST['text_telefone'];
     $senha1 = $_POST['text_senha1'];
     $senha2 = $_POST['text_senha2'];
+    
     //verificar se o wmail ja esta cadastrado
-    $parametros = [
-        ':email' => strtolower(trim($_POST['text_email'])) 
-    ];
-   
-    $db= new Database();
-    $usuario = $db->select("SELECT email FROM clientes WHERE email = :email" , $parametros);
-    if(count($usuario) > 0){
+    $verifica = new Clientes();
+
+    if(!$verifica->verificar_email()){
         $_SESSION['erro'] = "Email ja está cadastrado.";
         $this->criar_conta();
     }
+
     //verificar se o nome foi requerido
     if($nome = null || strlen($nome) < 8 ){
         $_SESSION['erro'] = "O nome deve ter no minimo 10 caracteres.";
@@ -104,12 +119,23 @@ public function cadastrar_conta(){
         $this->criar_conta();
         return;
     }
+   $p = random_int(1111111111, 9999999999);
+    $purl = password_hash($p, PASSWORD_DEFAULT);
 
+    $cadastrar = new Clientes();
+    $cadastrar->cadastrar_cliente($purl);
+    
 
-    echo"<pre>";
-  print_r($_POST);
-   die('fim');
+ 
+    $confirma_email = new EnviarEmail();
+    $confirma_email->enviar_email($email,$nome,$purl);
+
+    if($confirma_email){
+        echo"enviado para ".$_POST['text_nome']."". $purl;
+    }else{
+        echo"nao enviado";
+    }
+   
 }
 
 }
-

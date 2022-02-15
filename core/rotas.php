@@ -7,6 +7,7 @@ $rotas = [
             'loja'      =>     'main@loja',
             'criar_conta' =>    'main@criar_conta',
             'cadastrar_conta' => 'main@cadastrar_conta',
+            'login'           => 'main@login',
             'carrinho'  =>     'carrinho@carrinho'
 ];
 $acao = 'inicio';
@@ -20,7 +21,7 @@ if(isset($_GET['a'])){
 }
 $partes = explode('@', $rotas[$acao]);
 
-$controlador = 'core\\controladores\\'.ucfirst($partes[0]);
+$controlador = 'core\\controllers\\'.ucfirst($partes[0]);
 $metodo = $partes[1];
 
 $ctr = new $controlador();

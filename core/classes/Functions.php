@@ -22,9 +22,10 @@ class Functions{
         }
     }
 
-    public static function clienteLogado(){
+    public static function crriarHasch($num_caracter = 12){
+        $caracrters = '012345678990987654321abcdefghijklmnopqrstuvxwyABCDEFGHIJKLMNOPQRSTUVYXWZzabcdefghi987654321jklmnopqrstuvxwyzBCDEFGHIJKLMNOPQRSTUVYXWZ';
 
-        return isset($_SESSION['cliente']);
+        return substr(str_shuffle($caracrters), 0, $num_caracter);
     }
 
 }

@@ -1,13 +1,13 @@
 /*app.css*/
 .navegacao{
 
-    background-color: rgb(165, 165, 219);
+    background-color: rgb(50, 50, 75);
     color: black;
 }
 
 .rodape{
 
-    background-color: rgb(60, 60, 207);
+    background-color: rgb(50, 50, 75);
     color: rgb(250, 250, 250);
 }
 .link_iten{
@@ -17,6 +17,7 @@
 }
 
 .link_iten:hover{
+ 
     text-decoration: underline;
     color: aliceblue;
   

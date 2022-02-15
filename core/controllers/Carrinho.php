@@ -1,5 +1,5 @@
 <?php
-namespace core\controladores;
+namespace core\controllers;
 use core\classes\Functions;
 
 class Carrinho{
