@@ -10,7 +10,8 @@ $rotas = [
             'login'           => 'main@login',
             'login_form'           => 'main@login_form',
             'carrinho'  =>     'carrinho@carrinho',
-            'verificar_email' =>'main@verificar_email'
+            'verificar_email' =>'main@verificar_email',
+            'sair' => 'main@sair'
 ];
 $acao = 'inicio';
 
