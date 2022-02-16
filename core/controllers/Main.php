@@ -23,7 +23,8 @@ public function index(){
     
     Functions::layout($views, $dados);
 }
-
+//=====================================================================================================================
+//view loja
 public function loja(){
     $views = [
         'layouts/html_head',
@@ -38,7 +39,8 @@ $dados = ['titulo'=> 'esse é o titulo'];
 
 Functions::layout($views, $dados);
 }
-
+//=====================================================================================================================
+//view login
 public function login(){
     $views = [
         'layouts/html_head',
@@ -51,7 +53,8 @@ public function login(){
 
 Functions::layout($views,);
 }
-
+//=====================================================================================================================
+//view criar conta
 public function criar_conta(){
     if(isset($_SESSION['usuario'])){
         $this->index();
@@ -65,10 +68,13 @@ public function criar_conta(){
         'layouts/html_footer'
 
 ];
-
-
 Functions::layout($views,);
+
+
 }
+
+//========================================================================================================================
+//cadastro de usuario
 public function cadastrar_conta(){
     if(isset($_SESSION['usuario'])){
         $this->index();
@@ -131,11 +137,76 @@ public function cadastrar_conta(){
     $confirma_email->enviar_email($email,$nome,$purl);
 
     if($confirma_email){
-        echo"enviado para ".$_POST['text_nome']."". $purl;
+        $views = [
+            'layouts/html_head',
+            'head',
+            'cadastro/conta_criada',
+            'rodape',
+            'layouts/html_footer'
+    
+    ];
+    
+    Functions::layout($views,);
     }else{
         echo"nao enviado";
     }
-   
 }
 
+//=================================================================================================================
+//validar email e ativar conta
+public function verificar_email(){
+    if(isset($_SESSION['usuario'])){
+        $this->index();
+        return;
+    }
+    if(!isset($_GET['purl'])){
+        $this->index();
+        return;
+    }
+    $cliente = new Clientes();
+    $resultado = $cliente->validar_email($_GET['purl']);
+     if($resultado){
+        $views = [
+            'layouts/html_head',
+            'head',
+            'cadastro/conta_ativada',
+            'rodape',
+            'layouts/html_footer'
+    
+    ];
+    
+    Functions::layout($views,);
+     }
+
+    
+
 }
+
+public function login_form(){
+    if(isset($_SESSION['usuario'])){
+        $this->index();
+    }
+    if(!$_POST['text_email']){
+        $_SESSION['erro'] = 'informe o email';
+        $this->login();
+    }
+    if(!filter_var($_POST['text_email'], FILTER_VALIDATE_EMAIL)){
+        $_SESSION['erro'] = 'formato de email invalido';
+        $this->login();
+    }
+    $usuario = strtolower(trim($_POST['text_email']));
+    $senha = trim($_POST['text_senha']);
+
+    $resultad =  new Clientes();
+    $resultados = $resultad->verificar_login($usuario, $senha);
+
+    if($resultados){
+        print_r($resultado);
+    }
+    
+
+}
+
+
+
+} 

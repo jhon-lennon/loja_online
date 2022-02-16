@@ -21,6 +21,40 @@ class Clientes{
             return true;
         }
     }
+    
+    public function verificar_login($usuario, $senha){
+        
+        //verificar se o wmail ja esta cadastrado
+        $parametros = [
+            ':email' => $usuario
+        ];
+       
+        $db= new Database();
+        $usuario = $db->select("SELECT * FROM clientes WHERE ativo = 1 and email = :email" , $parametros);
+        if(count($usuario) != 1){
+            $_SESSION['erro'] = "Usuario não Cadastrado";
+            Functions::redirect('login');
+            return;
+
+        }elseif(!password_verify($senha, $usuario[0]->senha)){
+            $_SESSION['erro'] = "Senha errada";
+            Functions::redirect('login');
+            return;
+        }
+        return $usuario;
+        
+    }
+    
+
+
+
+
+
+
+
+
+
+
     public function cadastrar_cliente($purl1){
         $nome = $_POST['text_nome'];
         $email = $_POST['text_email'];
@@ -42,4 +76,20 @@ class Clientes{
 
         return true;
  }
+ public function validar_email($purl){
+
+    $db = new Database();
+    $parametros = [':purl' => $purl];
+    $resultado = $db->select("SELECT * FROM clientes WHERE purl = :purl", $parametros);
+    if(count($resultado) !=1){
+        return false;
+    }
+    $id_cliente = $resultado[0]->id_cliente;
+    $parametros = [':id_cliente' => $id_cliente];
+
+    $db->update("UPDATE clientes SET purl= null, ativo= 1, updated_at= NOW() WHERE id_cliente = :id_cliente",$parametros);
+    return true;
+ }
+
+
 }

@@ -8,7 +8,9 @@ $rotas = [
             'criar_conta' =>    'main@criar_conta',
             'cadastrar_conta' => 'main@cadastrar_conta',
             'login'           => 'main@login',
-            'carrinho'  =>     'carrinho@carrinho'
+            'login_form'           => 'main@login_form',
+            'carrinho'  =>     'carrinho@carrinho',
+            'verificar_email' =>'main@verificar_email'
 ];
 $acao = 'inicio';
 

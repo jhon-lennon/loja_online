@@ -27,5 +27,9 @@ class Functions{
 
         return substr(str_shuffle($caracrters), 0, $num_caracter);
     }
+    public static function redirect($rota = ""){
+        header("location: http://localhost/loja_online/public/?a=$rota");
+    }
+
 
 }
