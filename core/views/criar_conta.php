@@ -38,6 +38,7 @@
                 <?php if(isset($_SESSION['erro'])):?>
                     <div class="alert alert-danger" role="alert">
                         <?= $_SESSION['erro']?>
+                        <?php unset($_SESSION['erro']);?>
                     </div>
                 <?php endif?>
         </div>

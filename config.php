@@ -1,6 +1,6 @@
 <?php
 
-define('APP_NAME',        'Loja Oline');
+define('APP_NAME',        'Casa DAS Ferramentas');
 define('APP_VERSION',     '1.0.0.0');
 
 //MYSQL

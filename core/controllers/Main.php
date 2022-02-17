@@ -6,6 +6,7 @@ use core\classes\Database;
 use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Clientes;
+use core\models\Produtos;
 
 class Main
 {
@@ -30,19 +31,66 @@ class Main
     //view loja
     public function loja()
     {
+
+        $produtos = new Produtos();
+        $resultado = $produtos->produtos_disponiveis();
+
+        $categorias = $produtos->categoria();
+/*
+        echo"<pre>";
+ print_r($resultado);
+ print_r($categoria);
+        die('fim');
+*/
+
         $views = [
             'layouts/html_head',
             'head',
             'loja',
             'rodape',
-            'layouts/html_footer'
-
+            'layouts/html_footer',
         ];
+        $dado = ['produtos' => $resultado,'categorias'=> $categorias];
 
-        $dados = ['titulo' => 'esse é o titulo'];
-
-        Functions::layout($views, $dados);
+        Functions::layout($views, $dado);
     }
+
+
+    public function loja_categoria()
+    {
+        $categoria = $_GET['c'];
+        $db = new Produtos();
+        $pro_categoria = $db->produtos_categoria($categoria);
+
+        $categorias = $db->categoria();
+/*
+        echo"<pre>";
+ print_r($resultado);
+ print_r($categoria);
+        die('fim');
+*/
+
+        $views = [
+            'layouts/html_head',
+            'head',
+            'loja',
+            'rodape',
+            'layouts/html_footer',
+        ];
+        $dado = ['produtos' => $pro_categoria,'categorias'=> $categorias];
+
+        Functions::layout($views, $dado);
+    }
+
+
+
+
+    
+    
+
+
+
+
     //=====================================================================================================================
     //view login
     public function login(){
@@ -239,4 +287,8 @@ class Main
         Functions::redirect('inicio');
         return;
     }
+
+    //===============================================================================================================
+    //loja
+
 }
