@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row my-5">
         <div class="col-sm-4 offset-sm-4 ">
-            <h3 class="text-center">Criar Conta</h3>
+            <h3 class="text-center">Cadastrar</h3>
 
             <form action="?a=cadastrar_conta" method="post">
 

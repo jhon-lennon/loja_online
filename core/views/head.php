@@ -9,7 +9,7 @@
                
             <?php else: ?>
                 <a href="?a=login"class="link_iten">Login</a>
-                <a href="?a=criar_conta"class="link_iten">Criar conta</a>
+                <a href="?a=criar_conta"class="link_iten">Cadastre-se</a>
     
             <?php endif;?> 
 
