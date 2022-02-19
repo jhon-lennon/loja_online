@@ -40,7 +40,7 @@
                         <h5 class="card-title "><?= $produto->nome ?></h5>
                         <p class="card-text "><?= $produto->descricao ?></p>
                         <p><h3><?= $produto->preco ?> R$</h3></p>
-                        <a href="" class="btn btn-primary ">Adicionar ao carrinho</a>
+                        <a href="?a=add_carrinho&id_p=<?=$produto->id_produto ?>&nome=<?=$produto->nome ?>&preco=<?=$produto->preco ?>&img=<?=$produto->imagem ?>" class="btn btn-primary ">Adicionar ao carrinho</a>
                         
                     </div>
                 </div>

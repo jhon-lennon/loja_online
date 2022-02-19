@@ -11,21 +11,24 @@ use core\models\Produtos;
 class Main
 {
 
+
+
     public function index()
     {
+
+        $produtos = new Produtos();
+        $resultado = $produtos->produtos_pag_inicial();
 
         $views = [
             'layouts/html_head',
             'head',
-            'home',
+            'teste',
             'rodape',
-            'layouts/html_footer'
-
+            'layouts/html_footer',
         ];
+        $dado = ['produtos' => $resultado];
 
-        $dados = ['titulo' => 'esse é o titulo'];
-
-        Functions::layout($views, $dados);
+        Functions::layout($views, $dado);
     }
     //=====================================================================================================================
     //view loja
@@ -36,12 +39,6 @@ class Main
         $resultado = $produtos->produtos_disponiveis();
 
         $categorias = $produtos->categoria();
-/*
-        echo"<pre>";
- print_r($resultado);
- print_r($categoria);
-        die('fim');
-*/
 
         $views = [
             'layouts/html_head',
@@ -63,12 +60,6 @@ class Main
         $pro_categoria = $db->produtos_categoria($categoria);
 
         $categorias = $db->categoria();
-/*
-        echo"<pre>";
- print_r($resultado);
- print_r($categoria);
-        die('fim');
-*/
 
         $views = [
             'layouts/html_head',
@@ -187,6 +178,7 @@ class Main
 
         $cadastrar = new Clientes();
         $cadastrar->cadastrar_cliente($purl);
+
 
 
 

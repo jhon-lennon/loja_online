@@ -25,12 +25,17 @@
 .t_image{
    
     width: 240px; 
-    height: 230px
+    height: 230px;
 }
 .fx{
     position: relative;
-bottom: 0px;;
+bottom: 0px;
 }
 .bgg{
     background-color: rgb(181, 181, 181);
+}
+.carrocel{
+   
+    width: 600px; 
+    height: 450px;
 }

@@ -7,6 +7,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <title>Loja Online</title>
+    <title><?=APP_NAME?></title>
 </head>
 <body>
