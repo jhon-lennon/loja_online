@@ -11,6 +11,7 @@ $rotas = [
             'login_form'           => 'main@login_form',
             'carrinho'  =>     'carrinho@carrinho',
             'add_carrinho' => 'carrinho@add_carrinho',
+            'limpar_carrinho' => 'carrinho@limpar_carrinho',
             'verificar_email' =>'main@verificar_email',
             'loja_categoria' => 'main@loja_categoria',
             'sair' => 'main@sair'
