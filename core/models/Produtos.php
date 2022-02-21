@@ -58,4 +58,10 @@ class Produtos
         $carrinho = $add->select('SELECT * FROM produtos WHERE id_produto = :id_p AND visivel = :disp AND estoque > 0', $parametros);
         return $carrinho;
     }
+
+    public function produtos_ids($ids){
+        $db = new Database();
+        $produtos = $db->select("SELECT * FROM produtos WHERE id_produto IN ($ids)");
+        return $produtos;
+    }
 }

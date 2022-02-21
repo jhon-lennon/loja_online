@@ -10,11 +10,60 @@ class Carrinho
 
     public function carrinho()
     {
-        $car = new Produtos();
 
-        $carrinho = $car->carrinho();
+        if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0) {
+            $dados = ['carrinho' => null];
+        } else {
+            $ids = [];
+            foreach ($_SESSION['carrinho'] as $id_p => $quant) {
+                array_push($ids, $id_p);
+            }
+            $ids = implode(",", $ids);
 
-        $produtos = $car->produtos_disponiveis();
+            $produto = new Produtos();
+            $produtos = $produto->produtos_ids($ids);
+
+
+            $dados_tem = [];
+
+            foreach ($produtos as $produto) {
+                foreach ($_SESSION['carrinho'] as $car_produto => $quanti) {
+                    if ($car_produto == $produto->id_produto) {
+
+                        $id_pro = $produto->id_produto;
+                        $nome = $produto->nome;
+                        $imagem = $produto->imagem;
+                        $preco = $produto->preco;
+                        $quantidade = $quant;
+                        $total = $quant * $preco;
+
+                        array_push(
+                            $dados_tem,
+                            [
+                                'id_pro' => $id_pro,
+                                'nome' => $nome,
+                                'imagem' => $imagem,
+                                'preco' => $preco,
+                                'quant' => $quantidade,
+                                'total' => $total
+                            ]
+                        );
+                    }
+                }
+            }
+            $total = 0;
+            foreach ($dados_tem as $item){
+                $total = $total + $item['total'];
+            }
+
+           // array_push($dados_tem, ['total' => $total]);
+
+//echo"<pre>";
+          //  print_r($dados_tem);
+            $dados = ['carrinho' =>$dados_tem, 'total' => $total];
+          //  die;
+
+        }
 
 
         $views = [
@@ -26,7 +75,7 @@ class Carrinho
 
         ];
 
-        $dados = ['carrinho' => $carrinho, 'produtos' => $produtos];
+        // $dados = ['carrinho' => $carrinho, 'produtos' => $produtos];
 
         Functions::layout($views, $dados);
     }
