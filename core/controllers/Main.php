@@ -6,6 +6,7 @@ use core\classes\Database;
 use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Clientes;
+use core\models\Endereco;
 use core\models\Produtos;
 
 class Main
@@ -316,6 +317,18 @@ class Main
     }
 
     //===============================================================================================================
-    //loja
+    //formulario endereco
+    public function endereco_form(){
+      // print_r($_POST);
+    //    die;
+    $form = new Endereco();
+    $resutado = $form->cadastrar_endereco();
+    if($resutado = true){
+        echo"cadastrado";
+    }
+
+
+
+    }
 
 }

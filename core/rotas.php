@@ -25,6 +25,7 @@ $rotas = [
             'finalizar_compra' => 'carrinho@finalizar_compra',
             'resumo_compra' => 'carrinho@resumo_compra',
             'login_carrinho' => 'main@login_carrinho',
+            'endereco_form' => 'main@endereco_form'
             
 ];
 $acao = 'inicio';
