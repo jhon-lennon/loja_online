@@ -89,6 +89,28 @@ class Main
         if (isset($_SESSION['usuario'])) {
             Functions::redirect('inicio');
         }
+
+        $views = [
+            'layouts/html_head',
+            'head',
+            'login',
+            'rodape',
+            'layouts/html_footer'
+
+        ];
+
+        Functions::layout($views,);
+    }
+    //==================================================================================================================
+    public function login_carrinho(){
+
+        if (isset($_SESSION['usuario'])) {
+            Functions::redirect('inicio');
+        }
+        if(isset($_SESSION['dados_temp'])){
+            unset($_SESSION['dados_temp']);
+        }
+
         $views = [
             'layouts/html_head',
             'head',
@@ -228,6 +250,7 @@ class Main
             Functions::layout($views,);
         }
     }
+//==================================================================================================================
 
     public function login_form()
     {
@@ -258,12 +281,24 @@ class Main
         $resultad =  new Clientes();
         $resultado = $resultad->verificar_login($usuario, $senha);
 
+
+      
+
+
         if ($resultado) {
             $_SESSION['usuario'] = $resultado[0]->email;
             $_SESSION['id_cliente'] = $resultado[0]->id_cliente;
             $_SESSION['nome'] = $resultado[0]->nome;
             $_SESSION['telefone'] = $resultado[0]->telefone;
-            $this->index();
+            if(isset($_SESSION['dados_temp'])){
+                unset($_SESSION['dados_temp']);
+                Functions::redirect('carrinho');
+                return;
+            }
+            
+            
+            Functions::redirect('inicio');
+            return;
         }
         //===========================================================================================================
         //sair da sessaoo
