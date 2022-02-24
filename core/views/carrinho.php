@@ -1,4 +1,4 @@
-<div class="container-fluid bgg">
+<div class="container-fluid ">
   <div class="row">
     <div class="col-sm-9 offset-1">
       <h3 class="text-center mt-5">Carrinho</h3>
@@ -42,12 +42,27 @@
             </tr>
           </tbody>
         </table>
-        <div class="my-5">
+        <div class="row">
+        <div class=" col-6 my-1">
           <a class="btn btn-primary" href="?a=limpar_carrinho">Limpar carrihno</a>
           <a class="btn btn-primary" href="?a=loja">Continuar comprando</a>
         </div>
-        <i class="&#xF267"></i>
-        
+        <div class="col-6 my-1">
+        <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Default radio
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Default checked radio
+  </label>
+</div>
+        </div>
+
+        </div>
       <?php endif; ?>
     </div>
   </div>

@@ -23,7 +23,7 @@ class Main
         $views = [
             'layouts/html_head',
             'head',
-            'teste',
+            'home',
             'rodape',
             'layouts/html_footer',
         ];
@@ -315,20 +315,63 @@ class Main
         Functions::redirect('inicio');
         return;
     }
+//====================================================================================================================
+public function cadastrar_endereco()
+{
+
+    if (!isset($_SESSION['usuario'])) {
+        Functions::redirect('inicio');
+        return;
+    }
+
+    $views = [
+        'layouts/html_head',
+        'head',
+        'add_endereco',
+        'rodape',
+        'layouts/html_footer',
+    ];
+
+    Functions::layout($views);
+    return;
+}
 
     //===============================================================================================================
     //formulario endereco
-    public function endereco_form(){
-      // print_r($_POST);
-    //    die;
+    public function endereco_form()
+    {
+
     $form = new Endereco();
     $resutado = $form->cadastrar_endereco();
     if($resutado = true){
-        echo"cadastrado";
+        Functions::redirect('carrinho');
+        return;
+    }else{
+        $_SESSION['erro'] = 'ocorreu um erro';
+        Functions::redirect('inicio');
+        return;
+    }
     }
 
+//======================================================================================================================
+     public function minha_conta(){
+         
+        if (!isset($_SESSION['usuario'])) {
+            Functions::redirect('inicio');
+            return;
+        }
 
+        $views = [
+            'layouts/html_head',
+            'head',
+            'minha_conta',
+            'rodape',
+            'layouts/html_footer'
 
-    }
+        ];
+
+        Functions::layout($views,);
+        return;
+     }
 
 }

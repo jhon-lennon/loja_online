@@ -4,6 +4,7 @@ namespace core\models;
 
 use core\classes\Database;
 use core\classes\Functions;
+use Exception;
 
 class Endereco
 {
@@ -32,8 +33,15 @@ public function cadastrar_endereco(){
                     ':comp' => $_POST['comp']
 
     ];
+    try{
     $db->insert("INSERT INTO enderecos VALUES(0, :id_c, :nome, :cep, :estado, :cidade, :bairro, :rua, :numero, :comp)",$parametros);
+    }
+    catch(Exception $e){
+      return false;  
+    }
     return true;
+
+    
 }
 
 

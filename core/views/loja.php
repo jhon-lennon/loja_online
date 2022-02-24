@@ -3,7 +3,7 @@
 
 
 
-<div class="bgg pt-2">
+<div class=" pt-2">
 
 <div class="container mt-2 ">
     <a href="?a=loja" class="btn btn-primary mx-1">Todas</a>

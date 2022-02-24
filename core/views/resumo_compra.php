@@ -1,6 +1,6 @@
 <div class="container bgg">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8 offset-2">
         <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Compra</h4>
             <hr>
             <?php if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) : ?>
@@ -39,13 +39,21 @@
                 </table>
             <?php endif; ?>
         </div>
-        <div class="col-sm-6">
+
+        </div>
+        <div class="container">
+            <div class="row">
+        <div class="col-sm-4 offset-2">
         <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Cliente</h4>
             <hr>
             <p><b>Nome: </b><?=$_SESSION['nome'] ?></p>
             <p><b> Email: </b><?=$_SESSION['usuario'] ?></p>
             <p><b>Telefone: </b><?=$_SESSION['telefone'] ?></p>
-            <h4 class="text-center text-white p-1 bg-dark bg-gradient">Endereço</h4>
+            </div>
+            <div class="col-sm-4">
+
+            <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Endereço</h4>
+            <hr>
             <p><b>CEP: </b><?=$endereco[0]->cep ?></p>
             <p><b>Estado: </b><?=$endereco[0]->estado ?></p>
             <p><b>Cidade: </b><?=$endereco[0]->cidade ?></p>
@@ -55,5 +63,7 @@
             <p><b>complemento: </b><?=$endereco[0]->complemento ?></p>
 
         </div>
-    </div>
+        </div>
+        </div>
+    
 </div>
