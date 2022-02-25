@@ -15,12 +15,16 @@ public function buscar_enderecos(){
     $endereco = $db->select('SELECT * FROM enderecos WHERE id_cliente = :id_u', $parametros);
     return $endereco;
 }
+
+public function buscar_enderecos_resumo(){
+    $parametros = [':id_u' => $_SESSION['id_cliente'], ':id_ende' => $_POST['id_ende']];
+    $db = new Database();
+    $endereco = $db->select('SELECT * FROM enderecos WHERE id_cliente = :id_u AND id_endere = :id_ende', $parametros);
+    return $endereco;
+}
 public function cadastrar_endereco(){
     $db = new Database();
-   // echo"<pre>";
-   // print_r($_SESSION);
-   // print_r($_POST);
-   // die;
+
     $parametros = [
                     ':id_c' => $_SESSION['id_cliente'],
                     ':nome' => $_POST['nome'],

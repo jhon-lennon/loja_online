@@ -1,4 +1,4 @@
-<div class="container bgg">
+<div class="container">
     <div class="row">
         <div class="col-sm-8 offset-2">
         <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Compra</h4>
@@ -65,5 +65,26 @@
         </div>
         </div>
         </div>
-    
+        <?php print_r($_POST); ?>
+    <br>
+    <br>
+
+    <br>
+
+    <br>
+
+    <br>
+
+    <br>
+<p>g</p>
+<p>g</p>
+
+<p>g</p>
+
+<p>g</p>
+
+<p>g</p>
+
+<p>g</p>
+
 </div>

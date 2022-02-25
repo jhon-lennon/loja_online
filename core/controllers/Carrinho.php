@@ -56,14 +56,12 @@ class Carrinho
             foreach ($dados_tem as $item) {
                 $total = $total + $item['total'];
             }
+            $end = new Endereco();
+            $endereco = $end->buscar_enderecos();
 
-            // array_push($dados_tem, ['total' => $total]);
 
-            //echo"<pre>";
-            //  print_r($dados_tem);
-            $dados = ['carrinho' => $dados_tem, 'total' => $total];
-            //  die;
-
+            $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco];
+            
         }
 
 
@@ -279,15 +277,13 @@ public function diminuir_item_carrinho(){
                 $total = $total + $item['total'];
             }
             $end = new Endereco();
-            $endereco = $end->buscar_enderecos();
+            $endereco = $end->buscar_enderecos_resumo();
     
 
             $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco] ;
            
 
         }
-        $end = new Endereco();
-        $endereco = $end->buscar_enderecos();
 
         
         
