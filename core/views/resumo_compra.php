@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-8 offset-2">
+        <div class="col-sm-6 offset-3">
         <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Compra</h4>
             <hr>
             <?php if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) : ?>
@@ -43,14 +43,14 @@
         </div>
         <div class="container">
             <div class="row">
-        <div class="col-sm-4 offset-2">
+        <div class="col-sm-6 offset-3">
         <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Cliente</h4>
             <hr>
             <p><b>Nome: </b><?=$_SESSION['nome'] ?></p>
             <p><b> Email: </b><?=$_SESSION['usuario'] ?></p>
             <p><b>Telefone: </b><?=$_SESSION['telefone'] ?></p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6 offset-3">
 
             <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Endereço</h4>
             <hr>
@@ -61,6 +61,13 @@
             <p><b>Rua: </b><?=$endereco[0]->rua ?></p>
             <p><b>Numero: </b><?=$endereco[0]->numero?></p>
             <p><b>complemento: </b><?=$endereco[0]->complemento ?></p>
+
+        </div>
+        <div class="col-sm-6 offset-3">
+        <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Pagamento</h4>
+        <hr>
+        <p><b>Tipo de pagamento: </b><?=$_POST['pagamento'] ?></p>
+
 
         </div>
         </div>

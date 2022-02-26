@@ -316,25 +316,51 @@ class Main
         return;
     }
 //====================================================================================================================
-public function cadastrar_endereco()
+public function editar_endereco()
 {
 
     if (!isset($_SESSION['usuario'])) {
         Functions::redirect('inicio');
         return;
     }
-
+    $end = new Endereco();
+    $endereco = $end->buscar_enderecos_editar($_GET['id_end']);
+    if(count($endereco) != 1){
+        Functions::redirect('minha_conta');
+        return;
+    }
+    $dados = ['endereco' => $endereco];
     $views = [
         'layouts/html_head',
         'head',
-        'add_endereco',
+        'editar_endereco',
         'rodape',
         'layouts/html_footer',
     ];
 
-    Functions::layout($views);
+    Functions::layout($views, $dados);
     return;
 }
+//======================================================================================================================
+//editar endereço formulario
+    public function editar_endereco_form(){
+        
+        $endereco = new Endereco();
+
+       $mensagem = $endereco->atualizar_endereco();
+       $dados = ['mensagem' => $mensagem];
+       $views = [
+           'layouts/html_head',
+           'head',
+           'editar_endereco',
+           'rodape',
+           'layouts/html_footer',
+       ];
+   
+       Functions::layout($views, $dados);
+       return;
+
+    }
 
     //===============================================================================================================
     //formulario endereco
@@ -360,6 +386,11 @@ public function cadastrar_endereco()
             Functions::redirect('inicio');
             return;
         }
+        $end = new Endereco();
+        $endereco = $end->buscar_enderecos();
+
+
+        $dados = ['endereco' => $endereco];
 
         $views = [
             'layouts/html_head',
@@ -370,7 +401,7 @@ public function cadastrar_endereco()
 
         ];
 
-        Functions::layout($views,);
+        Functions::layout($views, $dados);
         return;
      }
 

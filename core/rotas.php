@@ -26,9 +26,11 @@ $rotas = [
             'resumo_compra' => 'carrinho@resumo_compra',
             'login_carrinho' => 'main@login_carrinho',
             //==========================================================
-            'cadastrar_endereco' => 'main@cadastrar_endereco',
+            'editar_endereco' => 'main@editar_endereco',
             'endereco_form' => 'main@endereco_form',
             'minha_conta' => 'main@minha_conta',
+            'editar_endereco_form' => 'main@editar_endereco_form'
+            
             
 ];
 $acao = 'inicio';
