@@ -57,7 +57,7 @@
 
             <div class="col-3">
 
-              <form action="?a=finalizar_compra" method="post">
+              <form action="?a=continuar_compra" method="post">
 
                 <select class="form-select" name="id_ende" aria-label=".form-select-sm example">
                   <?php foreach ($endereco as $ender) : ?>

@@ -22,9 +22,10 @@ $rotas = [
             'diminuir_item_carrinho' =>'carrinho@diminuir_item_carrinho',
             'adicionar_item_carrinho' =>'carrinho@adicionar_item_carrinho',
             //===============================================================
-            'finalizar_compra' => 'carrinho@finalizar_compra',
+            'continuar_compra' => 'carrinho@continuar_compra',
             'resumo_compra' => 'carrinho@resumo_compra',
             'login_carrinho' => 'main@login_carrinho',
+            'finalizar_compra' => 'carrinho@finalizar_compra',
             //==========================================================
             'editar_endereco' => 'main@editar_endereco',
             'endereco_form' => 'main@endereco_form',

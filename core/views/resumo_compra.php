@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 offset-3">
-        <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Compra</h4>
+            <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Compra</h4>
             <hr>
             <?php if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) : ?>
                 <h3 class="text-center">Carrinho Vazio</h3>
@@ -40,58 +40,41 @@
             <?php endif; ?>
         </div>
 
-        </div>
-        <div class="container">
-            <div class="row">
-        <div class="col-sm-6 offset-3">
-        <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Cliente</h4>
-            <hr>
-            <p><b>Nome: </b><?=$_SESSION['nome'] ?></p>
-            <p><b> Email: </b><?=$_SESSION['usuario'] ?></p>
-            <p><b>Telefone: </b><?=$_SESSION['telefone'] ?></p>
+    </div>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-6 offset-3">
+                <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Cliente</h4>
+                <hr>
+                <p><b>Nome: </b><?= $_SESSION['nome'] ?></p>
+                <p><b> Email: </b><?= $_SESSION['usuario'] ?></p>
+                <p><b>Telefone: </b><?= $_SESSION['telefone'] ?></p>
             </div>
             <div class="col-sm-6 offset-3">
 
-            <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Endereço</h4>
-            <hr>
-            <p><b>CEP: </b><?=$endereco[0]->cep ?></p>
-            <p><b>Estado: </b><?=$endereco[0]->estado ?></p>
-            <p><b>Cidade: </b><?=$endereco[0]->cidade ?></p>
-            <p><b>Bairro: </b><?=$endereco[0]->bairro ?></p>
-            <p><b>Rua: </b><?=$endereco[0]->rua ?></p>
-            <p><b>Numero: </b><?=$endereco[0]->numero?></p>
-            <p><b>complemento: </b><?=$endereco[0]->complemento ?></p>
+                <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Endereço</h4>
+                <hr>
+                <p><b>CEP: </b><?= $endereco[0]->cep ?></p>
+                <p><b>Estado: </b><?= $endereco[0]->estado ?></p>
+                <p><b>Cidade: </b><?= $endereco[0]->cidade ?></p>
+                <p><b>Bairro: </b><?= $endereco[0]->bairro ?></p>
+                <p><b>Rua: </b><?= $endereco[0]->rua ?></p>
+                <p><b>Numero: </b><?= $endereco[0]->numero ?></p>
+                <p><b>complemento: </b><?= $endereco[0]->complemento ?></p>
 
+            </div>
+            <div class="col-sm-6 offset-3">
+                <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Pagamento</h4>
+                <hr>
+                <p><b>Tipo de pagamento: </b><?= $_POST['pagamento'] ?></p>
+                <div class="col-sm-4 offset-8">
+                    <a href="?a=carrinho" class="btn btn-primary ">voltar</a>
+                    <a href="?a=finalizar_compra" class="btn btn-success ">Finalizar</a>
+                </div>
+                <br>
+
+
+
+            </div>
         </div>
-        <div class="col-sm-6 offset-3">
-        <h4 class="text-center text-white mt-5 p-1 bg-dark bg-gradient">Pagamento</h4>
-        <hr>
-        <p><b>Tipo de pagamento: </b><?=$_POST['pagamento'] ?></p>
-
-
-        </div>
-        </div>
-        </div>
-        <?php print_r($_POST); ?>
-    <br>
-    <br>
-
-    <br>
-
-    <br>
-
-    <br>
-
-    <br>
-<p>g</p>
-<p>g</p>
-
-<p>g</p>
-
-<p>g</p>
-
-<p>g</p>
-
-<p>g</p>
-
-</div>
+    </div>
