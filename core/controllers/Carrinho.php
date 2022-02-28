@@ -357,13 +357,17 @@ class Carrinho
         
         $dados = ['produtos' => $dados_temp , 'codigo_compra' => $codigo_compra];
         
-        unset($_SESSION['carrinho']);
-        unset($_SESSION['total']);
+        
 
         $registrar = new Compras();
 
         $registrar->registrar_compra($codigo_compra);
+        
         $registrar->registrar_itens($dados_temp, $codigo_compra);
+
+        unset($_SESSION['carrinho']);
+        unset($_SESSION['total']);
+
         $views = [
             'layouts/html_head',
             'head',

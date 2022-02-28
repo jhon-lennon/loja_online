@@ -12,7 +12,7 @@
             <a class="btn btn-primary" href="?a=cadastrar_endereco">altera senha</a>
         </div>
         <div class="col">
-            <a class="btn btn-primary" href="?a=cadastrar_endereco">Historico de compras</a>
+            <a class="btn btn-primary" href="?a=minhas_compras">Historico de compras</a>
         </div>
         <div class="col">
             <a class="btn btn-primary" href="?a=cadastrar_endereco">Alterar dados</a>
@@ -40,7 +40,7 @@
                                     <p><b>Numero: </b><?= $ender->numero ?></p>
                                     <p><b>complemento: </b><?= $ender->complemento ?></p>
                                     <a href="?a=editar_endereco&id_end=<?= $ender->id_endere ?>" class="btn btn-primary">Editar</a>
-                                    <a href="" class="btn btn-danger">Excluir</a>
+                                    <a href="?a=excluir_endereco&id_end=<?= $ender->id_endere ?>" class="btn btn-danger">Excluir</a>
                                 </div>
                             </div>
                         </div>

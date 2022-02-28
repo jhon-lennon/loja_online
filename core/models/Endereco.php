@@ -71,9 +71,7 @@ class Endereco
             ':id_end' => $_GET['id_end']
 
         ];
-      //  echo"<pre>";
-      //  print_r($parametros);
-      //  die;
+  
     try{
 
     $db->update("UPDATE enderecos SET  nome = :nome, cep = :cep, estado = :estado, cidade = :cidade, bairro = :bairro, rua = :rua, numero = :numero, complemento = :comp WHERE id_endere = :id_end AND id_cliente = :id_c",$parametros);
@@ -83,5 +81,13 @@ class Endereco
     }
     return " Endereço Atualizado";
     
+    }
+
+    public function excluir_endereco(){
+        $parametros = [':id' => $_GET['id_end']];
+
+        $db = new Database();
+        $db->delete('DELETE FROM enderecos WHERE id_endere = :id',$parametros);
+        return;
     }
 }

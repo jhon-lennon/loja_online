@@ -380,6 +380,19 @@ public function editar_endereco()
     }
 
 //======================================================================================================================
+
+    public function excluir_endereco(){
+
+
+
+        $endereco = new Endereco();
+        $endereco->excluir_endereco();
+
+        $this->minha_conta();
+
+    }
+
+
      public function minha_conta(){
          
         if (!isset($_SESSION['usuario'])) {

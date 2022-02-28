@@ -12,38 +12,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($compras as $compra ):?>
                     <tr>
-                        <td>11/03/22</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><a href="">Detalfffffhes</a></td>
+                        <td><?=$compra->data_compra ?></td>
+                        <td><?=$compra->codigo_compra ?></td>
+                        <td><?=$compra->status ?></td>
+                        
+                        <td><a href="?a=compra_detalhes&cod_c=<?=$compra->codigo_compra ?>">Detalhes</a></td>
                     </tr>
+                    <?php endforeach; ?>
                   
                 </tbody>
             </table>
+            <p><a href="?a=minha_conta" class="btn btn-primary">Voltar</a></p>
         </div>
     </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-<pre>
-
-
-<?php
-
-print_r($_SESSION);
-
-?>
-
-
-</pre>
+      

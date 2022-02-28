@@ -30,7 +30,10 @@ $rotas = [
             'editar_endereco' => 'main@editar_endereco',
             'endereco_form' => 'main@endereco_form',
             'minha_conta' => 'main@minha_conta',
-            'editar_endereco_form' => 'main@editar_endereco_form'
+            'editar_endereco_form' => 'main@editar_endereco_form',
+            'minhas_compras' => 'perfil@minhas_compras',
+            'compra_detalhes' => 'perfil@compra_detalhes',
+            'excluir_endereco' => 'main@excluir_endereco',
             
             
 ];
