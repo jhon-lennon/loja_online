@@ -74,15 +74,6 @@ class Main
         Functions::layout($views, $dado);
     }
 
-
-
-
-    
-    
-
-
-
-
     //=====================================================================================================================
     //view login
     public function login(){
@@ -168,6 +159,7 @@ class Main
         if (!$verifica->verificar_email()) {
             $_SESSION['erro'] = "Email ja está cadastrado.";
             $this->criar_conta();
+            return;
         }
 
         //verificar se o nome foi requerido
@@ -265,7 +257,7 @@ class Main
             Functions::redirect('login');
             return;
         }
-        if (!$_POST['text_senha']) {
+        if (!isset($_POST['text_senha'])) {
             $_SESSION['erro'] = 'informe a senha';
             Functions::redirect('login');
             return;

@@ -5,19 +5,17 @@
             <h3>Minha conta</h3>
         </div>
 
-    <!--    <div class="col">
-            <a class="btn btn-primary" href="?a=cadastrar_endereco">Cadastrar endereço</a>
-        </div> -->
-        <div class="col">
-            <a class="btn btn-primary" href="?a=cadastrar_endereco">altera senha</a>
+        <div class="col-2">
+            <a class="btn btn-primary" href="?a=alterar_dados">Alterar dados</a>
         </div>
-        <div class="col">
+        <div class="col-2">
+            <a class="btn btn-primary" href="?a=alterar_senha">altera senha</a>
+        </div>
+        <div class="col-3">
             <a class="btn btn-primary" href="?a=minhas_compras">Historico de compras</a>
         </div>
-        <div class="col">
-            <a class="btn btn-primary" href="?a=cadastrar_endereco">Alterar dados</a>
-        </div>
-        <div class="col">
+
+        <div class="col-2">
 
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Meus endereços</button>
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -49,7 +47,7 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-2">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Adicionar endereço</button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,19 +109,14 @@
                 </div>
             </div>
         </div>
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
-  </div>
-</div>
-<br>
-<br><br>
-<br>
-<br>
-<p>f</p>
+        <div class="col-4 my-5">
+            <h4>Meus Dados</h4>
+            <hr>
+            <br>
+            <p>Email: <?=$_SESSION['usuario'] ?></p>
+            <p>Nome: <?=$_SESSION['nome'] ?></p>
+            <p>Telefone: <?=$_SESSION['telefone'] ?></p>
+        </div>
+
     </div>
 </div>

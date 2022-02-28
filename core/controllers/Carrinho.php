@@ -237,6 +237,9 @@ class Carrinho
 
         if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0) {
             $dados = ['carrinho' => null];
+            Functions::redirect('carrinho');
+            return;
+
         } else {
             $ids = [];
             foreach ($_SESSION['carrinho'] as $id_p => $quant) {
@@ -290,8 +293,8 @@ class Carrinho
             $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco];
         }
 
-
-
+        //ficar ativa ate finalizar compra para nao registrar 2 vezes
+        $_SESSION['andamento'] = true;
 
         $views = [
             'layouts/html_head',
@@ -308,6 +311,12 @@ class Carrinho
     }
     public function finalizar_compra()
     {
+
+        if(!isset($_SESSION['andamento'])){
+            Functions::redirect('loja');
+            return;
+        }
+
 
         if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0) {
             Functions::redirect('loja');
@@ -357,16 +366,17 @@ class Carrinho
         
         $dados = ['produtos' => $dados_temp , 'codigo_compra' => $codigo_compra];
         
-        
+        $registrar_compra = new Compras();
+        $registrar_compra->registrar_compra($codigo_compra);
 
         $registrar = new Compras();
 
-        $registrar->registrar_compra($codigo_compra);
-        
         $registrar->registrar_itens($dados_temp, $codigo_compra);
 
-        unset($_SESSION['carrinho']);
-        unset($_SESSION['total']);
+       unset($_SESSION['carrinho']);
+       unset($_SESSION['total']);
+       unset($_SESSION['andamento']);
+
 
         $views = [
             'layouts/html_head',
@@ -378,5 +388,7 @@ class Carrinho
         ];
 
         Functions::layout($views, $dados);
+        return;
+      
     }
 }

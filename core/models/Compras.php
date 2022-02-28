@@ -29,7 +29,7 @@ class Compras
             ':valor' => $_SESSION['total_valor']
         ];
     
-        $db->insert('INSERT INTO compras VALUES (default, :id_u, :cod_com, NOW(), :statu, :cep, :est, :cid, :bai, :rua, :num, :com, :pag, :valor)', $parametros);
+        $db->insert('INSERT INTO compras VALUES (0, :id_u, :cod_com, NOW(), :statu, :cep, :est, :cid, :bai, :rua, :num, :com, :pag, :valor)', $parametros);
         return;
     }
 
