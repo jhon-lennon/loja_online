@@ -34,6 +34,10 @@ $rotas = [
             'minhas_compras' => 'perfil@minhas_compras',
             'compra_detalhes' => 'perfil@compra_detalhes',
             'excluir_endereco' => 'main@excluir_endereco',
+            'alterar_senha' => 'perfil@alterar_senha',
+            'alterar_senha_form' => 'perfil@alterar_senha_form',
+            'alterar_dados' => 'perfil@alterar_dados',
+            'alterar_dados_form' => 'perfil@alterar_dados_form',
             
             
 ];
