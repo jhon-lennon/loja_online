@@ -3,6 +3,7 @@
 namespace core\controllers;
 
 use core\classes\Database;
+use core\classes\Email_codigo;
 use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Clientes;
@@ -187,5 +188,123 @@ class Perfil
             Functions::redirect('alterar_senha');
             return;
         }
+    }
+    public function esqueci_senha()
+    {
+
+        if (isset($_SESSION['usuario'])) {
+            Functions::redirect('loja');
+            return;
+        }
+        $views = [
+            'layouts/html_head',
+            'head',
+            'esqueci_senha',
+            'rodape',
+            'layouts/html_footer',
+        ];
+
+
+        Functions::layout($views);
+        return;
+    }
+    public function esqueci_senha_form()
+    {
+
+        if (isset($_SESSION['usuario'])) {
+            Functions::redirect('loja');
+            return;
+        }
+        $db = new Clientes();
+        $verifica = $db;
+        if ($verifica->verificar_email() == true) {
+            $_SESSION['erro'] = "Email não cadastrado.";
+            Functions::redirect('esqueci_senha');
+            return;
+        }
+
+        $_SESSION['codigo'] = random_int(111111, 999999);
+
+        $email = new Email_codigo();
+        $enviar = $email->email_codigo();
+
+        if ($enviar == false) {
+            $_SESSION['erro'] = "EErro ao enviar email.";
+            Functions::redirect('esqueci_senha');
+            return;
+        } else {
+            $_SESSION['email'] = $_POST['text_email'];
+
+            $views = [
+                'layouts/html_head',
+                'head',
+                'recuperar_senha',
+                'rodape',
+                'layouts/html_footer',
+            ];
+            Functions::layout($views);
+            return;
+        }
+    }
+    public function recuperar_senha_form()
+    {
+        if (isset($_SESSION['usuario'])) {
+            Functions::redirect('loja');
+            return;
+        }
+
+        //verificar se a senha tem menos de 8 caracters
+        if (strlen($_POST['nova_senha']) < 8) {
+            $_SESSION['erro'] = "A nova senha deve ter no minimo 8 caracters.";
+            $views = [
+                'layouts/html_head',
+                'head',
+                'recuperar_senha',
+                'rodape',
+                'layouts/html_footer',
+            ];
+            Functions::layout($views);
+            return;
+        }
+
+        //verificando se a senha e confirmar senha sao iguais
+        if ($_POST['nova_senha'] != $_POST['nova_senha_2']) {
+            $_SESSION['erro'] = "A nova senha e confirmar senha devem ser iguais.";
+            $views = [
+                'layouts/html_head',
+                'head',
+                'recuperar_senha',
+                'rodape',
+                'layouts/html_footer',
+            ];
+            Functions::layout($views);
+            return;
+        }
+        if($_POST['codigo'] != $_SESSION['codigo']){
+            $_SESSION['erro'] = "O codigo estar incorreto, verifique seu email.";
+            $views = [
+                'layouts/html_head',
+                'head',
+                'recuperar_senha',
+                'rodape',
+                'layouts/html_footer',
+            ];
+            Functions::layout($views);
+            return;
+        }
+        $alterar = new Clientes();
+        $alterar->recuperar_senha();
+
+        if ($alterar == true) {
+            unset($_SESSION['email']);
+            unset($_SESSION['codigo']);
+
+
+            $_SESSION['mensagem'] = 'Senha recuperada, faça o login para entrar';
+            Functions::redirect('login');
+            return;
+        }
+
+       
     }
 }

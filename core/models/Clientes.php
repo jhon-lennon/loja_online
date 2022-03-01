@@ -119,4 +119,12 @@ class Clientes{
  }
 
 
+ public function recuperar_senha(){
+    $parametro =[':email' => $_SESSION['email'], ':senha' => password_hash($_POST['nova_senha'], PASSWORD_DEFAULT)];
+    $db = new Database();
+    $db->update("UPDATE clientes SET senha = :senha, updated_at = NOW() WHERE email = :email ",$parametro );
+    return true;
+ }
+
+
 }

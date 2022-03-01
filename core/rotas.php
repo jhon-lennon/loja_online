@@ -38,6 +38,10 @@ $rotas = [
             'alterar_senha_form' => 'perfil@alterar_senha_form',
             'alterar_dados' => 'perfil@alterar_dados',
             'alterar_dados_form' => 'perfil@alterar_dados_form',
+            'esqueci_senha' => 'perfil@esqueci_senha',
+            'esqueci_senha_form' => 'perfil@esqueci_senha_form',
+            'recuperar_senha_form' => 'perfil@recuperar_senha_form',
+
             
             
 ];

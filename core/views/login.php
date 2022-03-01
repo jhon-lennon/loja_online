@@ -22,9 +22,20 @@
                 <?php if(isset($_SESSION['erro'])):?>
                     <div class="alert alert-danger" role="alert">
                         <?= $_SESSION['erro']?>
-                        <?php unset($_SESSION['erro']);?>
+                        <?php unset($_SESSION['erro']) ;?>
+                        <a href="?a=esqueci_senha" class="alert-link">esqueci a senha</a>
                     </div>
                 <?php endif?>
+
+                
+                <?php if(isset($_SESSION['mensagem'])):?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $_SESSION['mensagem']?>
+                        <?php unset($_SESSION['mensagem']) ;?>
+                    </div>
+                <?php endif?>
+
         </div>
+
     </div>
 </div>
