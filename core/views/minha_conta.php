@@ -6,18 +6,18 @@
         </div>
 
         <div class="col-2">
-            <a class="btn btn-primary" href="?a=alterar_dados">Alterar dados</a>
+            <a class="btn btn-primary" href="?a=alterar_dados"><i class="fas fa-user-cog"></i> Alterar dados</a>
         </div>
         <div class="col-2">
-            <a class="btn btn-primary" href="?a=alterar_senha">altera senha</a>
+            <a class="btn btn-primary" href="?a=alterar_senha"><i class="fas fa-key"></i> altera senha</a>
         </div>
         <div class="col-3">
-            <a class="btn btn-primary" href="?a=minhas_compras">Historico de compras</a>
+            <a class="btn btn-primary" href="?a=minhas_compras"><i class="fas fa-history"></i> Historico de compras</a>
         </div>
 
         <div class="col-2">
 
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Meus endereços</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fas fa-address-card"></i> Meus endereços</button>
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Endereços</h5>
@@ -47,8 +47,8 @@
             </div>
         </div>
 
-        <div class="col-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Adicionar endereço</button>
+        <div class="col-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-map-marker-alt"></i> Adicionar endereço</button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

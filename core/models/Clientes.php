@@ -54,8 +54,7 @@ class Clientes{
             if(count($usuario) != 1){
                 return false;
     
-            }elseif(!password_verify($_POST['senha_atual'], $usuario[0]->senha)){
-               
+            }elseif(!password_verify($_POST['text_senha'], $usuario[0]->senha)){
                 return false;
             }
 

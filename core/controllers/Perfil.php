@@ -139,7 +139,7 @@ class Perfil
         $senha = $db->verificar_senha();
 
         if ($senha == false) {
-            $_SESSION['erro'] = 'senha invalida';
+            $_SESSION['erro'] = 'senhaa invalida';
             Functions::redirect('alterar_dados');
             return;
         }
