@@ -28,7 +28,8 @@
             <h4>Pagamento</h4>
             <hr>
             <p>Pagamento: <?= $compras[0]->pagamento ?></p>
-            <p>Valor Total: <?= $compras[0]->valor_total ?></p>
+            <p>Valor Total: <?=number_format( $compras[0]->valor_total , 2, ',', '.')?> R$</p>
+            
             <hr>
             <h4>produtos</h4>
             <br>
@@ -47,7 +48,7 @@
                     <?php foreach ($detalhes as $detalhe) : ?>
                         <tr>
                             <td><?= $detalhe->produto ?></td>
-                            <td><?= $detalhe->preco ?></td>
+                            <td><?= number_format($detalhe->preco , 2, ',', '.')?> R$</td>
                             <td><?= $detalhe->quantidade  ?></td>
 
 

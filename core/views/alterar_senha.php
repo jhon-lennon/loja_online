@@ -11,15 +11,15 @@
 
                     <div class="col-6 offset-3">
                         <label class="form-label">Nova senha</label>
-                        <input type="text" class="form-control" name="nova_senha" required>
+                        <input type="password" class="form-control" name="nova_senha" required>
                     </div>
                     <div class="col-6 offset-3">
                         <label class="form-label">Repetir nova senha</label>
-                        <input type="text" class="form-control" name="nova_senha_2" required>
+                        <input type="password" class="form-control" name="nova_senha_2" required>
                     </div>
                     <div class="col-6 offset-3">
                         <label class="form-label">Senha atual</label>
-                        <input type="text" class="form-control" name="senha_atual" required>
+                        <input type="password" class="form-control" name="senha_atual" required>
 
                     </div>
                     <div class="col-6 offset-3">

@@ -58,8 +58,8 @@
             <div class="col-6 offset-3">
                 <p>Codigo da compra: <?=$codigo_compra ?> </p>
                 <p>Status: aguardando pagamento </p>
-                <a href=""class="btn btn-primary">Voltar a loja</a>
-                <a href=""class="btn btn-primary">minhas compras</a>
+                <a href="?a=loja"class="btn btn-primary">Voltar a loja</a>
+                <a href="?a=minhas_compras"class="btn btn-primary">minhas compras</a>
 
             <br>
     </div>
