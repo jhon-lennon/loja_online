@@ -94,18 +94,3 @@
 </div>
 </div>
 </div>
-<br>
-
-
-
-
-<img src="assets/images/alicate.jpg" style="width: 30rem;"class="img-fluid" alt="..." >
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>

@@ -356,8 +356,7 @@ public function editar_endereco()
 
     //===============================================================================================================
     //formulario endereco
-    public function endereco_form()
-    {
+    public function endereco_form(){
 
     $form = new Endereco();
     $resutado = $form->cadastrar_endereco();
@@ -383,6 +382,7 @@ public function editar_endereco()
         $this->minha_conta();
 
     }
+//=================================================================================================================
 
 
      public function minha_conta(){

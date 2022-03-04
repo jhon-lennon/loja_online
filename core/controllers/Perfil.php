@@ -35,6 +35,7 @@ class Perfil
         Functions::layout($views, $dado);
     }
 
+    //===============================================================================================================
     public function compra_detalhes()
     {
         if (!isset($_SESSION['usuario'])) {
@@ -58,6 +59,8 @@ class Perfil
         Functions::layout($views, $dado);
     }
 
+
+    //=============================================================================================================
     public function alterar_senha()
     {
         if (!isset($_SESSION['usuario'])) {
@@ -77,6 +80,8 @@ class Perfil
         Functions::layout($views);
         return;
     }
+
+    //==============================================================================================================
     public function alterar_dados()
     {
         if (!isset($_SESSION['usuario'])) {
@@ -96,6 +101,8 @@ class Perfil
         Functions::layout($views);
         return;
     }
+
+    //=================================================================================================================
     public function alterar_dados_form()
     {
 
@@ -139,7 +146,7 @@ class Perfil
         $senha = $db->verificar_senha();
 
         if ($senha == false) {
-            $_SESSION['erro'] = 'senhaa invalida';
+            $_SESSION['erro'] = 'senha invalida';
             Functions::redirect('alterar_dados');
             return;
         }
@@ -154,6 +161,8 @@ class Perfil
             return;
         }
     }
+
+    //================================================================================================================
     public function alterar_senha_form()
     {
 
@@ -189,6 +198,8 @@ class Perfil
             return;
         }
     }
+
+    //================================================================================================================
     public function esqueci_senha()
     {
 
@@ -208,6 +219,8 @@ class Perfil
         Functions::layout($views);
         return;
     }
+
+    //=================================================================================================================
     public function esqueci_senha_form()
     {
 
@@ -246,6 +259,8 @@ class Perfil
             return;
         }
     }
+
+    //================================================================================================================
     public function recuperar_senha_form()
     {
         if (isset($_SESSION['usuario'])) {

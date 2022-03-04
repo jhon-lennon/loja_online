@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Compras;
 use core\models\Produtos;
@@ -309,6 +310,7 @@ class Carrinho
 
         Functions::layout($views, $dados);
     }
+    //===============================================================================================================
     public function finalizar_compra()
     {
 
@@ -372,6 +374,12 @@ class Carrinho
         $registrar = new Compras();
 
         $registrar->registrar_itens($dados_temp, $codigo_compra);
+
+        $mail = new EnviarEmail();
+        $email = $mail->enviar_resumo($codigo_compra);
+        if($email == false){
+            die('erro email');
+        }
 
        unset($_SESSION['carrinho']);
        unset($_SESSION['total']);
