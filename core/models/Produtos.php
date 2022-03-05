@@ -11,6 +11,8 @@ class Produtos
     public function produtos_disponiveis()
     {
         $db = new Database();
+
+
         $resultado = $db->select('SELECT * FROM produtos WHERE visivel = 1');
         return $resultado;
     }
@@ -27,6 +29,14 @@ class Produtos
         $db = new Database();
         $parametros = [':pg' => '1'];
         $resultado = $db->select('SELECT * FROM produtos WHERE pag_inicio = :pg', $parametros);
+        return $resultado;
+    }
+    public function busca()
+    {
+        $db = new Database();
+        $parametros = [':busca' => $_POST['busca'], ':visivel' => 1];
+ 
+        $resultado = $db->select("SELECT * FROM produtos WHERE visivel = :visivel AND  nome like '%':busca'%'", $parametros);
         return $resultado;
     }
 

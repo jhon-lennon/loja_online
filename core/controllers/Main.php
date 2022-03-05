@@ -74,6 +74,18 @@ class Main
         Functions::layout($views, $dado);
     }
 
+    public function buscar(){
+
+        $prod = new Produtos();
+
+        $produtos = $prod->busca();
+
+       print_r($produtos);
+
+        die;
+        echo $_POST['busca'];
+    }
+
     //=====================================================================================================================
     //view login
     public function login(){

@@ -3,7 +3,8 @@
 
 
 
-<div class=" pt-2">
+<div class=" mt-2">
+
 
 <div class="container mt-2 ">
     <a href="?a=loja" class="btn btn-primary mx-1">Todas</a>
@@ -17,7 +18,7 @@
 </div>
 
 
-<div class="container my-5">
+<div class="container my-2">
     <div class="row">
         <div class="col-sm-4 offset-4 text-center">
             <?php if (empty($produtos)) {echo" <h1> 0 resultado</h1>"; }?>
@@ -29,7 +30,15 @@
 
 
 
-<div class="container my-5">
+<div class="container my-2">
+    <div class="col-4 offset-4 my-4">
+        <form action="?a=buscar" method="post" class="d-flex">
+    <input class="form-control me-2" type="search" name="busca" placeholder="Pesquisar">
+    <button class="btn btn-primary" type="submit" >  <i class="fas fa-search"></i></button>
+   <!-- <input class="btn btn-primary" type="submit" value="buscar" >-->
+    </form>
+
+    </div>
     <div class="row row-cols-1 row-cols-md-4 g-5">
         <?php foreach ($produtos as $produto) :  ?>
             <div class="col ">

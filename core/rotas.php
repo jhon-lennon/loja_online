@@ -6,6 +6,7 @@ $rotas = [
             'inicio'    =>     'main@index',
             'loja'      =>     'main@loja',
             'loja_categoria' => 'main@loja_categoria',
+            'buscar' => 'main@buscar',
             //criar conta=================================================
             'criar_conta' =>    'main@criar_conta',
             'cadastrar_conta' => 'main@cadastrar_conta',
