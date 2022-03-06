@@ -34,9 +34,9 @@ class Produtos
     public function busca()
     {
         $db = new Database();
-        $parametros = [':busca' => $_POST['busca'], ':visivel' => 1];
+        $parametros = [':busca' => '%'.$_POST['busca'].'%', ':visivel' => 1];
  
-        $resultado = $db->select("SELECT * FROM produtos WHERE visivel = :visivel AND  nome like '%':busca'%'", $parametros);
+        $resultado = $db->select("SELECT * FROM produtos WHERE visivel = :visivel AND  nome like :busca ", $parametros);
         return $resultado;
     }
 

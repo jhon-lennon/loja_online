@@ -38,8 +38,8 @@ class Main
 
         $produtos = new Produtos();
         $resultado = $produtos->produtos_disponiveis();
-
         $categorias = $produtos->categoria();
+       
 
         $views = [
             'layouts/html_head',
@@ -75,15 +75,26 @@ class Main
     }
 
     public function buscar(){
+        if(empty($_POST['busca'])){
+            Functions::redirect('loja');
+            return;
+        }
 
-        $prod = new Produtos();
+        $produtos = new Produtos();
+        $categorias = $produtos->categoria();
+        $produto = $produtos->busca();
+        $quanidade_resultado = count($produto);
 
-        $produtos = $prod->busca();
+        $views = [
+            'layouts/html_head',
+            'head',
+            'loja',
+            'rodape',
+            'layouts/html_footer',
+        ];
+        $dado = ['produtos' => $produto,'categorias'=> $categorias, 'quantidade' => $quanidade_resultado];
 
-       print_r($produtos);
-
-        die;
-        echo $_POST['busca'];
+        Functions::layout($views, $dado);
     }
 
     //=====================================================================================================================
@@ -172,6 +183,12 @@ class Main
             $_SESSION['erro'] = "Email ja está cadastrado.";
             $this->criar_conta();
             return;
+        }
+        if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $_SESSION['erro'] = "Digite um email valido.";
+                Functions::redirect('criar_conta');
+                return;
+
         }
 
         //verificar se o nome foi requerido
