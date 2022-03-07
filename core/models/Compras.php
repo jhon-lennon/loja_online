@@ -66,7 +66,7 @@ class Compras
 
         $db = new Database();
 
-        $cod_c =Functions::desencriptar( $_GET['cod_c']);
+        $cod_c = Functions::desencriptar( $_GET['cod_c']);
         $parametros = [':cod_c' => $cod_c];
 
      
@@ -76,9 +76,9 @@ class Compras
     }
     public function compras()
     {
-
         $db = new Database();
-        $parametros = [':cod_c' => $_GET['cod_c']];
+        $cod_c = Functions::desencriptar( $_GET['cod_c']);
+        $parametros = [':cod_c' => $cod_c];
 
         $compras = $db->select('SELECT * FROM compras WHERE codigo_compra = :cod_c', $parametros);
         return $compras;

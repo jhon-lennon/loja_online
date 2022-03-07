@@ -45,6 +45,10 @@ class Perfil
         $detalhes = $db->compra_detalhes();
 
         $compras = $db->compras();
+        if(empty($detalhes) || empty($compras)){
+            Functions::redirect('minhas_compras');
+            return;
+        }
 
 
         $views = [
