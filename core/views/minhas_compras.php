@@ -1,3 +1,10 @@
+
+<?php
+
+use core\classes\Functions;
+
+ ?>
+
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
@@ -18,7 +25,7 @@
                         <td><?=$compra->codigo_compra ?></td>
                         <td><?=$compra->status ?></td>
                         
-                        <td><a href="?a=compra_detalhes&cod_c=<?=$compra->codigo_compra ?>">Detalhes</a></td>
+                        <td><a href="?a=compra_detalhes&cod_c=<?=Functions::encriptar($compra->codigo_compra ) ?>">Detalhes</a></td>
                     </tr>
                     <?php endforeach; ?>
                   

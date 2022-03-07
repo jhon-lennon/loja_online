@@ -65,7 +65,11 @@ class Compras
     {
 
         $db = new Database();
-        $parametros = [':cod_c' => $_GET['cod_c']];
+
+        $cod_c =Functions::desencriptar( $_GET['cod_c']);
+        $parametros = [':cod_c' => $cod_c];
+
+     
 
         $detalhes = $db->select('SELECT * FROM compra_item WHERE codigo_compra = :cod_c', $parametros);
         return $detalhes;
