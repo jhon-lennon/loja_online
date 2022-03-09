@@ -4,7 +4,8 @@
 
 $rotas = [
             'inicio'    =>     'admin@index',
-            'login'      =>     'admin@login',    
+            'login'      =>     'admin@login',
+            'login_form' => 'admin@login_form',   
 ];
 $acao = 'inicio';
 
