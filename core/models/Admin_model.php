@@ -43,8 +43,65 @@ class Admin_model{
             return;
         }
         return $usuario;
-        
     }
+
+    
+    public function todos_produtos()
+    {
+        $db = new Database();
+        $resultado = $db->select('SELECT * FROM produtos');
+        return $resultado;
+    }
+
+    public function todos_clientes()
+    {
+        $db = new Database();
+        $resultado = $db->select('SELECT * FROM clientes');
+        return $resultado;
+    }
+
+    public function todos_vendas()
+    {
+        $db = new Database();
+        $resultado = $db->select('SELECT * FROM compras');
+        return $resultado;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public function verificar_senha(){
           
             $parametros = [':id_c' => $_SESSION['id_cliente']];

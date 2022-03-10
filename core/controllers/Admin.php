@@ -11,6 +11,10 @@ class Admin
     //====================================================================================================================
     public function index()
     {
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
         $views = [
             'admin/layouts/html_head',
             'admin/head',
@@ -26,14 +30,13 @@ class Admin
     }
     public function login(){
 
-        if (isset($_SESSION['admin'])) {
+        if (isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('inicio');
             return;
         }
 
         $views = [
             'admin/layouts/html_head',
-            'admin/head',
             'admin/login',
             'admin/rodape',
             'admin/layouts/html_footer',
@@ -72,23 +75,14 @@ class Admin
         $resultad =  new Admin_model();
         $resultado = $resultad->verificar_login($usuario, $senha);
 
-        die($resultad);
-
-
-      
-
-
         if ($resultado) {
             $_SESSION['usuario_admin'] = $resultado[0]->email;
             $_SESSION['id_admin'] = $resultado[0]->id_cliente;
             $_SESSION['nome_admin'] = $resultado[0]->nome;
-             Functions::redirect('inicio');
+             Functions::redirect_admin('inicio');
             return;
             }
-            
-            
-           
-        
+
         //===========================================================================================================
         //sair da sessaoo
 
@@ -100,7 +94,73 @@ class Admin
         unset($_SESSION['id_admin']);
         unset($_SESSION['nome_admin']);
         
-        Functions::redirect('login');
+        Functions::redirect_admin('login');
+        return;
+    }
+    public function vendas(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $vendas = $ven->todos_vendas();
+        $dados = ['vendas' => $vendas];
+
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+       
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function clientes(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cli = new Admin_model();
+        $clientes = $cli->todos_clientes();
+        $dados = ['clientes' => $clientes];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/clientes',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+       
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function produtos(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $pro = new Admin_model();
+        $produtos = $pro->todos_produtos();
+        $dados = ['produtos' => $produtos];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/produtos',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+       
+        Functions::layout_admin($views, $dados);
         return;
     }
 }

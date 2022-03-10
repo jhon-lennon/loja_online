@@ -5,7 +5,11 @@
 $rotas = [
             'inicio'    =>     'admin@index',
             'login'      =>     'admin@login',
-            'login_form' => 'admin@login_form',   
+            'login_form' => 'admin@login_form',
+            'sair'      => 'admin@sair',
+            'vendas' => 'admin@vendas',
+            'produtos' => 'admin@produtos',
+            'clientes' => 'admin@clientes',   
 ];
 $acao = 'inicio';
 
