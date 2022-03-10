@@ -22,13 +22,12 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views);
         return;
-        
-
     }
-    public function login(){
+    public function login()
+    {
 
         if (isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('inicio');
@@ -51,7 +50,6 @@ class Admin
         if (isset($_SESSION['admin'])) {
             Functions::redirect_admin('inicio');
             return;
-            
         }
         if (!$_POST['text_email']) {
             $_SESSION['erro'] = 'informe o email';
@@ -79,9 +77,9 @@ class Admin
             $_SESSION['usuario_admin'] = $resultado[0]->email;
             $_SESSION['id_admin'] = $resultado[0]->id_cliente;
             $_SESSION['nome_admin'] = $resultado[0]->nome;
-             Functions::redirect_admin('inicio');
+            Functions::redirect_admin('inicio');
             return;
-            }
+        }
 
         //===========================================================================================================
         //sair da sessaoo
@@ -93,20 +91,27 @@ class Admin
         unset($_SESSION['usuario_admin']);
         unset($_SESSION['id_admin']);
         unset($_SESSION['nome_admin']);
-        
+
         Functions::redirect_admin('login');
         return;
     }
-    public function vendas(){
+    public function vendas()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
         $ven = new Admin_model();
-        $vendas = $ven->todos_vendas();
-        $pendentes = count($ven->todos_vendas_pendentes());
-        $dados = ['vendas' => $vendas, 'pendentes' => $pendentes];
+        $pendentes = count($ven->vendas('pendente'));
+        $concluidas = count($ven->vendas('concluida'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->todas_vendas();
+        $titulo = "Todas as vendas";
+
+
+
+        $dados = ['concluidas' => $concluidas, 'pendentes' => $pendentes, 'vendas' => $vendas, 'enviadas' => $enviadas, 'titulo' => $titulo];
 
 
         $views = [
@@ -116,22 +121,65 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views, $dados);
         return;
     }
 
-    public function vendas_pendentes(){
+    public function vendas_pendentes()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
         $ven = new Admin_model();
-        $vendas = $ven->todos_vendas_pendentes();
-        $pendentes = count($vendas);
-        $dados = ['vendas' => $vendas, 'pendentes' => $pendentes];
+        $pendentes = count($ven->vendas('pendente'));
+        $concluidas = count($ven->vendas('concluida'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->vendas('pendente');
+        $titulo = "Vendas pendentes";
 
+        $dados = [
+            'concluidas' => $concluidas,
+            'pendentes' => $pendentes,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function vendas_concluidas()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $pendentes = count($ven->vendas('pendente'));
+        $concluidas = count($ven->vendas('concluida'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->vendas('concluida');
+        $titulo = "Vendas Concluidas";
+
+        $dados = [
+            'concluidas' => $concluidas,
+            'pendentes' => $pendentes,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
 
         $views = [
             'admin/layouts/html_head',
@@ -140,23 +188,32 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views, $dados);
         return;
     }
 
-    public function vendas_concluidas(){
+    public function vendas_enviadas()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
         $ven = new Admin_model();
-        $vendas = $ven->todos_vendas_pendentes();
-        $vendass = $ven->todos_vendas_concluidas();
-        $pendentes = count($vendas);
-        $dados = ['vendas' => $vendass, 'pendentes' => $pendentes];
+        $pendentes = count($ven->vendas('pendente'));
+        $concluidas = count($ven->vendas('concluida'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->vendas('enviada');
+        $titulo = "Vendas enviadas";
 
+        $dados = [
+            'concluidas' => $concluidas,
+            'pendentes' => $pendentes,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
 
         $views = [
             'admin/layouts/html_head',
@@ -165,12 +222,13 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views, $dados);
         return;
     }
 
-    public function clientes(){
+    public function clientes()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -187,12 +245,13 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views, $dados);
         return;
     }
 
-    public function produtos(){
+    public function produtos()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -209,7 +268,7 @@ class Admin
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
-       
+
         Functions::layout_admin($views, $dados);
         return;
     }

@@ -60,26 +60,20 @@ class Admin_model{
         return $resultado;
     }
 
-    public function todos_vendas()
+    public function todas_vendas()
     {
         $db = new Database();
         $resultado = $db->select('SELECT * FROM compras');
         return $resultado;
     }
-    public function todos_vendas_pendentes()
+    public function vendas($status)
     {
         $db = new Database();
-        $parametro = [':pen' => 'pendente'];
-        $resultado = $db->select('SELECT * FROM compras WHERE status = :pen',$parametro);
+        $parametro = [':status' => $status];
+        $resultado = $db->select('SELECT * FROM compras WHERE status = :status',$parametro);
         return $resultado;
     }
-    public function todos_vendas_concluidas()
-    {
-        $db = new Database();
-        $parametro = [':conc' => 'concluida'];
-        $resultado = $db->select('SELECT * FROM compras WHERE status = :conc',$parametro);
-        return $resultado;
-    }
+ 
 
 
 

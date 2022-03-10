@@ -12,6 +12,8 @@ $rotas = [
             'clientes' => 'admin@clientes',  
             'vendas_pendentes' => 'admin@vendas_pendentes',
             'vendas_concluidas' => 'admin@vendas_concluidas',
+            'vendas_enviadas' => 'admin@vendas_enviadas',
+
 
 ];
 $acao = 'inicio';
