@@ -9,7 +9,10 @@ $rotas = [
             'sair'      => 'admin@sair',
             'vendas' => 'admin@vendas',
             'produtos' => 'admin@produtos',
-            'clientes' => 'admin@clientes',   
+            'clientes' => 'admin@clientes',  
+            'vendas_pendentes' => 'admin@vendas_pendentes',
+            'vendas_concluidas' => 'admin@vendas_concluidas',
+
 ];
 $acao = 'inicio';
 

@@ -105,7 +105,57 @@ class Admin
         }
         $ven = new Admin_model();
         $vendas = $ven->todos_vendas();
-        $dados = ['vendas' => $vendas];
+        $pendentes = count($ven->todos_vendas_pendentes());
+        $dados = ['vendas' => $vendas, 'pendentes' => $pendentes];
+
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+       
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function vendas_pendentes(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $vendas = $ven->todos_vendas_pendentes();
+        $pendentes = count($vendas);
+        $dados = ['vendas' => $vendas, 'pendentes' => $pendentes];
+
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+       
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function vendas_concluidas(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $vendas = $ven->todos_vendas_pendentes();
+        $vendass = $ven->todos_vendas_concluidas();
+        $pendentes = count($vendas);
+        $dados = ['vendas' => $vendass, 'pendentes' => $pendentes];
 
 
         $views = [
