@@ -55,11 +55,19 @@
     $('#tabela-vendas').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ resultatdos por pargina",
-            "zeroRecords": "Nothing found - sorry",
+            "zeroRecords": "Nenhum resultado encontrado",
             "info": "visualizando _PAGE_ pagiana no total de _PAGES_",
             "infoEmpty": "No records available",
-            "infoFiltered": "(filtered from _MAX_ total records)"
+            "infoFiltered": "(filtrado de um total _MAX_ vendas)",
+            "search":         "Pesquisar:",
+            "paginate": {
+                        "first": "Primeiro",
+                        "last": "Ultimo",
+                        "next": "Proximo",
+                        "previous": "Anterior"
+                    }
         }
+        
     });
 } );
 </script>
