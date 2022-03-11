@@ -103,7 +103,8 @@ class Admin
             return;
         }
         $ven = new Admin_model();
-        $pendentes = count($ven->vendas('pendente'));
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
         $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->todas_vendas();
@@ -111,7 +112,7 @@ class Admin
 
 
 
-        $dados = ['concluidas' => $concluidas, 'pendentes' => $pendentes, 'vendas' => $vendas, 'enviadas' => $enviadas, 'titulo' => $titulo];
+        $dados = ['concluidas' => $concluidas, 'agardando_pagamento' => $agardando_pagamento, 'em_processamento' => $em_processamento, 'vendas' => $vendas, 'enviadas' => $enviadas, 'titulo' => $titulo];
 
 
         $views = [
@@ -126,7 +127,7 @@ class Admin
         return;
     }
 
-    public function vendas_pendentes()
+    public function vendas_aguardando_pagamento()
     {
 
         if (!isset($_SESSION['usuario_admin'])) {
@@ -134,15 +135,17 @@ class Admin
             return;
         }
         $ven = new Admin_model();
-        $pendentes = count($ven->vendas('pendente'));
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
         $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
-        $vendas = $ven->vendas('pendente');
-        $titulo = "Vendas pendentes";
+        $vendas = $ven->vendas('aguardando pagamento');
+        $titulo = "Vendas aguardando pagamento";
 
         $dados = [
             'concluidas' => $concluidas,
-            'pendentes' => $pendentes,
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
             'vendas' => $vendas,
             'enviadas' => $enviadas,
             'titulo' => $titulo
@@ -167,7 +170,8 @@ class Admin
             return;
         }
         $ven = new Admin_model();
-        $pendentes = count($ven->vendas('pendente'));
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
         $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->vendas('concluida');
@@ -175,7 +179,8 @@ class Admin
 
         $dados = [
             'concluidas' => $concluidas,
-            'pendentes' => $pendentes,
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
             'vendas' => $vendas,
             'enviadas' => $enviadas,
             'titulo' => $titulo
@@ -201,7 +206,8 @@ class Admin
             return;
         }
         $ven = new Admin_model();
-        $pendentes = count($ven->vendas('pendente'));
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
         $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->vendas('enviada');
@@ -209,7 +215,8 @@ class Admin
 
         $dados = [
             'concluidas' => $concluidas,
-            'pendentes' => $pendentes,
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
             'vendas' => $vendas,
             'enviadas' => $enviadas,
             'titulo' => $titulo
@@ -226,6 +233,42 @@ class Admin
         Functions::layout_admin($views, $dados);
         return;
     }
+    public function vendas_em_processamento()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
+        $concluidas = count($ven->vendas('concluida'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->vendas('enviada');
+        $titulo = "Vendas em processamento";
+
+        $dados = [
+            'concluidas' => $concluidas,
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
 
     public function clientes()
     {

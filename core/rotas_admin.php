@@ -10,9 +10,12 @@ $rotas = [
             'vendas' => 'admin@vendas',
             'produtos' => 'admin@produtos',
             'clientes' => 'admin@clientes',  
-            'vendas_pendentes' => 'admin@vendas_pendentes',
+            'vendas_aguardando_pagamento' => 'admin@vendas_aguardando_pagamento',
             'vendas_concluidas' => 'admin@vendas_concluidas',
             'vendas_enviadas' => 'admin@vendas_enviadas',
+            'vendas_em_processamento' => 'admin@vendas_em_processamento',
+
+
 
 
 ];
