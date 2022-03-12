@@ -279,7 +279,81 @@ class Admin
         }
         $cli = new Admin_model();
         $clientes = $cli->todos_clientes();
-        $dados = ['clientes' => $clientes];
+        $dados = ['clientes' => $clientes,
+                    'titulo' => 'Todos os clientes'
+                ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/clientes',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    public function clientes_ativos()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cli = new Admin_model();
+        $clientes = $cli->clientes_ativos();
+        $dados = ['clientes' => $clientes,
+                    'titulo' => 'Clientes ativos'
+                ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/clientes',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    public function clientes_inativos()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cli = new Admin_model();
+        $clientes = $cli->clientes_inativos();
+        $dados = ['clientes' => $clientes,
+                    'titulo' => 'Clientes inativos'
+                ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/clientes',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    public function clientes_excluidos()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cli = new Admin_model();
+        $clientes = $cli->clientes_excluidos();
+        $dados = ['clientes' => $clientes,
+                    'titulo' => 'Clientes excluidos'
+                ];
 
         $views = [
             'admin/layouts/html_head',

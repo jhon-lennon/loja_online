@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 " style="margin-bottom: 60px;">
         <h4 class="text-center my-2"><?= $titulo ?></h4>
         <hr>
         <div class="col-3">
@@ -7,7 +7,7 @@
             <?=$agardando_pagamento?>
                     <span class="visually-hidden">unread messages</span>
                 </span></div>
-            <div class="alert alert-warning text-center" role="alert">em processamento <a href="?a=vendas_em_processamento">ver</a><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <div class="alert alert-warning text-center" role="alert">Em processamento <a href="?a=vendas_em_processamento">ver</a><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     <?=$em_processamento ?>
                     <span class="visually-hidden">unread messages</span>
                 </span></div>

@@ -59,6 +59,26 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM clientes');
         return $resultado;
     }
+    public function clientes_ativos()
+    {
+        $db = new Database();
+        $parametro = [':ativo' => 1];
+        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo', $parametro);
+        return $resultado;
+    }
+    public function clientes_inativos()
+    {
+        $db = new Database();
+        $parametro = [':ativo' => 0];
+        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo', $parametro);
+        return $resultado;
+    }
+    public function clientes_excluidos()
+    {
+        $db = new Database();
+        $resultado = $db->select('SELECT * FROM clientes WHERE deleted_at != 0');
+        return $resultado;
+    }
 
     public function todas_vendas()
     {

@@ -2,6 +2,8 @@
 
 //use core\controladores\Main;
 
+use core\controllers\Admin;
+
 $rotas = [
             'inicio'    =>     'admin@index',
             'login'      =>     'admin@login',
@@ -14,6 +16,11 @@ $rotas = [
             'vendas_concluidas' => 'admin@vendas_concluidas',
             'vendas_enviadas' => 'admin@vendas_enviadas',
             'vendas_em_processamento' => 'admin@vendas_em_processamento',
+            'clientes_ativos' => 'admin@clientes_ativos',
+            'clientes_inativos' => 'admin@clientes_inativos',
+            'clientes_excluidos' => 'admin@clientes_excluidos',
+
+
 
 
 

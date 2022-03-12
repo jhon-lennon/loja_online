@@ -15,7 +15,7 @@ define('MYSQL_CHARSET',  'utf8');
 
 define('MAIL_HOST','smtp.gmail.com');
 define('MAIL_USERNAME','jhonservicesys@gmail.com');
-define('MAIL_PASSWORD','');
+define('MAIL_PASSWORD','JhonLennon@99857660');
 define('MAIL_PORT','465');
 define('MAIL_CHARSET','UTF-8');
 
