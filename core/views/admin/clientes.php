@@ -23,7 +23,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Total de compras</th>
                     <th scope="col">Detalhes</th>
                 </tr>
             </thead>
@@ -33,11 +32,15 @@
                         <td><?= $cliente->nome ?></td>
                         <td><?= $cliente->email ?></td>
                         <td><?= $cliente->telefone ?></td>
-                        <td><?= $cliente->ativo ?></td>
-                        <td><?= '-' ?></td>
-                     
-
-
+                        <td>
+                        <?php if($cliente->ativo == 0  && $cliente->deleted_at == 0):?>
+                            <span class="text-danger">Inativo</span>
+                        <?php elseif($cliente->ativo == 1 ): ?>
+                            <span class="text-success">Ativo</span>
+                        <?php elseif($cliente->deleted_at != 0 ): ?>
+                            <span class="text-danger">Excluido</span>'
+                        <?php endif; ?>
+                        </td>
                         <td><a href="?a=compra_detalhes&cod_c=<? $compra->codigo_compra ?>">Detalhes</a></td>
                     </tr>
                 <?php endforeach; ?>

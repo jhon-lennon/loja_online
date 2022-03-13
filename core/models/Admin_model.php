@@ -69,8 +69,8 @@ class Admin_model{
     public function clientes_inativos()
     {
         $db = new Database();
-        $parametro = [':ativo' => 0];
-        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo', $parametro);
+        $parametro = [':ativo' => 0, ':delet' => NULL];
+        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo && deleted_at = :delet' , $parametro);
         return $resultado;
     }
     public function clientes_excluidos()
