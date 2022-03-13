@@ -9,16 +9,24 @@ $rotas = [
             'login'      =>     'admin@login',
             'login_form' => 'admin@login_form',
             'sair'      => 'admin@sair',
-            'vendas' => 'admin@vendas',
+            //produtos
             'produtos' => 'admin@produtos',
-            'clientes' => 'admin@clientes',  
+            //vendas  
+            'vendas' => 'admin@vendas',
             'vendas_aguardando_pagamento' => 'admin@vendas_aguardando_pagamento',
             'vendas_concluidas' => 'admin@vendas_concluidas',
             'vendas_enviadas' => 'admin@vendas_enviadas',
             'vendas_em_processamento' => 'admin@vendas_em_processamento',
+            'vendas_canceladas' => 'admin@vendas_canceladas',
+            //clientes
+            'clientes' => 'admin@clientes',
             'clientes_ativos' => 'admin@clientes_ativos',
             'clientes_inativos' => 'admin@clientes_inativos',
             'clientes_excluidos' => 'admin@clientes_excluidos',
+            //vendas clientes
+            'compra_detalhes' => 'admin@compra_detalhes',
+            
+
 
 
 

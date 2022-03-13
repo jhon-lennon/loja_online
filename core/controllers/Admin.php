@@ -105,14 +105,19 @@ class Admin
         $ven = new Admin_model();
         $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
         $em_processamento =  count($ven->vendas('em processamento'));
-        $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->todas_vendas();
         $titulo = "Todas as vendas";
 
 
 
-        $dados = ['concluidas' => $concluidas, 'agardando_pagamento' => $agardando_pagamento, 'em_processamento' => $em_processamento, 'vendas' => $vendas, 'enviadas' => $enviadas, 'titulo' => $titulo];
+        $dados = [
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
 
 
         $views = [
@@ -137,13 +142,11 @@ class Admin
         $ven = new Admin_model();
         $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
         $em_processamento =  count($ven->vendas('em processamento'));
-        $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->vendas('aguardando pagamento');
         $titulo = "Vendas aguardando pagamento";
 
         $dados = [
-            'concluidas' => $concluidas,
             'agardando_pagamento' => $agardando_pagamento,
             'em_processamento' => $em_processamento,
             'vendas' => $vendas,
@@ -172,13 +175,11 @@ class Admin
         $ven = new Admin_model();
         $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
         $em_processamento =  count($ven->vendas('em processamento'));
-        $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->vendas('concluida');
         $titulo = "Vendas Concluidas";
 
         $dados = [
-            'concluidas' => $concluidas,
             'agardando_pagamento' => $agardando_pagamento,
             'em_processamento' => $em_processamento,
             'vendas' => $vendas,
@@ -208,13 +209,44 @@ class Admin
         $ven = new Admin_model();
         $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
         $em_processamento =  count($ven->vendas('em processamento'));
-        $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
         $vendas = $ven->vendas('enviada');
         $titulo = "Vendas enviadas";
 
         $dados = [
-            'concluidas' => $concluidas,
+            'agardando_pagamento' => $agardando_pagamento,
+            'em_processamento' => $em_processamento,
+            'vendas' => $vendas,
+            'enviadas' => $enviadas,
+            'titulo' => $titulo
+        ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/vendas',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    public function vendas_canceladas()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $ven = new Admin_model();
+        $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
+        $em_processamento =  count($ven->vendas('em processamento'));
+        $enviadas = count($ven->vendas('enviada'));
+        $vendas = $ven->vendas('cancelada');
+        $titulo = "Vendas canceladas";
+
+        $dados = [
             'agardando_pagamento' => $agardando_pagamento,
             'em_processamento' => $em_processamento,
             'vendas' => $vendas,
@@ -243,13 +275,11 @@ class Admin
         $ven = new Admin_model();
         $agardando_pagamento = count($ven->vendas('aguardando pagamento'));
         $em_processamento =  count($ven->vendas('em processamento'));
-        $concluidas = count($ven->vendas('concluida'));
         $enviadas = count($ven->vendas('enviada'));
-        $vendas = $ven->vendas('enviada');
+        $vendas = $ven->vendas('em processamento');
         $titulo = "Vendas em processamento";
 
         $dados = [
-            'concluidas' => $concluidas,
             'agardando_pagamento' => $agardando_pagamento,
             'em_processamento' => $em_processamento,
             'vendas' => $vendas,
@@ -279,9 +309,10 @@ class Admin
         }
         $cli = new Admin_model();
         $clientes = $cli->todos_clientes();
-        $dados = ['clientes' => $clientes,
-                    'titulo' => 'Todos os clientes'
-                ];
+        $dados = [
+            'clientes' => $clientes,
+            'titulo' => 'Todos os clientes'
+        ];
 
         $views = [
             'admin/layouts/html_head',
@@ -303,9 +334,10 @@ class Admin
         }
         $cli = new Admin_model();
         $clientes = $cli->clientes_ativos();
-        $dados = ['clientes' => $clientes,
-                    'titulo' => 'Clientes ativos'
-                ];
+        $dados = [
+            'clientes' => $clientes,
+            'titulo' => 'Clientes ativos'
+        ];
 
         $views = [
             'admin/layouts/html_head',
@@ -327,9 +359,10 @@ class Admin
         }
         $cli = new Admin_model();
         $clientes = $cli->clientes_inativos();
-        $dados = ['clientes' => $clientes,
-                    'titulo' => 'Clientes inativos'
-                ];
+        $dados = [
+            'clientes' => $clientes,
+            'titulo' => 'Clientes inativos'
+        ];
 
         $views = [
             'admin/layouts/html_head',
@@ -351,14 +384,47 @@ class Admin
         }
         $cli = new Admin_model();
         $clientes = $cli->clientes_excluidos();
-        $dados = ['clientes' => $clientes,
-                    'titulo' => 'Clientes excluidos'
-                ];
+        $dados = [
+            'clientes' => $clientes,
+            'titulo' => 'Clientes excluidos'
+        ];
 
         $views = [
             'admin/layouts/html_head',
             'admin/head',
             'admin/clientes',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    //===================compras==================================================================================================
+    public function compra_detalhes()
+    {
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+        }
+        $db = new Admin_model();
+        $detalhes = $db->detalhes_compra_cliente();
+        $compras = $db->compra();
+        $cliente = $db->cliente_detalhe();
+        if(empty($detalhes) || empty($compras)){
+            Functions::redirect_admin('vendas');
+            return;
+        }
+  
+        $dados = [
+            'cliente' => $cliente[0],
+            'compras' => $compras,
+            'detalhes' => $detalhes
+        ];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/compra_detalhe_cliente',
             'admin/rodape',
             'admin/layouts/html_footer',
         ];

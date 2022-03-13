@@ -38,7 +38,7 @@
                         <?php elseif($cliente->ativo == 1 ): ?>
                             <span class="text-success">Ativo</span>
                         <?php elseif($cliente->deleted_at != 0 ): ?>
-                            <span class="text-danger">Excluido</span>'
+                            <span class="text-danger">Excluido</span>
                         <?php endif; ?>
                         </td>
                         <td><a href="?a=compra_detalhes&cod_c=<? $compra->codigo_compra ?>">Detalhes</a></td>

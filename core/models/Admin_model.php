@@ -21,6 +21,8 @@ class Admin_model{
             return true;
         }
     }
+    //==========================================================================================================================
+
     
     public function verificar_login($usuario, $senha){
         
@@ -45,6 +47,7 @@ class Admin_model{
         return $usuario;
     }
 
+    //==========================================================================================================================
     
     public function todos_produtos()
     {
@@ -52,6 +55,8 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM produtos');
         return $resultado;
     }
+    //==========================================================================================================================
+
 
     public function todos_clientes()
     {
@@ -59,6 +64,8 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM clientes');
         return $resultado;
     }
+    //==========================================================================================================================
+
     public function clientes_ativos()
     {
         $db = new Database();
@@ -66,19 +73,25 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo', $parametro);
         return $resultado;
     }
+    //==========================================================================================================================
+
     public function clientes_inativos()
     {
         $db = new Database();
-        $parametro = [':ativo' => 0, ':delet' => NULL];
-        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo && deleted_at = :delet' , $parametro);
+        $parametro = [':ativo' => 0];
+        $resultado = $db->select('SELECT * FROM clientes WHERE ativo = :ativo && deleted_at is null ' , $parametro);
         return $resultado;
     }
+    //==========================================================================================================================
+
     public function clientes_excluidos()
     {
         $db = new Database();
         $resultado = $db->select('SELECT * FROM clientes WHERE deleted_at != 0');
         return $resultado;
     }
+    //==========================================================================================================================
+
 
     public function todas_vendas()
     {
@@ -86,6 +99,8 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM compras');
         return $resultado;
     }
+    //==========================================================================================================================
+
     public function vendas($status)
     {
         $db = new Database();
@@ -93,7 +108,49 @@ class Admin_model{
         $resultado = $db->select('SELECT * FROM compras WHERE status = :status',$parametro);
         return $resultado;
     }
+    //==========================================================================================================================
  
+    public function compras_cliente($id_cliente)
+    {
+
+        $db = new Database();
+        $parametros = [':id_u' => $id_cliente];
+
+        $compras = $db->select('SELECT * FROM compras WHERE id_usuario = :id_u', $parametros);
+        return $compras;
+    }
+    //==========================================================================================================================
+
+    public function detalhes_compra_cliente()
+    {
+
+        $db = new Database();
+
+        $cod_c = Functions::desencriptar(  $_GET['cod_c']);
+        $parametros = [':cod_c' => $cod_c];
+        $detalhes = $db->select('SELECT * FROM compra_item WHERE codigo_compra = :cod_c', $parametros);
+        return $detalhes;
+    }
+    //==========================================================================================================================
+
+    public function compra()
+    {
+        $db = new Database();
+        $cod_c = Functions::desencriptar( $_GET['cod_c']);
+        $parametros = [':cod_c' => $cod_c];
+
+        $compras = $db->select('SELECT * FROM compras WHERE codigo_compra = :cod_c', $parametros);
+        return $compras;
+    }
+    //============================================================================================================================
+    public function cliente_detalhe()
+    {
+        $db = new Database();
+        $id_cliente = Functions::desencriptar( $_GET['id_cli']);
+        $parametro = [':id_c' => $id_cliente];
+        $resultado = $db->select('SELECT * FROM clientes WHERE id_cliente = :id_c', $parametro);
+        return $resultado;
+    }
 
 
 
