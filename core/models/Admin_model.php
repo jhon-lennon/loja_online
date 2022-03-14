@@ -126,20 +126,21 @@ class Admin_model{
 
         $db = new Database();
 
-        $cod_c = Functions::desencriptar(  $_GET['cod_c']);
-        $parametros = [':cod_c' => $cod_c];
-        $detalhes = $db->select('SELECT * FROM compra_item WHERE codigo_compra = :cod_c', $parametros);
+        $cod_compra = Functions::desencriptar($_GET['cod_compra']);
+        $parametros = [':cod_compra' => $cod_compra];
+        $detalhes = $db->select('SELECT * FROM compra_item WHERE codigo_compra = :cod_compra', $parametros);
         return $detalhes;
+      
     }
     //==========================================================================================================================
 
     public function compra()
     {
         $db = new Database();
-        $cod_c = Functions::desencriptar( $_GET['cod_c']);
-        $parametros = [':cod_c' => $cod_c];
+        $id_compra = Functions::desencriptar( $_GET['id_compra']);
+        $parametros = [':id_compra' => $id_compra];
 
-        $compras = $db->select('SELECT * FROM compras WHERE codigo_compra = :cod_c', $parametros);
+        $compras = $db->select('SELECT * FROM compras WHERE id_compra = :id_compra', $parametros);
         return $compras;
     }
     //============================================================================================================================
@@ -147,10 +148,18 @@ class Admin_model{
     {
         $db = new Database();
         $id_cliente = Functions::desencriptar( $_GET['id_cli']);
-        $parametro = [':id_c' => $id_cliente];
-        $resultado = $db->select('SELECT * FROM clientes WHERE id_cliente = :id_c', $parametro);
+        $parametro = [':id_cli' => $id_cliente];
+        $resultado = $db->select('SELECT * FROM clientes WHERE id_cliente = :id_cli', $parametro);
         return $resultado;
     }
+    public function cancelar_compra_model(){
+        $db = new Database();
+        $parametros = [
+            ':id_com' => Functions::desencriptar($_GET['id_compra']), 'mot_can' => $_POST['motivo']
+        ];
+        $db->update("UPDATE compras SET status = 'cancelada', motivo_cancelamento = :mot_can, updated_at = NOW() WHERE id_compra = :id_com ",$parametros );
+     }
+ 
 
 
 
@@ -184,7 +193,7 @@ class Admin_model{
 
 
 
-
+//sem uso
 
         public function verificar_senha(){
           
@@ -266,6 +275,9 @@ class Admin_model{
     $db->update("UPDATE clientes SET senha = :senha, updated_at = NOW() WHERE email = :email ",$parametro );
     return true;
  }
+
+
+
 
 
 }

@@ -43,9 +43,9 @@ use core\classes\Functions;
                         <tr>
                             <td><?= $venda->data_compra ?></td>
                             <td><?= $venda->codigo_compra ?></td>
-                            <td><?= $venda->status ?></td>
+                            <td><?= $venda->status?></td>
 
-                            <td><a href="?a=compra_detalhes&cod_c=<?= Functions::encriptar($venda->codigo_compra )?>&id_cli=<?= Functions::encriptar($venda->id_usuario)?>">Detalhes</a></td>
+                            <td><a href="?a=compra_detalhes&id_compra=<?= Functions::encriptar($venda->id_compra )?>&id_cli=<?= Functions::encriptar($venda->id_usuario)?>&cod_compra=<?= Functions::encriptar($venda->codigo_compra)?>">Detalhes</a></td>
                         </tr>
                     <?php endforeach; ?>
                     

@@ -403,6 +403,7 @@ class Admin
     //===================compras==================================================================================================
     public function compra_detalhes()
     {
+
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
         }
@@ -410,6 +411,7 @@ class Admin
         $detalhes = $db->detalhes_compra_cliente();
         $compras = $db->compra();
         $cliente = $db->cliente_detalhe();
+   
         if(empty($detalhes) || empty($compras)){
             Functions::redirect_admin('vendas');
             return;
@@ -455,4 +457,15 @@ class Admin
         Functions::layout_admin($views, $dados);
         return;
     }
+
+public function cancelar_compra(){
+
+    
+$db = new Admin_model();
+
+$db->cancelar_compra_model();
+
+$this->compra_detalhes();
+    return;
+}
 }

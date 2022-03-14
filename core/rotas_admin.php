@@ -25,6 +25,7 @@ $rotas = [
             'clientes_excluidos' => 'admin@clientes_excluidos',
             //vendas clientes
             'compra_detalhes' => 'admin@compra_detalhes',
+            'cancelar_compra' => 'admin@cancelar_compra',
             
 
 

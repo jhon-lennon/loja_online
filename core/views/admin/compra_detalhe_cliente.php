@@ -1,22 +1,26 @@
+<?php
+
+use core\classes\Functions;
+
+ ?>
+
 <div class="container">
     <div class="row " style="margin-bottom: 50px;">
 
         <div class="col-6 mt-5">
             <h4 class="text-center">Detalhes</h4>
-
         </div>
-
 
         <div class="col-6 mt-5 ">
 
-
+            <!-- se a compra estiver em processamento -->
             <?php if ($compras[0]->status == 'em processamento') : ?>
                 <div class="text-end">
+                    <!--botao do modal para enviar codigo de rastreio-->
                     <button class="btn btn-warning">Compra em processamento</button>
                     <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Alterar status</a>
                 </div>
-
-
+                <!--apresenta modal para o envio do codigo de rastreio-->
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -36,17 +40,18 @@
                                         <div class="col-2">
                                             <input class="btn btn-success" type="submit" value="Enviar">
                                         </div>
-
                                     </div>
-
                                 </form>
                             </div>
+
                             <div class="modal-footer">
+                                <!--botao do modal para cancelar a conpra-->
                                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cancelar venda</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--apresenta modal para cancelar a conpra-->
                 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -55,13 +60,13 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post">
+                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="text" name="">
+                                            <input class="form-control" type="text" name="motivo">
                                         </div>
                                         <div class="col-4">
                                             <input class="btn btn-danger" type="submit" value="Cancelar venda">
@@ -78,12 +83,14 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- se a compra estiver com status enviado -->
             <?php elseif ($compras[0]->status == 'enviada') : ?>
                 <div class="text-end">
+                    <!--botao do modal para concluir a conpra-->
                     <button class="btn btn-success">Compra enviada</button>
                     <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Alterar status</a>
                 </div>
+                <!--apresenta modal para concluir a conpra-->
                 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -95,11 +102,13 @@
                                 <a href="" class="btn btn-success">Concluir venda</a>
                             </div>
                             <div class="modal-footer">
+                                <!--botao do modal para cancelar a conpra-->
                                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cancelar venda</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--apresenta modal para cancelar a conpra-->
                 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -108,13 +117,14 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post">
+                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
+                          
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="text" name="">
+                                            <input class="form-control" type="text" name="motivo">
                                         </div>
                                         <div class="col-4">
                                             <input class="btn btn-danger" type="submit" value="Cancelar venda">
@@ -134,28 +144,28 @@
             <?php elseif ($compras[0]->status == 'aguardando pagamento') : ?>
                 <div class="text-end">
                     <button class="btn btn-danger">Aguardando pagamento</button>
-                    <!-- Button trigger modal -->
+                    <!--botao do modal para cancelar a conpra-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Cancelar venda
                     </button>
                 </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Insira o motivo do cancelamento</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                <form action="" method="post">
+                <!--apresenta modal para cancelar a conpra-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Insira o motivo do cancelamento</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="text" name="">
+                                            <input class="form-control" type="text" name="motivo">
                                         </div>
                                         <div class="col-4">
                                             <input class="btn btn-danger" type="submit" value="Cancelar venda">
@@ -164,14 +174,14 @@
                                     </div>
 
                                 </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">sair</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">sair</button>
                             </div>
                         </div>
                     </div>
-                
+                </div>
+
 
             <?php elseif ($compras[0]->status == 'cancelada') : ?>
                 <div class="text-end">
@@ -226,6 +236,16 @@
             <strong>
                 <p>Status:
             </strong> <?= $compras[0]->status ?></p>
+
+            <strong>
+                <p>Ultima atualizaçao:
+            </strong> <?= $compras[0]->updated_at ?></p>
+
+            <?php if($compras[0]->motivo_cancelamento != null): ?>
+            <strong>
+                <p>Motivo do cancelamento:
+            </strong> <?= $compras[0]->motivo_cancelamento ?></p>
+            <?php endif; ?>
 
             <hr>
             <h4>Endereço</h4>
