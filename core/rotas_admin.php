@@ -26,6 +26,10 @@ $rotas = [
             //vendas clientes
             'compra_detalhes' => 'admin@compra_detalhes',
             'cancelar_compra' => 'admin@cancelar_compra',
+            'concluir_compra' => 'admin@concluir_compra',
+
+            'adicionar_codigo_rastreio'=> 'admin@adicionar_codigo_rastreio' 
+            
             
 
 

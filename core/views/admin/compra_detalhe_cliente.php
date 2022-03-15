@@ -2,7 +2,7 @@
 
 use core\classes\Functions;
 
- ?>
+?>
 
 <div class="container">
     <div class="row " style="margin-bottom: 50px;">
@@ -29,13 +29,14 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post">
+                            <form action="?a=adicionar_codigo_rastreio&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
+                                
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Codigo de rastreio: </label>
                                         </div>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" name="">
+                                            <input class="form-control" type="text" name="cod_rastreio">
                                         </div>
                                         <div class="col-2">
                                             <input class="btn btn-success" type="submit" value="Enviar">
@@ -60,7 +61,7 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
+                                <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
@@ -99,7 +100,8 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <a href="" class="btn btn-success">Concluir venda</a>
+                                
+                                <a href="?a=concluir_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" class="btn btn-success">Concluir venda</a>
                             </div>
                             <div class="modal-footer">
                                 <!--botao do modal para cancelar a conpra-->
@@ -117,8 +119,8 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
-                          
+                                <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
+
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
@@ -159,7 +161,7 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <form action="?a=cancelar_compra&id_compra=<?=Functions::encriptar($compras[0]->id_compra)?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario)?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra)?>" method="post">
+                                <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
@@ -236,15 +238,20 @@ use core\classes\Functions;
             <strong>
                 <p>Status:
             </strong> <?= $compras[0]->status ?></p>
+            <?php if ($compras[0]->codigo_rastreio != null) : ?>
+                <strong>
+                    <p>Codigo de Ratreamento:
+                </strong> <?= $compras[0]->codigo_rastreio ?></p>
+            <?php endif; ?>
 
             <strong>
                 <p>Ultima atualizaçao:
             </strong> <?= $compras[0]->updated_at ?></p>
 
-            <?php if($compras[0]->motivo_cancelamento != null): ?>
-            <strong>
-                <p>Motivo do cancelamento:
-            </strong> <?= $compras[0]->motivo_cancelamento ?></p>
+            <?php if ($compras[0]->motivo_cancelamento != null) : ?>
+                <strong>
+                    <p>Motivo do cancelamento:
+                </strong> <?= $compras[0]->motivo_cancelamento ?></p>
             <?php endif; ?>
 
             <hr>

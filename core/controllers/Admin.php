@@ -411,12 +411,12 @@ class Admin
         $detalhes = $db->detalhes_compra_cliente();
         $compras = $db->compra();
         $cliente = $db->cliente_detalhe();
-   
-        if(empty($detalhes) || empty($compras)){
+
+        if (empty($detalhes) || empty($compras)) {
             Functions::redirect_admin('vendas');
             return;
         }
-  
+
         $dados = [
             'cliente' => $cliente[0],
             'compras' => $compras,
@@ -458,14 +458,38 @@ class Admin
         return;
     }
 
-public function cancelar_compra(){
+    public function cancelar_compra()
+    {
 
-    
-$db = new Admin_model();
 
-$db->cancelar_compra_model();
+        $db = new Admin_model();
 
-$this->compra_detalhes();
-    return;
-}
+        $db->cancelar_compra_model();
+
+        $this->compra_detalhes();
+        return;
+    }
+
+    public function adicionar_codigo_rastreio(){
+
+        
+        $db = new Admin_model();
+
+        $db->add_codigo_rastreio();
+
+        $this->compra_detalhes();
+        return;
+    }
+
+    public function concluir_compra()
+    {
+
+        $db = new Admin_model();
+
+        $db->concluir_compra();
+
+        $this->compra_detalhes();
+        return;
+    }
+
 }
