@@ -326,4 +326,21 @@ class Perfil
 
        
     }
+    public function simular_pagamento(){
+        if (!isset($_SESSION['usuario'])) {
+            Functions::redirect('loja');
+            return;
+        }
+        $com = new Compras();
+        $compra = $com->compras();
+    
+        if($compra[0]->status != 'aguardando pagamento' or count($compra) != 1){
+            Functions::redirect('loja');
+            return;
+        }
+        $com->simular_pagamento();
+        $this->compra_detalhes();
+        return;
+        
+    }
 }

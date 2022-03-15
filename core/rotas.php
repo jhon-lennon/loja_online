@@ -27,6 +27,7 @@ $rotas = [
             'resumo_compra' => 'carrinho@resumo_compra',
             'login_carrinho' => 'main@login_carrinho',
             'finalizar_compra' => 'carrinho@finalizar_compra',
+            'simular_pagamento' => 'perfil@simular_pagamento',
             //==========================================================
             'editar_endereco' => 'main@editar_endereco',
             'endereco_form' => 'main@endereco_form',

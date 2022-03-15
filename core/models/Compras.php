@@ -83,4 +83,10 @@ class Compras
         $compras = $db->select('SELECT * FROM compras WHERE codigo_compra = :cod_c', $parametros);
         return $compras;
     }
+
+    public function simular_pagamento(){
+      $db = new Database();
+      $parametros = [':cod_c' => Functions::desencriptar($_GET['cod_c'])];
+       $compra = $db->update("UPDATE compras SET status = 'em processamento', updated_at = NOW() WHERE codigo_compra = :cod_c", $parametros);
+    }
 }

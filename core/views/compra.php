@@ -11,6 +11,14 @@
             <p>Codigo da compra: <?= $compras[0]->codigo_compra ?></p>
             <p>Data: <?= $compras[0]->data_compra ?></p>
             <p>Status: <?= $compras[0]->status ?></p>
+           <?php
+
+                        use core\classes\Functions;
+
+ if($compras[0]->status == 'aguardando pagamento'): ?>
+            <a href="?a=simular_pagamento&cod_c=<?=Functions::encriptar($compras[0]->codigo_compra)?>">simular pagamento</a>
+           <?php endif;?>
+
 
 
             <hr>
