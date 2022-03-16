@@ -1,27 +1,43 @@
-
 <?php
 
 use core\classes\Functions;
 
- ?>
+?>
 
 <div class="container">
     <div class="row mt-5 " style="margin-bottom: 60px;">
         <h4 class="text-center my-2"><?= $titulo ?></h4>
         <hr>
         <div class="col-3">
-            <div class="alert alert-danger text-center" role="alert">Aguardando pagamento <a href="?a=vendas_aguardando_pagamento">ver</a><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?= $agardando_pagamento ?>
-                    <span class="visually-hidden">unread messages</span>
-                </span></div>
-            <div class="alert alert-warning text-center" role="alert">Em processamento <a href="?a=vendas_em_processamento">ver</a><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?= $em_processamento ?>
-                    <span class="visually-hidden">unread messages</span>
-                </span></div>
-            <div class="alert alert-primary text-center" role="alert">Enviadas <a href="?a=vendas_enviadas">ver</a><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?= $enviadas ?>
-                    <span class="visually-hidden">unread messages</span>
-                </span></div>
+            <div class="alert alert-danger text-center" role="alert">Aguardando pagamento <a href="?a=vendas_aguardando_pagamento">ver</a>
+                <?php if ($agardando_pagamento > 0) : ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= $agardando_pagamento ?>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                <?php endif; ?>
+            </div>
+
+            <div class="alert alert-warning text-center" role="alert">Em processamento <a href="?a=vendas_em_processamento">ver</a>
+                <?php if ($em_processamento > 0) : ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= $em_processamento ?>
+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                <?php endif; ?>
+
+            </div>
+            <div class="alert alert-primary text-center" role="alert">Enviadas <a href="?a=vendas_enviadas">ver</a>
+                <?php if ($enviadas > 0) : ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= $enviadas ?>
+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                <?php endif; ?>
+
+            </div>
 
             <div class="alert alert-success text-center" role="alert">Concluidas <a href="?a=vendas_concluidas">ver</a></div>
             <div class="alert alert-secondary text-center" role="alert">Canceladas <a href="?a=vendas_canceladas">ver</a></div>
@@ -43,12 +59,12 @@ use core\classes\Functions;
                         <tr>
                             <td><?= $venda->data_compra ?></td>
                             <td><?= $venda->codigo_compra ?></td>
-                            <td><?= $venda->status?></td>
+                            <td><?= $venda->status ?></td>
 
-                            <td><a href="?a=compra_detalhes&id_compra=<?= Functions::encriptar($venda->id_compra )?>&id_cli=<?= Functions::encriptar($venda->id_usuario)?>&cod_compra=<?= Functions::encriptar($venda->codigo_compra)?>">Detalhes</a></td>
+                            <td><a href="?a=compra_detalhes&id_compra=<?= Functions::encriptar($venda->id_compra) ?>&id_cli=<?= Functions::encriptar($venda->id_usuario) ?>&cod_compra=<?= Functions::encriptar($venda->codigo_compra) ?>">Detalhes</a></td>
                         </tr>
                     <?php endforeach; ?>
-                    
+
 
                 </tbody>
             </table>
