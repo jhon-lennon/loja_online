@@ -46,6 +46,23 @@ class Admin_model{
         }
         return $usuario;
     }
+    //==========================================================================================================================
+
+    public function todas_categorias(){
+        $db = new Database();
+        $categoria = $db->select('SELECT DISTINCT categoria FROM produtos');
+        return $categoria;
+    }
+    //==========================================================================================================================
+
+    public function produto()
+    {
+        $db = new Database();
+        $parametro = [':id_pro' => Functions::desencriptar($_GET['id_pro'])];
+        $resultado = $db->select('SELECT * FROM produtos WHERE id_produto = :id_pro', $parametro);
+        return $resultado;
+    }
+    
 
     //==========================================================================================================================
     

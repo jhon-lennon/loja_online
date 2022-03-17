@@ -444,12 +444,36 @@ class Admin
         }
         $pro = new Admin_model();
         $produtos = $pro->todos_produtos();
-        $dados = ['produtos' => $produtos];
+        $categorias = $pro->todas_categorias();
+        $dados = ['produtos' => $produtos, 'categorias' => $categorias];
 
         $views = [
             'admin/layouts/html_head',
             'admin/head',
             'admin/produtos',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    public function editar_produto()
+    {
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $pro = new Admin_model();
+        $produto = $pro->produto();
+        $dados = ['produto' => $produto[0]];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/editar_produto',
             'admin/rodape',
             'admin/layouts/html_footer',
         ];
@@ -524,7 +548,7 @@ class Admin
         return;
     }
 
-    
+
     public function status_cliente_ativo(){
 
         if (!isset($_SESSION['usuario_admin'])) {
