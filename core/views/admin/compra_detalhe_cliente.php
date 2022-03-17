@@ -312,7 +312,7 @@ use core\classes\Functions;
 
                 </tbody>
             </table>
-            <p><a href="?a=vendas" class="btn btn-primary">Voltar</a></p>
+            <p><a href="?a=vendas" class="btn btn-primary">Ir para vendas</a></p>
 
         </div>
 

@@ -15,7 +15,11 @@
         </div>
 
         <div class="col-9 ">
-            <?php if(count($clientes) == 0):?>
+            <?php
+
+                                        use core\classes\Functions;
+
+ if(count($clientes) == 0):?>
                 <h4 class="text-center">Nenhum resultado</h4>
             <?php else: ?>
         <table class="table table-primary" id="tabela-vendas">
@@ -43,7 +47,7 @@
                             <span class="text-danger">Excluido</span>
                         <?php endif; ?>
                         </td>
-                        <td><a href="?a=compra_detalhes&cod_c=<? $compra->codigo_compra ?>">Detalhes</a></td>
+                        <td><a href="?a=cliente_detalhe&id_cli=<?=Functions::encriptar($cliente->id_cliente)?>">Detalhes</a></td>
                     </tr>
                 <?php endforeach; ?>
 
@@ -51,11 +55,4 @@
         </table>
         <?php endif; ?>
 
-
-           
-
-            <pre>
-
-<?php print_r($clientes); ?>
-</pre>
         </div>

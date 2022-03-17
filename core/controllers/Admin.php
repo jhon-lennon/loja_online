@@ -460,7 +460,10 @@ class Admin
 
     public function cancelar_compra()
     {
-
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
 
         $db = new Admin_model();
 
@@ -472,7 +475,10 @@ class Admin
 
     public function adicionar_codigo_rastreio(){
 
-        
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
         $db = new Admin_model();
 
         $db->add_codigo_rastreio();
@@ -485,11 +491,81 @@ class Admin
     {
 
         $db = new Admin_model();
-
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
         $db->concluir_compra();
 
         $this->compra_detalhes();
         return;
     }
+
+    public function cliente_detalhe(){
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+       $dado = new Admin_model();
+       $cliente = $dado->cliente_detalhe();
+       $compras = $dado->compras_cliente( Functions::desencriptar($_GET['id_cli']));
+       $endereco = $dado->buscar_enderecos();
+       $dados = ['cliente' => $cliente[0], 'compras' => $compras, 'endereco' => $endereco];
+
+        $views = [
+            'admin/layouts/html_head',
+            'admin/head',
+            'admin/cliente_detalhe',
+            'admin/rodape',
+            'admin/layouts/html_footer',
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+
+    
+    public function status_cliente_ativo(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cliente = new Admin_model();
+
+        $cliente->ativar_cliente();
+
+        $this->cliente_detalhe();
+        return;
+    }
+
+    public function status_cliente_inativo(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cliente = new Admin_model();
+
+        $cliente->inativar_cliente();
+
+        $this->cliente_detalhe();
+        return;
+    }
+
+    public function status_cliente_excluido(){
+
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        $cliente = new Admin_model();
+
+        $cliente->excluir_cliente();
+
+        $this->cliente_detalhe();
+        return;
+    }
+
 
 }

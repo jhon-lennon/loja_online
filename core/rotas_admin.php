@@ -11,6 +11,7 @@ $rotas = [
             'sair'      => 'admin@sair',
             //produtos
             'produtos' => 'admin@produtos',
+
             //vendas  
             'vendas' => 'admin@vendas',
             'vendas_aguardando_pagamento' => 'admin@vendas_aguardando_pagamento',
@@ -18,17 +19,27 @@ $rotas = [
             'vendas_enviadas' => 'admin@vendas_enviadas',
             'vendas_em_processamento' => 'admin@vendas_em_processamento',
             'vendas_canceladas' => 'admin@vendas_canceladas',
+            'adicionar_codigo_rastreio'=> 'admin@adicionar_codigo_rastreio',
+
             //clientes
             'clientes' => 'admin@clientes',
             'clientes_ativos' => 'admin@clientes_ativos',
             'clientes_inativos' => 'admin@clientes_inativos',
             'clientes_excluidos' => 'admin@clientes_excluidos',
+            'cliente_detalhe' => 'admin@cliente_detalhe',
+            
             //vendas clientes
             'compra_detalhes' => 'admin@compra_detalhes',
             'cancelar_compra' => 'admin@cancelar_compra',
             'concluir_compra' => 'admin@concluir_compra',
 
-            'adicionar_codigo_rastreio'=> 'admin@adicionar_codigo_rastreio' 
+            //alterar status do cliente
+            'cliente_ativo' => 'admin@status_cliente_ativo',
+            'cliente_inativo' => 'admin@status_cliente_inativo',
+            'cliente_excluido' => 'admin@status_cliente_excluido',
+
+
+            
             
             
 

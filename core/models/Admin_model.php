@@ -174,7 +174,49 @@ class Admin_model{
         ];
         $db->update("UPDATE compras SET status = 'concluida', updated_at = NOW() WHERE id_compra = :id_com ",$parametros );
      }
- 
+
+     public function buscar_enderecos()
+     {
+         $parametros = [':id_u' => Functions::desencriptar($_GET['id_cli'])];
+         $db = new Database();
+         $endereco = $db->select('SELECT * FROM enderecos WHERE id_cliente = :id_u', $parametros);
+         return $endereco;
+     }
+
+
+ //alterar status do cliente
+     public function ativar_cliente(){
+        
+        $db = new Database();
+        $parametros = [
+            ':id_cli' => Functions::desencriptar($_GET['id_cli'])
+        ];
+        $db->update("UPDATE clientes SET ativo = 1, deleted_at = null WHERE id_cliente = :id_cli ",$parametros );
+        return;
+     }
+
+     public function inativar_cliente(){
+
+       $db = new Database();
+        $parametros = [
+            ':id_cli' => Functions::desencriptar($_GET['id_cli'])
+        ];
+        $db->update("UPDATE clientes SET ativo = 0, deleted_at = null WHERE id_cliente = :id_cli ",$parametros );
+        return;
+     
+    }
+
+    public function excluir_cliente(){
+        $db = new Database();
+        $parametros = [
+            ':id_cli' => Functions::desencriptar($_GET['id_cli'])
+        ];
+        $db->update("UPDATE clientes SET ativo = 0, deleted_at = NOW() WHERE id_cliente = :id_cli ",$parametros );
+        return;
+
+    }
+
+     
 
 
 
