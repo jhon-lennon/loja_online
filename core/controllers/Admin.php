@@ -407,6 +407,7 @@ class Admin
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
         }
+
         $db = new Admin_model();
         $detalhes = $db->detalhes_compra_cliente();
         $compras = $db->compra();
@@ -482,6 +483,65 @@ class Admin
         return;
     }
 
+    public function atualizar_produto_submit()
+    {
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+        
+   
+        if($_FILES['foto']['error'] == 0) {
+
+            if (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/jpeg') {
+
+
+                $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
+
+                $atualizar = new Admin_model();
+                $atualizar->atualizar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'. $nome_foto);
+                $this->editar_produto();
+                return;
+            } 
+            elseif (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/png') {
+
+                $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
+
+                $atualizar = new Admin_model();
+                $atualizar->atualizar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'. $nome_foto);
+                $this->editar_produto();
+                return;
+            } 
+            elseif (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/jpg') {
+
+                $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
+
+                $atualizar = new Admin_model();
+                $atualizar->atualizar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
+                $this->editar_produto();
+                return;
+            }
+            else {
+                $_SESSION['erro'] = 'A imagem deve ser do tipo JPG, JPEG ou PNG';
+                $this->editar_produto();
+                return;
+            }
+
+        } else {
+          
+            $atualizar = new Admin_model();
+            $atualizar->atualizar_produto_sem_imagem();
+            $this->editar_produto();
+            return;
+        }
+    }
+
     public function cancelar_compra()
     {
         if (!isset($_SESSION['usuario_admin'])) {
@@ -497,7 +557,8 @@ class Admin
         return;
     }
 
-    public function adicionar_codigo_rastreio(){
+    public function adicionar_codigo_rastreio()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -525,16 +586,17 @@ class Admin
         return;
     }
 
-    public function cliente_detalhe(){
+    public function cliente_detalhe()
+    {
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
-       $dado = new Admin_model();
-       $cliente = $dado->cliente_detalhe();
-       $compras = $dado->compras_cliente( Functions::desencriptar($_GET['id_cli']));
-       $endereco = $dado->buscar_enderecos();
-       $dados = ['cliente' => $cliente[0], 'compras' => $compras, 'endereco' => $endereco];
+        $dado = new Admin_model();
+        $cliente = $dado->cliente_detalhe();
+        $compras = $dado->compras_cliente(Functions::desencriptar($_GET['id_cli']));
+        $endereco = $dado->buscar_enderecos();
+        $dados = ['cliente' => $cliente[0], 'compras' => $compras, 'endereco' => $endereco];
 
         $views = [
             'admin/layouts/html_head',
@@ -549,7 +611,8 @@ class Admin
     }
 
 
-    public function status_cliente_ativo(){
+    public function status_cliente_ativo()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -563,7 +626,8 @@ class Admin
         return;
     }
 
-    public function status_cliente_inativo(){
+    public function status_cliente_inativo()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -577,7 +641,8 @@ class Admin
         return;
     }
 
-    public function status_cliente_excluido(){
+    public function status_cliente_excluido()
+    {
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
@@ -590,6 +655,4 @@ class Admin
         $this->cliente_detalhe();
         return;
     }
-
-
 }

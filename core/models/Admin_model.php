@@ -232,39 +232,38 @@ class Admin_model{
         return;
 
     }
+    public function atualizar_produto( $nome_imagem){
+        $db = new Database();
+        $parametros = [
+            ':id_pro' => Functions::desencriptar($_GET['id_pro']),
+            ':nome' => $_POST['nome'],
+            ':descri' => $_POST['desc'],
+            ':preco' => $_POST['preco'],
+            ':quant' => $_POST['quant'],
+            ':categ' => $_POST['categ'],
+            ':img' => $nome_imagem
+        ];
+        $db->update("UPDATE produtos SET nome = :nome, descricao = :descri, imagem = :img, preco = :preco, estoque = :quant, categoria = :categ, deleted_at = NOW() WHERE id_produto = :id_pro ",$parametros );
+        return;
 
-     
+    }
+    public function atualizar_produto_sem_imagem(){
+        $db = new Database();
+        $parametros = [
+            ':id_pro' => Functions::desencriptar($_GET['id_pro']),
+            ':nome' => $_POST['nome'],
+            ':descri' => $_POST['desc'],
+            ':preco' => $_POST['preco'],
+            ':quant' => $_POST['quant'],
+            ':categ' => $_POST['categ'],
+            
+        ];
+        $db->update("UPDATE produtos SET nome = :nome, descricao = :descri, preco = :preco, estoque = :quant, categoria = :categ, deleted_at = NOW() WHERE id_produto = :id_pro ",$parametros );
+        return;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    
+    
 
 
 
