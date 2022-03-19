@@ -15,6 +15,12 @@ $rotas = [
             'atualizar_produto_submit' => 'admin@atualizar_produto_submit',
             'adicionar_produto' => 'admin@adicionar_produto',
             'adicionar_produto_submit' => 'admin@adicionar_produto_submit',
+            'buscar_produtos' => 'admin@buscar_produtos',
+            'produtos_categoria' => 'admin@produtos_categoria',
+            'produtos_disponiveis' => 'admin@produtos_disponiveis',
+            'produtos_indisponiveis' => 'admin@produtos_indisponiveis',
+            'filtro_quantidade' =>'admin@filtro_quantidade',
+
 
             //vendas  
             'vendas' => 'admin@vendas',

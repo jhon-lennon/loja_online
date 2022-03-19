@@ -276,7 +276,47 @@ class Admin_model{
         return;
 
     }
+    public function busca()
+    {
+        $db = new Database();
+        $parametros = [':busca' => '%'.$_POST['busca'].'%'];
+ 
+        $resultado = $db->select("SELECT * FROM produtos WHERE nome like :busca", $parametros);
+        return $resultado;
+    }
+    public function produtos_categoria($categoria)
+    {
+        $db = new Database();
+        $parametros = [':c' => $categoria];
+        $resultado = $db->select('SELECT * FROM produtos WHERE categoria = :c', $parametros);
+        return $resultado;
+    }
+
+    public function produtos_disponivel()
+    {
+        $db = new Database();
+       
+        $resultado = $db->select('SELECT * FROM produtos WHERE estoque > 0');
+        return $resultado;
+    }
     
+    public function produtos_indisponivel()
+    {
+        $db = new Database();
+       
+        $resultado = $db->select('SELECT * FROM produtos WHERE estoque  < 1');
+        return $resultado;
+    }
+
+    public function produtos_filtro_quantidade()
+    {
+        $db = new Database();
+        $parametro = [':quant' => $_POST['quant']];
+       
+        $resultado = $db->select('SELECT * FROM produtos WHERE estoque  <= :quant', $parametro);
+        return $resultado;
+    }
+  
     
 
 
