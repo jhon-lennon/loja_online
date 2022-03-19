@@ -13,6 +13,8 @@ $rotas = [
             'produtos' => 'admin@produtos',
             'editar_produto' => 'admin@editar_produto',
             'atualizar_produto_submit' => 'admin@atualizar_produto_submit',
+            'adicionar_produto' => 'admin@adicionar_produto',
+            'adicionar_produto_submit' => 'admin@adicionar_produto_submit',
 
             //vendas  
             'vendas' => 'admin@vendas',

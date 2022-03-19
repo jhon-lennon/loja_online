@@ -20,7 +20,7 @@
 
                 <a href="?a=loja" class="btn btn-success mx-1">Disponiveis</a>
                 <a href="?a=loja" class="btn btn-danger mx-1">Indisponiveis</a>
-                <a href="?a=loja" class="btn btn-primary mx-1">Adicionar um produto</a>
+                <a href="?a=adicionar_produto" class="btn btn-primary mx-1">Adicionar um produto</a>
             </div>
         </div>
 

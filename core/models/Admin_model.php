@@ -262,6 +262,20 @@ class Admin_model{
         return;
 
     }
+    public function adicionar_produto( $nome_imagem){
+        $db = new Database();
+        $parametros = [
+            ':nome' => $_POST['nome'],
+            ':descri' => $_POST['desc'],
+            ':preco' => $_POST['preco'],
+            ':quant' => $_POST['quant'],
+            ':categ' => $_POST['categ'],
+            ':img' => $nome_imagem
+        ];
+        $db->insert("INSERT INTO produtos VALUES ( 0, :nome, :categ, :descri, :img, :preco, 1, 0, :quant, NOW(), NOW(), null)",$parametros );
+        return;
+
+    }
     
     
 

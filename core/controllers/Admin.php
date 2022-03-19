@@ -492,9 +492,19 @@ class Admin
         
    
         if($_FILES['foto']['error'] == 0) {
+      
+            if ($_FILES['foto']['type'] == 'image/jpeg') {
+              
 
-            if (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/jpeg') {
+                $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
+                $atualizar = new Admin_model();
+                $atualizar->atualizar_produto($nome_foto);
 
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'.$nome_foto);
+                $this->editar_produto();
+                return;
+            } 
+            elseif ($_FILES['foto']['type'] == 'image/png') {
 
                 $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
 
@@ -505,7 +515,7 @@ class Admin
                 $this->editar_produto();
                 return;
             } 
-            elseif (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/png') {
+            elseif ( $_FILES['foto']['type'] == 'image/jpg') {
 
                 $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
 
@@ -513,17 +523,6 @@ class Admin
                 $atualizar->atualizar_produto($nome_foto);
 
                 move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'. $nome_foto);
-                $this->editar_produto();
-                return;
-            } 
-            elseif (!empty($_FILES['foto']['type']) and $_FILES['foto']['type'] == 'image/jpg') {
-
-                $nome_foto = Functions::desencriptar($_GET['id_pro']).'.jpeg';
-
-                $atualizar = new Admin_model();
-                $atualizar->atualizar_produto($nome_foto);
-
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
                 $this->editar_produto();
                 return;
             }
@@ -534,10 +533,97 @@ class Admin
             }
 
         } else {
-          
+         
             $atualizar = new Admin_model();
             $atualizar->atualizar_produto_sem_imagem();
             $this->editar_produto();
+            return;
+        }
+    }
+
+    public function adicionar_produto(){
+
+    
+    if (!isset($_SESSION['usuario_admin'])) {
+        Functions::redirect_admin('login');
+        return;
+    }
+    $views = [
+        'admin/layouts/html_head',
+        'admin/head',
+        'admin/adicionar_produto',
+        'admin/rodape',
+        'admin/layouts/html_footer',
+    ];
+
+    Functions::layout_admin($views);
+    return;
+    }
+    //=======================================================================================================================
+    public function adicionar_produto_submit()
+    {
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+      if(empty($_POST['nome']) || empty($_POST['desc']) || empty($_POST['preco']) || empty($_POST['quant']) || empty($_POST['categ'])){
+        $_SESSION['erro'] = 'Preencha todos os campos';
+        $this->adicionar_produto();
+        return;
+      }
+        
+   
+        if($_FILES['foto']['error'] == 0) {
+      
+            if ($_FILES['foto']['type'] == 'image/jpeg') {
+              
+
+                $nome_foto = rand(11111,99999).'primeiro.jpeg';
+                $atualizar = new Admin_model();
+                $atualizar->adicionar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'.$nome_foto);
+                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
+                $this->adicionar_produto();
+                return;
+            } 
+            elseif ($_FILES['foto']['type'] == 'image/png') {
+
+                $nome_foto = rand(11111,99999).'primeiro.jpeg';
+
+                $atualizar = new Admin_model();
+                $atualizar->adicionar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'. $nome_foto);
+                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
+                $this->adicionar_produto();
+                return;
+            } 
+            elseif ( $_FILES['foto']['type'] == 'image/jpg') {
+
+                $nome_foto = rand(11111,99999).'primeiro.jpeg';
+
+                $atualizar = new Admin_model();
+                $atualizar->adicionar_produto($nome_foto);
+
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/'. $nome_foto);
+                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
+                $this->adicionar_produto();
+                return;
+            }
+            else {
+                $_SESSION['erro'] = 'A imagem deve ser do tipo JPG, JPEG ou PNG';
+                $this->adicionar_produto();
+                return;
+            }
+
+        } else {
+           
+            $atualizar = new Admin_model();
+            
+            $atualizar->adicionar_produto('sem_imagem.jpg');
+            $_SESSION['cadastrado'] = 'O produto foi cadastrado.'; 
+            $this->adicionar_produto();
             return;
         }
     }
