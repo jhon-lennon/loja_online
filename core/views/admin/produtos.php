@@ -1,5 +1,6 @@
 <div class="container" style="margin-bottom: 60px;">
     <div class="container mt-2 ">
+        
         <div class="row">
             <di class="col-7">
                 <h3 class="text-center my-3">Categorias</h3>
@@ -35,25 +36,27 @@
                             </div>
                             <div class="modal-body">
                                 <form action="?a=filtro_quantidade" method="post">
-
-                                            <label>Produtos com estoque abaixo ou iqual a  </label>
-                                      
-                                            <input  type="number" name="quant">
-                                       
-                                        <button class="btn btn-primary " type="submit"> <i class="fas fa-search"></i></button>
+                                    <div class="vontainer">
+                                        <div class="row">
+                                            <div class="col-12 text-start">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">produtos com estotoque abaixo ou igual a </span>
+                                                    <input type="number" name="quant" class="form-control">
+                                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-        
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="container my-2">
             <div class="row">
@@ -80,7 +83,6 @@
 
                 </div>
             </div>
-
 
             <?php if (isset($quantidade)) : ?>
                 <div class="col-4 offset-4 my-4">

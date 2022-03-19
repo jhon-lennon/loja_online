@@ -55,6 +55,28 @@ use core\classes\Functions;
                         <br>
                         <button class="btn btn-primary " type="submit" value="Atualizar">atualizar</button>
                         <a class="btn btn-primary" href="?a=produtos">Voltar</a>
+                        
+
+                    <a class="btn btn-danger" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Excluir</a>
+                
+                <!--apresenta modal para concluir a conpra-->
+                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggleLabel">Excluir Produto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               <span>Deeja realmente excluir esse produto?</span> 
+                            </div>
+                            <div class="modal-footer">
+                            <a class="btn btn-danger text-end" href="?a=excluir_produto&id_pro=<?= Functions::encriptar($produto->id_produto)?>">Excluir</a>
+                                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </form>

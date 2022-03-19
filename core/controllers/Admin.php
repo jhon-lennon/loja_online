@@ -739,6 +739,21 @@ class Admin
             return;
         }
     }
+    
+    public function excluir_produto(){
+        if (!isset($_SESSION['usuario_admin'])) {
+            Functions::redirect_admin('login');
+            return;
+        }
+
+        $db = new Admin_model();
+
+        $db->excluir_produto();
+
+        $this->produtos();
+        return;
+
+    }
 
     public function cancelar_compra()
     {

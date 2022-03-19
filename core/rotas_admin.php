@@ -20,6 +20,7 @@ $rotas = [
             'produtos_disponiveis' => 'admin@produtos_disponiveis',
             'produtos_indisponiveis' => 'admin@produtos_indisponiveis',
             'filtro_quantidade' =>'admin@filtro_quantidade',
+            'excluir_produto' => 'admin@excluir_produto',
 
 
             //vendas  

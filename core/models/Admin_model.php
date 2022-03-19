@@ -317,6 +317,13 @@ class Admin_model{
         return $resultado;
     }
   
+    public function excluir_produto(){
+        $parametros = [':id' => Functions::desencriptar($_GET['id_pro'])];
+
+        $db = new Database();
+        $db->delete('DELETE FROM produtos WHERE id_produto = :id',$parametros);
+        return;
+    }
     
 
 
