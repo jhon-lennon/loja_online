@@ -32,15 +32,15 @@
 bottom: 0px;
 }
 .bgg{
-    background-color: rgb(117, 36, 36);
+    background-color: rgba(194, 193, 193, 0.556);
 }
 .bggg{
     background-color: rgb(253, 34, 34);
 }
 .carrocel{
    
-    width: 600px; 
-    height: 450px;
+    width: 500px; 
+    height: 350px;
 }
 body{
     background-color: rgba(255, 255, 255, 0.549);
@@ -54,4 +54,9 @@ body{
    
     width: 250px; 
     height: 250px;
+}
+.bg_carrosel{
+  background-color: rgba(239, 255, 247, 0.522);
+   color: rgb(15, 2, 2);
+   
 }

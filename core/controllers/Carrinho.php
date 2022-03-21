@@ -58,11 +58,17 @@ class Carrinho
             foreach ($dados_tem as $item) {
                 $total = $total + $item['total'];
             }
-            $end = new Endereco();
-            $endereco = $end->buscar_enderecos();
+           
 
+            if(isset($_SESSION['usuario'])){
+                $end = new Endereco();
+                $endereco = $end->buscar_enderecos();
+                $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco];
+            }else{
 
-            $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco];
+                $dados = ['carrinho' => $dados_tem, 'total' => $total];
+            }
+            
         }
 
 
@@ -119,7 +125,12 @@ class Carrinho
         foreach ($carrinho as $quantidade) {
             $total = $total + $quantidade;
         }
+        
         $_SESSION['total'] = $total;
+        if(isset($_GET['retorno'])){
+            Functions::redirect('inicio');
+        return;
+        }
 
         Functions::redirect('loja');
         return;
