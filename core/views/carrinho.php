@@ -51,20 +51,15 @@
               <a class="btn btn-primary" href="?a=limpar_carrinho">Limpar carrihno</a>
 
             </div>
-            <div class="col-1 mt-3 text-center">
-              <h6>Endereço:</h6>
-            </div>
+         
 
+
+
+            <?php if (isset($_SESSION['usuario']) && !empty($endereco)) : ?>
 
             <div class="col-3">
               <form action="?a=continuar_compra" method="post">
-
-
-
-                <?php if (isset($_SESSION['usuario']) && !empty($endereco)) : ?>
-
-
-
+              <label for="inputState" class="form-label">Endereço: </label>
                   <select class="form-select" name="id_ende" aria-label=".form-select-sm example">
                     <?php foreach ($endereco as $ender) : ?>
                       <option selected value="<?= $ender->id_endere ?> "><?= $ender->nome . '   /   ' . $ender->rua ?></option>
@@ -72,9 +67,9 @@
                   </select>
 
                 <?php elseif (isset($_SESSION['usuario']) and empty($endereco)) : ?>
-
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-map-marker-alt"></i> Adicionar endereço</button>
-
+                  <div class="col-4">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="fas fa-map-marker-alt"></i> Adicione um endereço para continuar</button>
+                  </div>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -135,32 +130,44 @@
                   </div>
 
 
-
-
                 <?php endif; ?>
 
             </div>
-            <div class="col-1 mt-3 text-center">
-              <h6>Pagamento:</h6>
-            </div>
-            <div class="col-5">
 
-              <input class="form-check-input" type="radio" name="pagamento" id="exampleRadios1" value="visa" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                <i class="fa-brands fa-cc-visa"> Visa </i>
-              </label>
-              <input class="form-check-input" type="radio" name="pagamento" id="exampleRadios1" value="master" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                <i class="fa-brands fa-cc-mastercard"> Masted </i>
-              </label>
-              <input class="form-check-input " type="radio" name="pagamento" id="exampleRadios1" value="boleto" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                <i class="fa-solid fa-barcode"> Boleto </i>
-              </label>
 
-              <input type="submit" value="continuar" class="btn btn-success">
-              </form>
-            </div>
+
+
+            <div class="col-2">
+            
+                              <label for="inputState" class="form-label">Pagamento: </label>
+                              <select id="inputState" name="pagamento" class="form-select">
+                                <option selected>Boleto</option>
+                                <option>Visa</option>
+                                <option selected>Master card</option>
+                              </select>
+
+                              </div>
+              
+
+              <div class="col-2">
+ <input type="submit" value="continuar" class="btn btn-success">
+              </div>
+</form>
+                             
+
+
+
+
+
+
+
+
+
+
+
+
+       
+            
           </div>
         </div>
     </div>

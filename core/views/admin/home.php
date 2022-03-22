@@ -1,83 +1,65 @@
-<div class="container my-5">
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="..." class="rounded me-2" alt="...">
+    <strong class="me-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+var toastList = toastElList.map(function (toastEl) {
+  return new bootstrap.Toast(toastEl, option)
+})
+</script>
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>fffff</p>
+
+
+
+
+
+
+<div class="container">
     <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-6">
+                grafico 1
+        </div>
 
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-
-
-                    
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="1500">
-                        <img src="../assets/images/0000000018.jpeg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-
-                            <div class="alert bg_carrosel" role="alert">
-
-
-
-
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <a class="btn btn-primary" href="">adicionar ao carrinho</a>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="1500">
-                        <img src="../assets/images/0000000023.jpeg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-
-                            <div class="alert bg_carrosel" role="alert">
-
-
-
-
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <a class="btn btn-primary" href="">adicionar ao carrinho</a>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="1500">
-                        <img src="../assets/images/0000000017.jpeg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-
-                            <div class="alert bg_carrosel" role="alert">
-
-
-
-
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <a class="btn btn-primary" href="">adicionar ao carrinho</a>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-
-
+        <div class="col-6">
+                grafico 2
         </div>
     </div>
 </div>
