@@ -16,8 +16,10 @@
 
             <div class="my-2">
                 <input type="submit" value="Entrar" class="btn btn-primary">
+                <a href="?a=criar_conta" class="btn btn-primary">Cadastre-se</a>
             </div>
         </form>
+       
 
                 <?php if(isset($_SESSION['erro'])):?>
                     <div class="alert alert-danger" role="alert">
