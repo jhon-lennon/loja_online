@@ -25,7 +25,6 @@ $rotas = [
             //===============================================================
             'continuar_compra' => 'carrinho@continuar_compra',
             'resumo_compra' => 'carrinho@resumo_compra',
-            'login_carrinho' => 'main@login_carrinho',
             'finalizar_compra' => 'carrinho@finalizar_compra',
             'simular_pagamento' => 'perfil@simular_pagamento',
             //==========================================================

@@ -370,8 +370,7 @@ class Carrinho
                     //se for = 0 retirar do carrinho
                     if ($produto->estoque == 0) {
                         unset($_SESSION['carrinho'][$produto->id_produto]);
-                        $_SESSION['erro_car']['erro_a'.$conttador] = 'O produto '.$produto->nome.' não esta mais disponivel';
-
+                        $_SESSION['erro_car']['erro_a' . $conttador] = 'O produto ' . $produto->nome . ' não esta mais disponivel';
                     } else {
 
                         $_SESSION['carrinho'][$produto->id_produto] = $produto->estoque;
@@ -387,7 +386,7 @@ class Carrinho
             }
             $_SESSION['total'] = $atualiza_total;
 
-            if($_SESSION['total'] == 0){
+            if ($_SESSION['total'] == 0) {
                 unset($_SESSION['total']);
             }
 
@@ -399,7 +398,12 @@ class Carrinho
                 unset($_SESSION['erro_car']);
             }
 
-          
+            // atualizar o estoque dos produtos comprados
+
+            $atualiza = new Compras();
+            foreach ($produtos as $produto) {
+                $atualiza->atualizara_estoque($produto->id_produto, $_SESSION['carrinho'][$produto->id_produto]);
+            }
 
 
             $dados_temp = [];

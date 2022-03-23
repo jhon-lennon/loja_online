@@ -89,4 +89,12 @@ class Compras
       $parametros = [':cod_c' => Functions::desencriptar($_GET['cod_c'])];
        $compra = $db->update("UPDATE compras SET status = 'em processamento', updated_at = NOW() WHERE codigo_compra = :cod_c", $parametros);
     }
+
+    public function atualizara_estoque($id_pr, $quantida){
+
+        $db = new Database();
+        $parametros = [':quant' => $quantida, ':id_p' => $id_pr];
+        $db->update('UPDATE produtos SET estoque = estoque - :quant WHERE id_produto = :id_p', $parametros);
+        return;
+    }
 }

@@ -158,9 +158,8 @@
             <?php elseif (!isset($_SESSION['usuario'])) : ?>
 
               <div class="col-2 mt-4">
-                <a href="?a=login" class="btn btn-success">Continuar</a>
+                <a href="?a=login&carrinho=1" class="btn btn-success">Continuar</a>
               </div>
-
             <?php endif; ?>
 
           

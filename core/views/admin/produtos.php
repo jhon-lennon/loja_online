@@ -12,7 +12,7 @@
 
                 foreach ($categorias as $categoria) :  ?>
 
-                    <a href="?a=produtos_categoria&c=<?= $categoria->categoria ?>" class="btn btn-primary mx-1"><?= $categoria->categoria ?></a>
+                    <a href="?a=produtos_categoria&c=<?= $categoria->categoria ?>" class="btn btn-primary mx-1 my-1"><?= $categoria->categoria ?></a>
 
                 <?php endforeach;    ?>
             </di>

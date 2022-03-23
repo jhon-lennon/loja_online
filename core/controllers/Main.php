@@ -16,10 +16,7 @@ class Main
 
     public function index()
     {
-        echo'<pre>';
-        print_r($_SESSION);
-        die;
-
+        
         $produtos = new Produtos();
         $resultado = $produtos->produtos_pag_inicial();
 
@@ -107,26 +104,8 @@ class Main
         if (isset($_SESSION['usuario'])) {
             Functions::redirect('inicio');
         }
-
-        $views = [
-            'layouts/html_head',
-            'head',
-            'login',
-            'rodape',
-            'layouts/html_footer'
-
-        ];
-
-        Functions::layout($views,);
-    }
-    //==================================================================================================================
-    public function login_carrinho(){
-
-        if (isset($_SESSION['usuario'])) {
-            Functions::redirect('inicio');
-        }
-        if(isset($_SESSION['dados_temp'])){
-            unset($_SESSION['dados_temp']);
+        if(isset($_GET['carrinho'])){
+            $_SESSION['dado_temporario'] = true;
         }
 
         $views = [
@@ -140,6 +119,7 @@ class Main
 
         Functions::layout($views,);
     }
+
     //=====================================================================================================================
     //view criar conta
     public function criar_conta()
@@ -315,8 +295,9 @@ class Main
             $_SESSION['id_cliente'] = $resultado[0]->id_cliente;
             $_SESSION['nome'] = $resultado[0]->nome;
             $_SESSION['telefone'] = $resultado[0]->telefone;
-            if(isset($_SESSION['dados_temp'])){
-                unset($_SESSION['dados_temp']);
+
+            if(isset($_SESSION['dado_temporario'])){
+                unset($_SESSION['dado_temporario']);
                 Functions::redirect('carrinho');
                 return;
             }
