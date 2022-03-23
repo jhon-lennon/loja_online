@@ -1,5 +1,5 @@
 <div class="container-fluid ">
-  <div class="row">
+  <div class="row" style="margin-bottom: 60px;">
     <div class="col-sm-10 offset-1">
       <h3 class="text-center mt-5">Carrinho</h3>
       <hr>
@@ -76,7 +76,7 @@
                 <select id="inputState" name="pagamento" class="form-select">
                   <option selected>Boleto</option>
                   <option>Visa</option>
-                  <option >Master card</option>
+                  <option>Master card</option>
                 </select>
 
               </div>
@@ -155,23 +155,46 @@
               </div>
 
 
-            <?php elseif(!isset($_SESSION['usuario'])):?>
+            <?php elseif (!isset($_SESSION['usuario'])) : ?>
 
               <div class="col-2 mt-4">
-               <a href="?a=login" class="btn btn-success">Continuar</a>
+                <a href="?a=login" class="btn btn-success">Continuar</a>
               </div>
 
+            <?php endif; ?>
 
-              <?php endif; ?>
+          
 
           </div>
 
 
         </div>
-   
+
+
+     <?php endif; ?>   
+    </div>
+    <?php if (isset($_SESSION['erro_car'])) : ?>
+              <div class="col-6 offset-3 mt-4">
+                <div class="alert alert-danger" role="alert">
+                  <h4 class="text-center"><i class="fas fa-exclamation-triangle"></i> Atençao carrinho atualizado</h4>
+                  <hr>
+                  <?php foreach ($_SESSION['erro_car'] as $mensagem) : ?>
+
+                    <p class="text-center"><?= $mensagem ?></p>
+
+                  <?php endforeach; ?>
+                  <hr>
+                  <h6 class="text-center">Revise seu carrinho</h6>
+                  <?php unset($_SESSION['erro_car']); ?>
+
+
+                </div>
+              </div>
+            <?php endif ?>
   </div>
 </div>
-<?php endif; ?>
-</div>
-</div>
-</div>
+
+
+
+
+

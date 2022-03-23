@@ -58,17 +58,16 @@ class Carrinho
             foreach ($dados_tem as $item) {
                 $total = $total + $item['total'];
             }
-           
 
-            if(isset($_SESSION['usuario'])){
+
+            if (isset($_SESSION['usuario'])) {
                 $end = new Endereco();
                 $endereco = $end->buscar_enderecos();
                 $dados = ['carrinho' => $dados_tem, 'total' => $total, 'endereco' => $endereco];
-            }else{
+            } else {
 
                 $dados = ['carrinho' => $dados_tem, 'total' => $total];
             }
-            
         }
 
 
@@ -125,11 +124,11 @@ class Carrinho
         foreach ($carrinho as $quantidade) {
             $total = $total + $quantidade;
         }
-        
+
         $_SESSION['total'] = $total;
-        if(isset($_GET['retorno'])){
+        if (isset($_GET['retorno'])) {
             Functions::redirect('inicio');
-        return;
+            return;
         }
 
         Functions::redirect('loja');
@@ -251,7 +250,6 @@ class Carrinho
             $dados = ['carrinho' => null];
             Functions::redirect('carrinho');
             return;
-
         } else {
             $ids = [];
             foreach ($_SESSION['carrinho'] as $id_p => $quant) {
@@ -325,7 +323,7 @@ class Carrinho
     public function finalizar_compra()
     {
 
-        if(!isset($_SESSION['andamento'])){
+        if (!isset($_SESSION['andamento'])) {
             Functions::redirect('loja');
             return;
         }
@@ -345,93 +343,63 @@ class Carrinho
             $_SESSION['erro_car'] = array();
 
 
+            // verivica se algum item do carrinho nao esta mais disponivel
+            $_SESSION['erro_car'] = [];
+            if (count($produtos) != count($_SESSION['carrinho'])) {
+                // se sim renova o carrinho
+                $novo_carrinho = [];
 
-            echo'<pre>';
+                foreach ($produtos as $produto) {
 
-            print_r($produtos[0]);
-            print_r($_SESSION['carrinho']);
-
-die;
-
-
-
-
-            if(count($produtos) != count($_SESSION['carrinho'])){
-                foreach($_SESSION['carrinho'] as $carrinho){
-                    
-                    foreach($produtos as $produto){
-
-                        if(key_exists($produto->id_produto, $_SESSION['carrinho']) == false)  {
-
-                  }
+                    if (key_exists($produto->id_produto, $_SESSION['carrinho'])) {
+                        $novo_carrinho[$produto->id_produto] = $_SESSION['carrinho'][$produto->id_produto];
                     }
-
-
-                  
-
                 }
 
+                $_SESSION['erro_car']['erro 1'] = 'Algum produto do carrinho não esta mais disponivel';
+                $_SESSION['carrinho'] = $novo_carrinho;
             }
 
 
-            echo'<pre>';
+            //verificar se os produtos do carrinho ainda esta com estoque
+            $conttador = 2;
+            foreach ($produtos as $produto) {
+                $conttador++;
+                if ($produto->estoque < $_SESSION['carrinho'][$produto->id_produto]) {
 
-            print_r($produtos);
-            print_r($_SESSION['carrinho']);
+                    //se for = 0 retirar do carrinho
+                    if ($produto->estoque == 0) {
+                        unset($_SESSION['carrinho'][$produto->id_produto]);
+                        $_SESSION['erro_car']['erro_a'.$conttador] = 'O produto '.$produto->nome.' não esta mais disponivel';
 
-die;
+                    } else {
 
+                        $_SESSION['carrinho'][$produto->id_produto] = $produto->estoque;
 
-
-
-
-
-
-                foreach($produtos as $produto){
-
-                  $estoque = new Produtos();
-                  $es = $estoque->estoque_produto($produto->id_produto);
-
-                  echo'<pre>';
-
-                  print_r($es);
-
-                 
-
-
-die;
-
-
-
-
-
-                  if(count($es[0]) != count($_SESSION['carrinho'])){
-                      echo"diferente";
-                  }
-die;
-                
-                 if( $_SESSION['carrinho'][$produto->id_produto] < $es[0]->estoque ){
-                     echo"ok";
-                 }else{
-
-                    array_push($_SESSION['erro_car'], $produto->nome);
-                   
-                     
-                 }
-
-                 // echo $es.'<br>';
-                   // print_r($es[0]->estoque);
+                        $_SESSION['erro_car']['erro ' . $conttador] = 'A quantidade produto ' . $produto->nome . ' foi reduzida para ' . $produto->estoque;
+                    }
                 }
+            }
 
-                  echo'<pre>';
+            $atualiza_total = 0;
+            foreach ($_SESSION['carrinho'] as $quan) {
+                $atualiza_total += $quan;
+            }
+            $_SESSION['total'] = $atualiza_total;
 
-                  print_r(  $_SESSION['erro_car']);
+            if($_SESSION['total'] == 0){
+                unset($_SESSION['total']);
+            }
 
-        //    echo'<pre>';
-         //   print_r($produtos);
+            if (!empty($_SESSION['erro_car'])) {
 
-        //    print_r($_SESSION);
-          die;
+                Functions::redirect('carrinho');
+                return;
+            } else {
+                unset($_SESSION['erro_car']);
+            }
+
+          
 
 
             $dados_temp = [];
@@ -465,10 +433,10 @@ die;
             }
             $_SESSION['total_valor'] = $total;
         }
-        $codigo_compra = "BR".random_int(11111111,99999999);
-        
-        $dados = ['produtos' => $dados_temp , 'codigo_compra' => $codigo_compra];
-        
+        $codigo_compra = "BR" . random_int(11111111, 99999999);
+
+        $dados = ['produtos' => $dados_temp, 'codigo_compra' => $codigo_compra];
+
         $registrar_compra = new Compras();
         $registrar_compra->registrar_compra($codigo_compra);
 
@@ -478,13 +446,13 @@ die;
 
         $mail = new EnviarEmail();
         $email = $mail->enviar_resumo($codigo_compra);
-        if($email == false){
+        if ($email == false) {
             die('erro email');
         }
 
-       unset($_SESSION['carrinho']);
-       unset($_SESSION['total']);
-       unset($_SESSION['andamento']);
+        unset($_SESSION['carrinho']);
+        unset($_SESSION['total']);
+        unset($_SESSION['andamento']);
 
 
         $views = [
@@ -498,6 +466,5 @@ die;
 
         Functions::layout($views, $dados);
         return;
-      
     }
 }

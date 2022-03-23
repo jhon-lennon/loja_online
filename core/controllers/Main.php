@@ -16,6 +16,9 @@ class Main
 
     public function index()
     {
+        echo'<pre>';
+        print_r($_SESSION);
+        die;
 
         $produtos = new Produtos();
         $resultado = $produtos->produtos_pag_inicial();
