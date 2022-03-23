@@ -74,4 +74,12 @@ class Produtos
         $produtos = $db->select("SELECT * FROM produtos WHERE id_produto IN ($ids)");
         return $produtos;
     }
+
+    public function estoque_produto($id){
+        $db = new Database();
+        $parametros = [':id_p' => $id];
+        $produtos = $db->select("SELECT estoque FROM produtos WHERE id_produto  = :id_p", $parametros);
+        return $produtos;
+    }
 }
+

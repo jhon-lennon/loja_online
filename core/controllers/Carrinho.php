@@ -342,6 +342,96 @@ class Carrinho
 
             $produto = new Produtos();
             $produtos = $produto->produtos_ids($ids);
+            $_SESSION['erro_car'] = array();
+
+
+
+            echo'<pre>';
+
+            print_r($produtos[0]);
+            print_r($_SESSION['carrinho']);
+
+die;
+
+
+
+
+            if(count($produtos) != count($_SESSION['carrinho'])){
+                foreach($_SESSION['carrinho'] as $carrinho){
+                    
+                    foreach($produtos as $produto){
+
+                        if(key_exists($produto->id_produto, $_SESSION['carrinho']) == false)  {
+
+                  }
+                    }
+
+
+                  
+
+                }
+
+            }
+
+
+            echo'<pre>';
+
+            print_r($produtos);
+            print_r($_SESSION['carrinho']);
+
+die;
+
+
+
+
+
+
+
+                foreach($produtos as $produto){
+
+                  $estoque = new Produtos();
+                  $es = $estoque->estoque_produto($produto->id_produto);
+
+                  echo'<pre>';
+
+                  print_r($es);
+
+                 
+
+
+die;
+
+
+
+
+
+                  if(count($es[0]) != count($_SESSION['carrinho'])){
+                      echo"diferente";
+                  }
+die;
+                
+                 if( $_SESSION['carrinho'][$produto->id_produto] < $es[0]->estoque ){
+                     echo"ok";
+                 }else{
+
+                    array_push($_SESSION['erro_car'], $produto->nome);
+                   
+                     
+                 }
+
+                 // echo $es.'<br>';
+                   // print_r($es[0]->estoque);
+                }
+
+                  echo'<pre>';
+
+                  print_r(  $_SESSION['erro_car']);
+
+        //    echo'<pre>';
+         //   print_r($produtos);
+
+        //    print_r($_SESSION);
+          die;
 
 
             $dados_temp = [];
