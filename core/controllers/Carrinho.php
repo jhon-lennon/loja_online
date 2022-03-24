@@ -417,11 +417,12 @@ class Carrinho
                         $preco = $produto->preco;
                         $quantidade = $quanti;
                         $total = $quanti * $preco;
+                        $id_produto = $produto->id_produto;
 
                         array_push(
                             $dados_temp,
                             [
-
+                                'id_produto' => $id_produto,
                                 'nome' => $nome,
                                 'preço' => $preco,
                                 'quantidade' => $quantidade,

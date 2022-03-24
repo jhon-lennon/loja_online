@@ -29,8 +29,8 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                            <form action="?a=adicionar_codigo_rastreio&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
-                                
+                                <form action="?a=adicionar_codigo_rastreio&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
+
                                     <div class="row">
                                         <div class="col-12 ">
                                             <label>Codigo de rastreio: </label>
@@ -63,6 +63,12 @@ use core\classes\Functions;
                             <div class="modal-body">
                                 <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
                                     <div class="row">
+                                    <div class="col-12">
+                                    <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="repor" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Repor os Produtos ao estoque</label>
+                                        </div>
+                                        </div>
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>
@@ -100,7 +106,7 @@ use core\classes\Functions;
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                
+
                                 <a href="?a=concluir_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" class="btn btn-success">Concluir venda</a>
                             </div>
                             <div class="modal-footer">
@@ -122,12 +128,19 @@ use core\classes\Functions;
                                 <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
 
                                     <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="repor" checked>
+                                                <label class="form-check-label" for="flexSwitchCheckChecked">Repor os Produtos ao estoque</label>
+                                            </div>
+                                        </div>
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>
                                         <div class="col-8">
                                             <input class="form-control" type="text" name="motivo">
                                         </div>
+
                                         <div class="col-4">
                                             <input class="btn btn-danger" type="submit" value="Cancelar venda">
                                         </div>
@@ -163,6 +176,12 @@ use core\classes\Functions;
                             <div class="modal-body">
                                 <form action="?a=cancelar_compra&id_compra=<?= Functions::encriptar($compras[0]->id_compra) ?>&id_cli=<?= Functions::encriptar($compras[0]->id_usuario) ?>&cod_compra=<?= Functions::encriptar($compras[0]->codigo_compra) ?>" method="post">
                                     <div class="row">
+                                    <div class="col-12">
+                                    <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="repor" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Repor os Produtos ao estoque</label>
+                                        </div>
+                                        </div>
                                         <div class="col-12 ">
                                             <label>Motivo: </label>
                                         </div>

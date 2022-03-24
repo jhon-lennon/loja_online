@@ -1,5 +1,13 @@
 <div class="container">
     <div class="row my-5">
+
+    <div class="col-sm-4 offset-sm-4 text-center">
+    <img src="assets/images/logo.png" class="p-3 mb-5 bg-body rounded" alt="...">
+
+</div>
+
+
+
         <div class="col-sm-4 offset-sm-4 ">
             <h3 class="text-center">Login</h3>
 

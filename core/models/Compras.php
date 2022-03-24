@@ -41,14 +41,15 @@ class Compras
 
         foreach ($itens as $item) {
             $parametros = [
-
+                
                 ':cod_com' => $codigo_compra,
                 ':prod' => $item['nome'],
                 ':preco' => $item['preço'],
-                ':quant' => $item['quantidade']
+                ':quant' => $item['quantidade'],
+                ':id_pro' => $item['id_produto'],
             ];
 
-            $db->insert('INSERT INTO compra_item VALUES (default, :cod_com, :prod, :preco, :quant)', $parametros);
+            $db->insert('INSERT INTO compra_item VALUES (default, :cod_com, :prod, :preco, :quant, :id_pro)', $parametros);
         }
         return;
     }

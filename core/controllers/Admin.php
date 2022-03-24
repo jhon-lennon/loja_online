@@ -554,12 +554,13 @@ class Admin
         return;
     }
 
-    public function filtro_quantidade(){
+    public function filtro_quantidade()
+    {
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
-       
+
         $pro = new Admin_model();
         $produtos = $pro->produtos_filtro_quantidade();
         $categorias = $pro->todas_categorias();
@@ -575,7 +576,6 @@ class Admin
 
         Functions::layout_admin($views, $dados);
         return;
-
     }
 
 
@@ -739,8 +739,9 @@ class Admin
             return;
         }
     }
-    
-    public function excluir_produto(){
+
+    public function excluir_produto()
+    {
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
@@ -752,17 +753,35 @@ class Admin
 
         $this->produtos();
         return;
-
     }
-
+    // cancelar Produto==================================================================================================
     public function cancelar_compra()
     {
+
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
 
         $db = new Admin_model();
+
+
+        $compra = $db->compra();
+
+        if ($compra[0]->status == 'cancelada') {
+            Functions::redirect_admin('inicio');
+            return;
+        }
+
+        //se o chek de repor estoque for marcado
+        if (isset($_POST['repor']) && $_POST['repor'] == 'on') {
+
+            $produtos = $db->detalhes_compra_cliente();
+            foreach ($produtos as $produto) {
+                $db->repor_estoque($produto->id_produto, $produto->quantidade);
+            }
+        }
+
 
         $db->cancelar_compra_model();
 

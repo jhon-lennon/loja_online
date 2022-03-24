@@ -176,6 +176,23 @@ class Admin_model{
         ];
         $db->update("UPDATE compras SET status = 'cancelada', motivo_cancelamento = :mot_can, updated_at = NOW() WHERE id_compra = :id_com ",$parametros );
      }
+     //==================================================================================================================
+     public function atualizara_estoque_mais($id_pr, $quantida){
+
+        $db = new Database();
+        $parametros = [':quant' => $quantida, ':id_p' => $id_pr];
+        $db->update('UPDATE produtos SET estoque = estoque + :quant WHERE id_produto = :id_p', $parametros);
+        return;
+    }
+
+    public function repor_estoque($id_pr, $quantida){
+
+        $db = new Database();
+        $parametros = [':quant' => $quantida, ':id_p' => $id_pr];
+        $db->update('UPDATE produtos SET estoque = estoque + :quant WHERE id_produto = :id_p', $parametros);
+        return;
+    }
+
 
      public function add_codigo_rastreio(){
         $db = new Database();
