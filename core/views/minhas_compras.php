@@ -7,7 +7,8 @@ use core\classes\Functions;
 
 <div class="container">
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-8 offset-2 mt-2">
+            <h2 class="text-center">Minhas compras</h2>
             <hr>
             <table class="table table-primary">
                 <thead>

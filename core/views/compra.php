@@ -10,7 +10,12 @@
 
             <p>Codigo da compra: <?= $compras[0]->codigo_compra ?></p>
             <p>Data: <?= $compras[0]->data_compra ?></p>
+            <p>Ultima atualização: <?= $compras[0]->updated_at ?></p>
+            <?php if($compras[0]->codigo_rastreio != null): ?>
+            <p>codigo de rastreio: <?= $compras[0]->codigo_rastreio?></p>
+            <?php endif; ?>
             <p>Status: <?= $compras[0]->status ?></p>
+
            <?php
 
                         use core\classes\Functions;
