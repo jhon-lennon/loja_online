@@ -9,8 +9,8 @@
             <h4>Compra</h4>
 
             <p>Codigo da compra: <?= $compras[0]->codigo_compra ?></p>
-            <p>Data: <?= $compras[0]->data_compra ?></p>
-            <p>Ultima atualização: <?= $compras[0]->updated_at ?></p>
+            <p>Data: <?= date('d/m/Y - H:i',strtotime($compras[0]->data_compra)).'H'?></p>
+            <p>Ultima atualização: <?= date('d/m/Y - H:i',strtotime($compras[0]->updated_at)).'H' ?></p>
             <?php if($compras[0]->codigo_rastreio != null): ?>
             <p>codigo de rastreio: <?= $compras[0]->codigo_rastreio?></p>
             <?php endif; ?>

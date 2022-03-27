@@ -11,6 +11,11 @@ class Admin
     //====================================================================================================================
     public function index()
     {
+        $data ='2022-04-11 13:23:21';
+        $data = strtotime($data);
+
+        echo date('d/m/Y', $data);
+
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;

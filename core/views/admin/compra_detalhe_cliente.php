@@ -253,7 +253,7 @@ use core\classes\Functions;
             </strong> <?= $compras[0]->codigo_compra ?></p>
             <strong>
                 <p>Data:
-            </strong> <?= $compras[0]->data_compra ?></p>
+            </strong> <?= date('d/m/Y - H:i',strtotime($compras[0]->data_compra))?></p>
             <strong>
                 <p>Status:
             </strong> <?= $compras[0]->status ?></p>
@@ -265,7 +265,7 @@ use core\classes\Functions;
 
             <strong>
                 <p>Ultima atualizaçao:
-            </strong> <?= $compras[0]->updated_at ?></p>
+            </strong> <?= date('d/m/Y - H:i',strtotime($compras[0]->updated_at))?></p>
 
             <?php if ($compras[0]->motivo_cancelamento != null) : ?>
                 <strong>

@@ -49,7 +49,7 @@ use core\classes\Functions;
         <p>Nome: <?=$cliente->nome?></p>
         <p>Email: <?=$cliente->email?></p>
         <p>Telefone: <?=$cliente->telefone?></p>
-        <p>cliente desde: <?=$cliente->created_at?></p>
+        <p>cliente desde: <?=date('d/m/Y - H:i',strtotime($cliente->created_at))?></p>
         <p>Status:   <?php if($cliente->ativo == 0  && $cliente->deleted_at == 0):?>
                             <span class="text-warning">Inativo</span>
                         <?php elseif($cliente->ativo == 1 ): ?>
@@ -102,7 +102,7 @@ use core\classes\Functions;
                 <tbody>
                     <?php foreach($compras as $compra ):?>
                     <tr>
-                        <td><?=$compra->data_compra ?></td>
+                        <td><?= date('d/m/Y - H:i',strtotime($compra->data_compra))?></td>
                         <td><?=$compra->codigo_compra ?></td>
                         <td><?=$compra->status ?></td>
                         

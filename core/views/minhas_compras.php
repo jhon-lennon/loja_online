@@ -22,7 +22,7 @@ use core\classes\Functions;
                 <tbody>
                     <?php foreach($compras as $compra ):?>
                     <tr>
-                        <td><?=$compra->data_compra ?></td>
+                        <td><?= date('d/m/Y - H:i',strtotime($compra->data_compra)) ?></td>
                         <td><?=$compra->codigo_compra ?></td>
                         <td><?=$compra->status ?></td>
                         

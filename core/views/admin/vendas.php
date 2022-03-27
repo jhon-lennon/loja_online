@@ -57,7 +57,7 @@ use core\classes\Functions;
                 <tbody>
                     <?php foreach ($vendas as $venda) : ?>
                         <tr>
-                            <td><?= $venda->data_compra ?></td>
+                            <td><?= date('d/m/Y - H:i',strtotime($venda->data_compra))?></td>
                             <td><?= $venda->codigo_compra ?></td>
                             <td><?= $venda->status ?></td>
 
