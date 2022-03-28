@@ -11,15 +11,15 @@ class Admin
     //====================================================================================================================
     public function index()
     {
-        $data ='2022-04-11 13:23:21';
-        $data = strtotime($data);
-
-        echo date('d/m/Y', $data);
 
         if (!isset($_SESSION['usuario_admin'])) {
             Functions::redirect_admin('login');
             return;
         }
+        $com = new Admin_model();
+        $compras = $com->compras_ultima_semana();
+        $dados = ['compras' => $compras];
+
         $views = [
             'admin/layouts/html_head',
             'admin/head',
@@ -28,7 +28,7 @@ class Admin
             'admin/layouts/html_footer',
         ];
 
-        Functions::layout_admin($views);
+        Functions::layout_admin($views, $dados);
         return;
     }
     public function login()

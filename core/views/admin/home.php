@@ -1,30 +1,52 @@
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-header">
-    <img src="..." class="rounded me-2" alt="...">
-    <strong class="me-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div id="grafico"></div>
+    </div>
   </div>
 </div>
 
 
 
-
-
-
-
-
 <script>
+  let el = document.getElementById('grafico');
+  let options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'Vendas',
+        data: [10,20,40],
+      },
+      {
+        name: 'Valores',
+        data: [5,15,30]
+      }
+    
+    
+    ],
+      xaxis:{
+        categories: ['dia 26', 'dia 27', 'dia 28']
+      }
 
-var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-var toastList = toastElList.map(function (toastEl) {
-  return new bootstrap.Toast(toastEl, option)
-})
+      
+  };
+
+  let chat = new ApexCharts(el, options);
+  chat.render();
 </script>
 
+
+
+
+<pre>
+<?php 
+
+print_r($compras);
+
+?>
 
 
 

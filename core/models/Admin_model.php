@@ -149,6 +149,17 @@ class Admin_model{
         return $detalhes;
       
     }
+    //compras da ultima semana
+    //====================================================================================================================
+    public function compras_ultima_semana(){
+
+        $db = new Database();
+
+        $compras = $db->select('SELECT * FROM compras WHERE WEEK(data_compra) = WEEK(CURDATE())');
+        return $compras;
+
+
+    }
     //==========================================================================================================================
 
     public function compra()
