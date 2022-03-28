@@ -155,7 +155,7 @@ class Admin_model{
 
         $db = new Database();
 
-        $compras = $db->select('SELECT * FROM compras WHERE WEEK(data_compra) = WEEK(CURDATE())');
+        $compras = $db->select('SELECT * FROM compras WHERE DAY(data_compra) >= DAY(CURDATE() - 7)');
         return $compras;
 
 
