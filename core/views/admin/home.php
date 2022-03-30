@@ -4,15 +4,15 @@
   <div class="row">
   <div class="col-12 mt-5">
   <div class="row">
-     <div class="col-2">
+     <div class="col-3">
         <h5 class="mb-3">Valor a receber</h5>
        <span style="font-size: 20pt;" class="alert alert-danger"><?=  number_format($total_a_receber, 2, ',', '.')?> R$</span>
      </div>
-     <div class="col-2">
+     <div class="col-3">
         <h5 class="mb-3">Valor recebidos</h5>
        <span style="font-size: 20pt;" class="alert alert-success"><?=  number_format($total_recebido, 2, ',', '.')?> R$</span>
      </div>
-     <div class="col-2">
+     <div class="col-3">
         <h5 class="mb-3">Valor total</h5>
        <span style="font-size: 20pt;" class="alert alert-primary"><?=  number_format($total_a_receber + $total_recebido, 2, ',', '.')?> R$</span>
      </div>
@@ -53,10 +53,22 @@
       xaxis:{
         categories: ['<?=$data[7]?>', '<?=$data[6]?>', '<?=$data[5]?>', '<?=$data[4]?>', '<?=$data[3]?>', '<?=$data[2]?>','<?=$data[1]?>']
       },
+
+      plotOptions:{
+    horizontal: false,
+    bar:{
+      dataLabels:{
+      position: 'top'
+    }
+    }
+    
+    
+  },
       title:{
     text: 'Vendas dos ultimos 7 dias',
     align: 'center'
-  }
+  },
+  colors:['#66a4e7cc','#df8282ce']
 
       
   };
@@ -85,10 +97,26 @@
       xaxis:{
         categories: ['<?=$data[7]?>', '<?=$data[6]?>', '<?=$data[5]?>', '<?=$data[4]?>', '<?=$data[3]?>', '<?=$data[2]?>','<?=$data[1]?>']
       },
+     plotOptions:{
+    horizontal: false,
+    bar:{
+      dataLabels:{
+      position: false
+    }
+    },
+    
+    
+  },
+
+
+
       title:{
     text: 'valores das vendas dos ultimos 7 dias',
-    align: 'center'
-  }
+    align: 'center',
+ 
+  },
+  colors:['#66a4e7cc','#df8282ce']
+
 
       
   };
@@ -96,8 +124,4 @@
   let chatt = new ApexCharts(ell, optionss);
   chatt.render();
 </script>
-<div>
 
-<h6>Valor a receber</h6>
-
-</div>
