@@ -28,95 +28,116 @@ class Admin
         $totalDia[6] = 0;
         $totalDia[7] = 0;
 
-      //  $dia[1] = 0;
-      //  $dia[2] = 0;
-      //  $dia[3] = 0;
-      //  $dia[4] = 0;
-      //  $dia[5] = 0;
-     //   $dia[6] = 0;
-      //  $dia[7] = 0;
-        $dia = [0,0,0,0,0,0,0,0];
-        $agardando_pagamento = [0,0,0,0,0,0,0];
-        $valor_a_receber = [0,0,0,0,0,0,0];
-        
-        $data[1] = date('d/m'); 
-        $data[2]=  date('d/m', strtotime('now - 1 day')); 
-        $data[3] =  date('d/m', strtotime('now - 2 day')); 
-        $data[4] =  date('d/m', strtotime('now - 3 day')); 
-        $data[5] =  date('d/m', strtotime('now - 4 day')); 
-        $data[6] =  date('d/m', strtotime('now - 5 day')); 
-        $data[7] =  date('d/m', strtotime('now - 6 day')); 
+    
+        $dia = [0, 0, 0, 0, 0, 0, 0, 0];
+        $agardando_pagamento = [0, 0, 0, 0, 0, 0, 0];
+        $valor_a_receber = [0, 0, 0, 0, 0, 0, 0];
 
-        
-        foreach($compras as $compra){
-        
-        if(date('d',strtotime($compra->data_compra)) == date('d')){
-          $dia[1]++;
-          $totalDia[1]  += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-              $agardando_pagamento[0] ++;
-              $valor_a_receber[0] += $compra->valor_total;
+        $data[1] = date('d/m');
+        $data[2] =  date('d/m', strtotime('now - 1 day'));
+        $data[3] =  date('d/m', strtotime('now - 2 day'));
+        $data[4] =  date('d/m', strtotime('now - 3 day'));
+        $data[5] =  date('d/m', strtotime('now - 4 day'));
+        $data[6] =  date('d/m', strtotime('now - 5 day'));
+        $data[7] =  date('d/m', strtotime('now - 6 day'));
 
-          }
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 1){
-          $dia[2]++;
-          $totalDia[2] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[1] ++;
-            $valor_a_receber[1] += $compra->valor_total;
-        }
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 2){
-          $dia[3]++;
-          $totalDia[3] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[2] ++;
-            $valor_a_receber[2] += $compra->valor_total;
-        }
-        
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 3){
-          $dia[4]++;
-          $totalDia[4] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[3] ++;
-            $valor_a_receber[3] += $compra->valor_total;
-        }
-        
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 4){
-          $dia[5]++;
-          $totalDia[5] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[4] ++;
-            $valor_a_receber[4] += $compra->valor_total;
-        }
-        
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 5){
-          $dia[6]++;
-          $totalDia[6] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[5] ++;
-            $valor_a_receber[5] += $compra->valor_total;
-        }
-        
-        }
-        if(date('d',strtotime($compra->data_compra)) == date('d') - 6){
-          $dia[7]++;
-          $totalDia[7] += $compra->valor_total;
-          if($compra->status == 'aguardando pagamento'){
-            $agardando_pagamento[6] ++;
-            $valor_a_receber[6] += $compra->valor_total;
-        }
-        }
-    }
- //  echo "<pre>";
- //  print_r($agardando_pagamento);
- //die;
+        $total_a_receber = 0;
+        $total_recebido = 0;
 
-        $dados = ['data' => $data, 'dia' => $dia, 'totalDia' => $totalDia, 'agd_pag' => $agardando_pagamento, 'valReceber' => $valor_a_receber];
+
+        foreach ($compras as $compra) {
+
+            if (date('d', strtotime($compra->data_compra)) == date('d')) {
+                $dia[1]++;
+                $totalDia[1]  += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[0]++;
+                    $valor_a_receber[0] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                 }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 1) {
+                $dia[2]++;
+                $totalDia[2] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[1]++;
+                    $valor_a_receber[1] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 2) {
+                $dia[3]++;
+                $totalDia[3] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[2]++;
+                    $valor_a_receber[2] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 3) {
+                $dia[4]++;
+                $totalDia[4] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[3]++;
+                    $valor_a_receber[3] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 4) {
+                $dia[5]++;
+                $totalDia[5] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[4]++;
+                    $valor_a_receber[4] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 5) {
+                $dia[6]++;
+                $totalDia[6] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[5]++;
+                    $valor_a_receber[5] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+            if (date('d', strtotime($compra->data_compra)) == date('d') - 6) {
+                $dia[7]++;
+                $totalDia[7] += $compra->valor_total;
+                if ($compra->status == 'aguardando pagamento') {
+                    $agardando_pagamento[6]++;
+                    $valor_a_receber[6] += $compra->valor_total;
+                    $total_a_receber += $compra->valor_total;
+                }elseif($compra->status == 'em processamento' || $compra->status == 'enviada' || $compra->status == 'enviada' || $compra->status == 'concluida' ){
+                    $total_recebido += $compra->valor_total;
+                }
+            }
+        }
+        //  echo "<pre>";
+        //  print_r($agardando_pagamento);
+        //die;
+
+        $dados = [
+            'data' => $data,
+            'dia' => $dia,
+            'totalDia' => $totalDia,
+            'agd_pag' => $agardando_pagamento,
+            'valReceber' => $valor_a_receber,
+            'total_a_receber' => $total_a_receber,
+            'total_recebido' => $total_recebido
+        ];
 
         $views = [
             'admin/layouts/html_head',

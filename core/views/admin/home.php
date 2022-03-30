@@ -2,6 +2,23 @@
 
 <div class="container">
   <div class="row">
+  <div class="col-12 mt-5">
+  <div class="row">
+     <div class="col-2">
+        <h5 class="mb-3">Valor a receber</h5>
+       <span style="font-size: 20pt;" class="alert alert-danger"><?=  number_format($total_a_receber, 2, ',', '.')?> R$</span>
+     </div>
+     <div class="col-2">
+        <h5 class="mb-3">Valor recebidos</h5>
+       <span style="font-size: 20pt;" class="alert alert-success"><?=  number_format($total_recebido, 2, ',', '.')?> R$</span>
+     </div>
+     <div class="col-2">
+        <h5 class="mb-3">Valor total</h5>
+       <span style="font-size: 20pt;" class="alert alert-primary"><?=  number_format($total_a_receber + $total_recebido, 2, ',', '.')?> R$</span>
+     </div>
+    </div>
+     
+    </div>
     <div class="col-6 mt-5">
       <div id="grafico"></div>
     </div>
@@ -79,3 +96,8 @@
   let chatt = new ApexCharts(ell, optionss);
   chatt.render();
 </script>
+<div>
+
+<h6>Valor a receber</h6>
+
+</div>
