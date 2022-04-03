@@ -47,7 +47,7 @@ class Admin
 
         foreach ($compras as $compra) {
 
-            if (date('d', strtotime($compra->data_compra)) == date('d')) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y')) {
                 $dia[1]++;
                 $totalDia[1]  += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -58,7 +58,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 1) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-1 days'))) {
                 $dia[2]++;
                 $totalDia[2] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -69,7 +69,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 2) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-2 days'))) {
                 $dia[3]++;
                 $totalDia[3] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -80,7 +80,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 3) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-3 days'))) {
                 $dia[4]++;
                 $totalDia[4] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -91,7 +91,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 4) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-4 days'))) {
                 $dia[5]++;
                 $totalDia[5] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -102,7 +102,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 5) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-5 days'))) {
                 $dia[6]++;
                 $totalDia[6] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
@@ -113,7 +113,7 @@ class Admin
                     $total_recebido += $compra->valor_total;
                 }
             }
-            if (date('d', strtotime($compra->data_compra)) == date('d') - 6) {
+            if (date('d/m/Y', strtotime($compra->data_compra)) == date('d/m/Y', strtotime('-6 days'))) {
                 $dia[7]++;
                 $totalDia[7] += $compra->valor_total;
                 if ($compra->status == 'aguardando pagamento') {
