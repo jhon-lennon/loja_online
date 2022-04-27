@@ -1,8 +1,7 @@
 <?php
 //abrir a sessao
 
-use core\classes\Database;
-use core\classes\Functions;
+
 
 session_start();
 

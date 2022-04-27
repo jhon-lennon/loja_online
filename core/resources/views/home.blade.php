@@ -1,8 +1,9 @@
 
 
-
+@extends('layout/layout')
+@section('home')
 <body class="bg-main">
-
+  @include('cabecario')
 
   <div class="container-fluid espacocarrocel">
     <div class="row">
@@ -17,13 +18,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../core/resources/images/noite_ev.jpg" class="d-block w-100 carrocel" alt="...">
+        <img src="../resources/images/noite_ev.jpg" class="d-block w-100 carrocel" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="../core/resources/images/festa_do_cupu.jpg" class="d-block w-100 carrocel" alt="...">
+        <img src="../resources/images/festa_do_cupu.jpg" class="d-block w-100 carrocel" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="../core/resources/images/festa_do_peixe.jpg" class="d-block w-100 carrocel" alt="...">
+        <img src="../resources/images/festa_do_peixe.jpg" class="d-block w-100 carrocel" alt="...">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -76,7 +77,7 @@
   <div class="col my-3">
 
     <div class="card shadow" style="width: 18rem;">
-      <img src="../core/resources/images/chambari.jpg" class="card-img-top" alt="...">
+      <img src="../resources/images/chambari.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Festival do chambarí</h5>
         <span id="dia"><strong>Dia 30/09 Sabado | Paraiso-TO</strong> </span>
@@ -94,7 +95,7 @@
 
       </div>
       <div class="foote-card">
-        <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento" class="btn">Ver evento</a> 
+        <p class="mt-3 ma-5 pfooter"><a href="{{route('mostrar_evento') }}" class="btn">Ver evento</a> 
           <a href=""class="btn btn-conf">Confirmar presença</a> </p>
             
       </div>
@@ -103,7 +104,7 @@
   <div class="col my-3">
 
     <div class="card shadow" style="width: 18rem;">
-      <img src="../core/resources/images/expoatins.jpeg" class="card-img-top" alt="...">
+      <img src="../resources/images/expoatins.jpeg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">XIX Expoatins</h5>
         <span id="dia"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </span><br>
@@ -130,7 +131,7 @@
       <div class="col my-3">
 
         <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/festa_do_cupu.jpg" class="card-img-top" alt="...">
+          <img src="../resources/images/festa_do_cupu.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Festa do cupu</h5>
             <span id="dia"><strong>Dia 16/05 Quinta | Esperantina-TO</strong> </span>
@@ -157,7 +158,7 @@
       <div class="col my-3">
 
         <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/festa_do_peixe.jpg" class="card-img-top" alt="...">
+          <img src="../resources/images/festa_do_peixe.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Festa do Peixe</h5>
             <span id="dia"><strong>Dia 23/05 Quinta| São Sebastioão-TO</strong> </span>
@@ -180,10 +181,10 @@
           </div>
         </div>
       </div>
-      <div class="col my-3">  
+      <div class="col my-3">
 
         <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/Eventos.gif" class="card-img-top" alt="...">
+          <img src="../resources/images/Eventos.gif" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Sexta Do Mellody</h5>
             <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
@@ -209,60 +210,7 @@
       <div class="col my-3">
 
         <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Sexta Do Mellody</h5>
-            <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
-
-            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
-            <div class="info">
-              <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
-              <br>
-              <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
-              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
-              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
-            </div>
-
-
-          </div>
-          <div class="foote-card">
-            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
-                class="btn btn-conf">Confirmar presença</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col my-3">
-
-        <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Sexta Do Mellody</h5>
-            <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
-
-            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
-            <div class="info">
-              <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
-              <br>
-              <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
-              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
-              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
-            </div>
-
-
-          </div>
-          <div class="foote-card">
-            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
-                class="btn btn-conf">Confirmar presença</a>
-          </div>
-        </div>
-      </div>
-      <div class="col my-3">
-
-        <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
+          <img src="../resources/images/gdkombi.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Sexta Do Mellody</h5>
             <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
@@ -289,7 +237,60 @@
       <div class="col my-3">
 
         <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
+          <img src="../resources/images/gdkombi.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Sexta Do Mellody</h5>
+            <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
+
+            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
+            <div class="info">
+              <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
+              <br>
+              <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
+              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
+              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
+
+            </div>
+
+
+          </div>
+          <div class="foote-card">
+            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
+                class="btn btn-conf">Confirmar presença</a>
+          </div>
+        </div>
+      </div>
+      <div class="col my-3">
+
+        <div class="card shadow" style="width: 18rem;">
+          <img src="../resources/images/gdkombi.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Sexta Do Mellody</h5>
+            <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
+
+            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
+            <div class="info">
+              <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
+              <br>
+              <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
+              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
+              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
+
+            </div>
+
+
+          </div>
+          <div class="foote-card">
+            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
+                class="btn btn-conf">Confirmar presença</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col my-3">
+
+        <div class="card shadow" style="width: 18rem;">
+          <img src="../resources/images/gdkombi.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Sexta Do Mellody</h5>
             <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
@@ -318,3 +319,5 @@
 
   </div>
 
+
+@endsection

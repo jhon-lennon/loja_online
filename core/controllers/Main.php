@@ -17,19 +17,15 @@ class Main
     public function index()
     {
         
-        $produtos = new Produtos();
-        $resultado = $produtos->produtos_pag_inicial();
-
+      
         $views = [
-            'layouts/html_head',
-            'head',
+            'layout/head',
+            'cabecario',
             'home',
-            'rodape',
-            'layouts/html_footer',
+            'layout/footer',
         ];
-        $dado = ['produtos' => $resultado];
-
-        Functions::layout($views, $dado);
+       
+        Functions::layout($views);
     }
     //=====================================================================================================================
     //view loja
@@ -54,24 +50,18 @@ class Main
     }
 
 
-    public function loja_categoria()
+    public function ver_evento()
     {
-        $categoria = $_GET['c'];
-        $db = new Produtos();
-        $pro_categoria = $db->produtos_categoria($categoria);
-
-        $categorias = $db->categoria();
-
+        
         $views = [
-            'layouts/html_head',
-            'head',
-            'loja',
-            'rodape',
-            'layouts/html_footer',
+            'layout/head',
+            'cabecario',
+            'mostrar_evento',
+            'layout/footer',
         ];
-        $dado = ['produtos' => $pro_categoria,'categorias'=> $categorias];
+       
 
-        Functions::layout($views, $dado);
+        Functions::layout($views);
     }
 
     public function buscar(){

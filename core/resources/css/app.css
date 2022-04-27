@@ -1,0 +1,285 @@
+.bg-main {
+    background: fixed;
+    background-image: linear-gradient(220deg, #5814b8, #825ea5, #683fbc, #997cc0, #5817b2, #a074cc, #7144ca, #B895E6);
+}
+.bg-secundario{
+    background-color: black;
+}
+.bg-transparente{
+    background-color: rgba(0, 0, 0, 0.36);
+}
+
+#logo {
+    width: 100px;
+    height:
+        50px;
+}
+
+#nav {
+    background-color: black;
+
+}
+
+.card {
+    margin: auto;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(251, 251, 251, 0.196);
+
+}
+
+.card-img-top {
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+img {
+
+    height: 250px;
+}
+
+.card-body {
+
+    height: 220px;
+}
+
+.card-text {
+    font-weight: bold;
+}
+
+.foote-card {
+
+    height: 50px;
+}
+
+#entrada {
+    color: rgb(27, 225, 24);
+}
+
+#dia {
+    color: rgb(255, 168, 27);
+}
+
+.btn {
+    background-color: rgba(53, 9, 136, 0.653);
+    color: white;
+    border-radius: 10px;
+    font-size: 11px;
+}
+
+.btn_form {
+    background-color: rgba(79, 31, 169, 0.941);
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: rgba(53, 9, 136, 0.335);
+    color: white;
+}
+
+.pfooter {
+    margin-left: 15px;
+
+}
+
+.info {
+    height: 42;
+    width: 254px;
+    margin-top: 19px;
+    font-size: 14px;
+
+}
+
+.btn-conf {
+    margin-left: 42px;
+}
+
+.btn-c {
+    background-color: rgba(9, 121, 52, 0.672);
+
+}
+
+.carrocel {
+
+    margin: auto;
+    height: 350px;
+
+
+}
+
+.carousel-inner {
+    border-radius: 15px;
+
+}
+
+
+
+.carcad {
+    max-width: 800px;
+    max-height: 450px;
+    width: auto;
+    height: auto;
+    margin: auto;
+
+}
+
+.espacocarrocel {
+    margin-top: 100px;
+}
+
+.login {
+
+
+    max-width: 350px;
+    margin-bottom: 800px;
+
+    margin: auto;
+}
+
+.add_evento {
+    max-width: 500px;
+    margin-bottom: 800px;
+
+    margin: auto;
+}
+
+.login-bg {
+    
+    color: rgb(255, 255, 255);
+   
+
+}
+
+.h1-login {
+    margin-top: 100px;
+
+}
+
+.img-login {
+    width: 300px;
+}
+
+.offcanvas {
+    background-color: rgba(253, 248, 255, 0.62);
+}
+
+.form_preco {
+    font-size: 13px;
+
+
+}
+
+
+.form_preco input:checked{
+    background-color: rgb(255, 0, 255);
+}
+
+.dropdown-menu{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.ver_evento{
+    
+    max-width: 800px;
+    max-height: 550px;
+    padding-bottom: 1px;
+    border-radius: 0px 0px 10px 10px;
+    width: auto;
+    height: auto;
+    margin: auto;
+   
+
+}
+
+.img_ver_evento{
+    border-radius: 10px 10px 0px 0px;
+    height: 400px;
+}
+
+.descricao{
+    color: white;
+    margin-left: 10px;
+   
+   
+}
+.corpo_evento{
+    margin-left: 10px;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.img_perfil{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    
+}
+
+.comentario{
+    background-color: rgba(0, 0, 0, 0.174);
+    
+    color: white;
+    border-radius: 8px 20px 20px 20px;
+    font-size: 13px;
+    padding: 10px;
+   margin-top: 20px;
+   word-wrap: break-word;
+    
+}
+.nome{
+    display: inline;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 2px;
+    font-size: 14px;
+}
+.seta{
+    height: 13px;
+    width: 20px;
+    background-color: rgba(0, 0, 0, 0.174);
+    border-radius: 10px 10px 0px 0px;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 7px;
+}
+.n-comentarios{
+    display: inline;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.btn-editar-comentario{
+    
+    position: absolute;
+    margin-left: -60px;
+    margin-top: -14px;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 20%;
+    background-color: #7144caae;
+    color: aliceblue;
+    text-decoration: none;
+    
+
+}
+
+.btn-editar-comentario:hover{
+    color: aliceblue;
+    background-color: #622fc9ae;
+}
+.img-perfil{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.div-perfil{
+    max-width: 800px;
+    max-height: 450px;
+    width: auto;
+    height: auto;
+    margin: auto;
+    color: rgba(240, 248, 255, 0.689);
+}
