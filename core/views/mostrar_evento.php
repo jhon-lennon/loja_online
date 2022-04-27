@@ -113,7 +113,7 @@
 
 
 
-<body class="bg-main">
+<body class="bg-main" onload="inicio()">
   <div class="container-fluid">
     <div class="row espacocarrocel">
       <div class="col-12">
@@ -159,111 +159,40 @@
       </div>
 
 
-
-
-
-      <button class="btn " onclick="comentt()">teste</button> <button class="btn" onclick="add_coment()">axios</button>
-      <button class="btn" onclick="post_teste()">post</button>
-
-
-
-
-      <div class="container" id="comentarioss">
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div class="col-12">
         <div class="ver_evento">
           <div class="corpo_evento">
             <img src="../core/resources/images/logo3.jpg" alt="" class="img_perfil">
             <span class="nome">jhon Lennon Silva</span><br>
-
-            <textarea class="form-control mt-1" placeholder="Faça um comentário." name="descricao" id="campo-momentario" rows="3"></textarea>
-            <span><button class="btn " onclick="aja()" class="btn  mt-2">comentar</button></span><span class="n-comentarios">934 comentários</span>
+            <form action="?a=post_comentario" method="post" id="text_comentario">
+            <textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-momentario" rows="3"></textarea>
+            <span><button class="btn " onclick="comentar('text_comentario')" class="btn  mt-2">comentar</button></span><span class="n-comentarios">934 comentários</span>
+            </form>
             <hr>
 
 
           </div>
         </div>
       </div>
-
+      <div class="row" id="comentarios"><!--comentarios sao exibidos aqui-->
       <div class="col-12 mt-2">
-        <div class="ver_evento">
-          <div class="corpo_evento">
-            <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">
-            <span class="nome">Leticia Lima</span>
-            <div class="seta"></div>
-
-            <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi facilis mollitia reprehenderit modi itaque dicta ea pariatur nobis. Officia sunt quibusdam
-              dolores consectetur aliquam, perferendis possimus eaque accusamus pariatur inventore.</p>
-
-            <div class="row">
-              <div class="col-12 text-end">
-                <a class="btn-editar-comentario m-end" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Editar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="ver_evento">
-          <div class="corpo_evento">
-            <img src="../core/resources/images/jhon2.jpg" alt="" class="img_perfil">
-            <span class="nome">Lennon Carvalho</span>
-            <div class="seta"></div>
-
-            <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi facilis mollitia reprehenderit modi itaque dicta ea pariatur nobis. Officia sunt quibusdam
-              dolores consectetur aliquam, perferendis possimus eaque accusamus pariatur inventore.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="ver_evento">
-          <div class="corpo_evento">
-            <img src="../core/resources/images/jhon.jpg" alt="" class="img_perfil">
-            <span class="nome"> Jhon Siva</span>
-            <div class="seta"></div>
-
-            <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi facilis mollitia reprehenderit modi itaque dicta ea pariatur nobis. Officia sunt quibusdam
-              dolores consectetur aliquam, perferendis possimus eaque accusamus pariatur inventore.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                    <div class="ver_evento">
+                        <div class="corpo_evento">
+                                <img src="../resources/images/m.jpg" alt="" class="img_perfil">
+                                <span class="nome">Leticia Lima</span>
+                                <div class="seta"></div>
+                                
+                            <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi facilis mollitia reprehenderit modi itaque dicta ea pariatur nobis. Officia sunt quibusdam
+                                 dolores consectetur aliquam, perferendis possimus eaque accusamus pariatur inventore.</p>
+                                 
+                                 <div class="row">
+                                     <div class="col-12 text-end">
+                                         <button class="btn-editar-comentario m-end" onclick="editar_comentario()">Editar</button>
+                                     </div>
+                                 </div>
+                        </div>
+                    </div>
+                </div>
 
   <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -309,9 +238,6 @@
       </div>
     </div>
   </div>
-
-
-
 
 
 

@@ -16,15 +16,15 @@ class Main
 
     public function index()
     {
-        
-      
+
+
         $views = [
             'layout/head',
             'cabecario',
             'home',
             'layout/footer',
         ];
-       
+
         Functions::layout($views);
     }
     //=====================================================================================================================
@@ -35,7 +35,7 @@ class Main
         $produtos = new Produtos();
         $resultado = $produtos->produtos_disponiveis();
         $categorias = $produtos->categoria();
-       
+
 
         $views = [
             'layouts/html_head',
@@ -44,7 +44,7 @@ class Main
             'rodape',
             'layouts/html_footer',
         ];
-        $dado = ['produtos' => $resultado,'categorias'=> $categorias];
+        $dado = ['produtos' => $resultado, 'categorias' => $categorias];
 
         Functions::layout($views, $dado);
     }
@@ -52,51 +52,38 @@ class Main
 
     public function ver_evento()
     {
-        
+
         $views = [
-            
-            
+
+
             'mostrar_evento',
-            
+
         ];
-       
+
 
         Functions::layout($views);
     }
 
-    public function comentarios(){
-      
-
+    public function comentarios()
+    {
         $comentarios = new comentarios();
         $comentario = $comentarios->post_comentarios();
-        
+
         $comentario = json_encode($comentario);
-       echo $comentario;
-       return;
-    
+        echo $comentario;
+
+       die;
     }
 
     //=====================================================================================================================
     //view login
-    public function login(){
-
-        if (isset($_SESSION['usuario'])) {
-            Functions::redirect('inicio');
-        }
-        if(isset($_GET['carrinho'])){
-            $_SESSION['dado_temporario'] = true;
-        }
-
-        $views = [
-            'layouts/html_head',
-            'head',
-            'login',
-            'rodape',
-            'layouts/html_footer'
-
-        ];
-
-        Functions::layout($views,);
+    public function get_comentarios()
+    {
+            $comentarios = new Comentarios();
+         $res = json_encode( $comentarios->get_comentario());
+          echo $res; 
+        
+          return;
     }
 
     //=====================================================================================================================
@@ -146,11 +133,10 @@ class Main
             $this->criar_conta();
             return;
         }
-        if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $_SESSION['erro'] = "Digite um email valido.";
-                Functions::redirect('criar_conta');
-                return;
-
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['erro'] = "Digite um email valido.";
+            Functions::redirect('criar_conta');
+            return;
         }
 
         //verificar se o nome foi requerido
@@ -234,14 +220,13 @@ class Main
             Functions::layout($views,);
         }
     }
-//==================================================================================================================
+    //==================================================================================================================
 
     public function login_form()
     {
         if (isset($_SESSION['usuario'])) {
             Functions::redirect('inicio');
             return;
-            
         }
         if (!$_POST['text_email']) {
             $_SESSION['erro'] = 'informe o email';
@@ -266,7 +251,7 @@ class Main
         $resultado = $resultad->verificar_login($usuario, $senha);
 
 
-      
+
 
 
         if ($resultado) {
@@ -275,13 +260,13 @@ class Main
             $_SESSION['nome'] = $resultado[0]->nome;
             $_SESSION['telefone'] = $resultado[0]->telefone;
 
-            if(isset($_SESSION['dado_temporario'])){
+            if (isset($_SESSION['dado_temporario'])) {
                 unset($_SESSION['dado_temporario']);
                 Functions::redirect('carrinho');
                 return;
             }
-            
-            
+
+
             Functions::redirect('inicio');
             return;
         }
@@ -299,72 +284,74 @@ class Main
         Functions::redirect('inicio');
         return;
     }
-//====================================================================================================================
-public function editar_endereco()
-{
+    //====================================================================================================================
+    public function editar_endereco()
+    {
 
-    if (!isset($_SESSION['usuario'])) {
-        Functions::redirect('inicio');
+        if (!isset($_SESSION['usuario'])) {
+            Functions::redirect('inicio');
+            return;
+        }
+        $end = new Endereco();
+        $endereco = $end->buscar_enderecos_editar($_GET['id_end']);
+        if (count($endereco) != 1) {
+            Functions::redirect('minha_conta');
+            return;
+        }
+        $dados = ['endereco' => $endereco];
+        $views = [
+            'layouts/html_head',
+            'head',
+            'editar_endereco',
+            'rodape',
+            'layouts/html_footer',
+        ];
+
+        Functions::layout($views, $dados);
         return;
     }
-    $end = new Endereco();
-    $endereco = $end->buscar_enderecos_editar($_GET['id_end']);
-    if(count($endereco) != 1){
-        Functions::redirect('minha_conta');
-        return;
-    }
-    $dados = ['endereco' => $endereco];
-    $views = [
-        'layouts/html_head',
-        'head',
-        'editar_endereco',
-        'rodape',
-        'layouts/html_footer',
-    ];
+    //======================================================================================================================
+    //editar endereço formulario
+    public function editar_endereco_form()
+    {
 
-    Functions::layout($views, $dados);
-    return;
-}
-//======================================================================================================================
-//editar endereço formulario
-    public function editar_endereco_form(){
-        
         $endereco = new Endereco();
 
-       $mensagem = $endereco->atualizar_endereco();
-       $dados = ['mensagem' => $mensagem];
-       $views = [
-           'layouts/html_head',
-           'head',
-           'editar_endereco',
-           'rodape',
-           'layouts/html_footer',
-       ];
-   
-       Functions::layout($views, $dados);
-       return;
+        $mensagem = $endereco->atualizar_endereco();
+        $dados = ['mensagem' => $mensagem];
+        $views = [
+            'layouts/html_head',
+            'head',
+            'editar_endereco',
+            'rodape',
+            'layouts/html_footer',
+        ];
 
+        Functions::layout($views, $dados);
+        return;
     }
 
     //===============================================================================================================
     //formulario endereco
-    public function endereco_form(){
+    public function endereco_form()
+    {
 
-    $form = new Endereco();
-    $resutado = $form->cadastrar_endereco();
-    if($resutado = true){
-        Functions::redirect('carrinho');
-        return;
-    }else{
-        $_SESSION['erro'] = 'ocorreu um erro';
-        Functions::redirect('inicio');
-        return;
+        $form = new Endereco();
+        $resutado = $form->cadastrar_endereco();
+        if ($resutado = true) {
+            Functions::redirect('carrinho');
+            return;
+        } else {
+            $_SESSION['erro'] = 'ocorreu um erro';
+            Functions::redirect('inicio');
+            return;
+        }
     }
-    }
 
-//======================================================================================================================
+    //======================================================================================================================
 
-    public function excluir_endereco(){
+    public function excluir_endereco()
+    {
 
 
 
@@ -372,13 +359,13 @@ public function editar_endereco()
         $endereco->excluir_endereco();
 
         $this->minha_conta();
-
     }
-//=================================================================================================================
+    //=================================================================================================================
 
 
-     public function minha_conta(){
-         
+    public function minha_conta()
+    {
+
         if (!isset($_SESSION['usuario'])) {
             Functions::redirect('inicio');
             return;
@@ -400,6 +387,5 @@ public function editar_endereco()
 
         Functions::layout($views, $dados);
         return;
-     }
-
+    }
 }

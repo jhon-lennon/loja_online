@@ -129,7 +129,7 @@ function add_comentario() {
 
 
 function aja() {
-  var divcomentarios = document.getElementById('comentarioss')
+  var divcomentarios = document.getElementById('comentarios')
   var comenta = document.getElementById('campo-momentario')
 console.log('chegei')
 
@@ -167,6 +167,90 @@ console.log('chegei')
           console.log(erro)
       }
   });
+}
+
+function comentar(id_form) {
+  //div dos comentarios
+  let divcomentarios = document.getElementById('comentarios')
+
+  //texto do comentario
+  let frm = $('#'+id_form)
+
+  frm.submit(function(e){
+
+e.preventDefault()
+
+})
+$.ajax({
+  type: "POST",
+  url: '?a=post_comentario',
+  data: frm.serialize(),
+    
+
+  
+  success: function (dados) {
+
+
+    var objeto = JSON.parse(dados);
+
+    console.log(objeto)
+
+    var comentarios = objeto
+    divcomentarios.innerHTML = ''
+   comentarios.forEach((elemento, indice) => {
+  
+      divcomentarios.innerHTML +=  ' <div class="col-12 mt-2"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">  <span class="nome">Leticia Lima</span><div class="seta"></div><p class="comentario">'+elemento.comentario+'</p><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario('+elemento.id, elemento.comentario+')">Editar</a>  </div> </div> </div> </div></div>'
+      
+    });
+    document.getElementById('campo-momentario').value = ''
+    return
+
+  },
+  error: function (erro) {
+    console.log(erro)
+    divcomentarios.innerText = erro.statusCode(erro)
+  }
+});
+
+  
+ 
+}
+
+function editar_comentario(id){
+  let texto = document.getElementById(id).innerText
+  console.log(document.getElementById(id).innerText)
+  document.getElementById('edit-com-'+id).innerHTML = ' <div class="col-12"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/logo3.jpg" alt="" class="img_perfil">     <span class="nome">jhon Lennon Silva</span><br><form action="?a=post_comentario" method="post" id="text_comentario"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-momentario" value="" rows="3">'+document.getElementById(id).innerText +'</textarea><span><button class="btn " onclick="comentar(text_comentario)" class="btn  mt-2">Atualizar</button></span></form>       </div></div></div>'
+  console.log(document.getElementById('edit-com-'+id))
+  //console.log(id)
+}
+
+function inicio(){
+  let divcomentarios = document.getElementById('comentarios')
+  $.ajax({
+    type: "GET",
+    url: '?a=get_comentarios',
+
+    success: function (dados) {
+
+      var objeto = JSON.parse(dados);
+
+      console.log(objeto)
+  
+      var comentarios = objeto
+      divcomentarios.innerHTML = ''
+     comentarios.forEach((elemento, indice) => {
+    
+        divcomentarios.innerHTML +=  ' <div class="col-12 mt-2"  id="edit-com-'+elemento.id+'"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">  <span class="nome">Leticia Lima</span><div class="seta"></div><div ><p class="comentario" id="'+elemento.id+'">'+elemento.comentario+'</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario('+elemento.id+')">Editar</a>  </div> </div> </div> </div></div>'
+        
+      });
+    document.getElementById('campo-momentario').value = ''
+      return
+
+    },
+    error: function (erro) {
+        console.log(erro)
+    }
+});
 }
 
 

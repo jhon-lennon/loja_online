@@ -12,33 +12,18 @@ class Comentarios{
 $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => null];
         $db->insert('INSERT INTO comentarios VALUES  ( :id, :com ,:c, :u)',$parametro);
 
-        $comentarios = $db->select("SELECT * FROM comentarios");
+        $comentarios = $db->select("SELECT * FROM comentarios ORDER BY id DESC");
        
             return $comentarios;
         }
     
     
     
-    public function verificar_login($usuario, $senha){
-        
-        //verificar se o wmail ja esta cadastrado
-        $parametros = [
-            ':email' => $usuario
-        ];
-       
+    public function get_comentario(){
         $db= new Database();
-        $usuario = $db->select("SELECT * FROM clientes WHERE ativo = 1 and email = :email" , $parametros);
-        if(count($usuario) != 1){
-            $_SESSION['erro'] = "Usuario não Cadastrado";
-            Functions::redirect('login');
-            return;
-
-        }elseif(!password_verify($senha, $usuario[0]->senha)){
-            $_SESSION['erro'] = "Senha errada";
-            Functions::redirect('login');
-            return;
-        }
-        return $usuario;
+        $comentarios = $db->select("SELECT * FROM comentarios ORDER BY id DESC");
+       
+            return $comentarios;
         
     }
         public function verificar_senha(){
