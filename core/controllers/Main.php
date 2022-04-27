@@ -5,7 +5,7 @@ namespace core\controllers;
 use core\classes\Database;
 use core\classes\EnviarEmail;
 use core\classes\Functions;
-use core\models\Clientes;
+use core\models\Comentarios;
 use core\models\Endereco;
 use core\models\Produtos;
 
@@ -54,37 +54,26 @@ class Main
     {
         
         $views = [
-            'layout/head',
-            'cabecario',
+            
+            
             'mostrar_evento',
-            'layout/footer',
+            
         ];
        
 
         Functions::layout($views);
     }
 
-    public function buscar(){
-        if(empty($_POST['busca'])){
-            Functions::redirect('loja');
-            return;
-        }
+    public function comentarios(){
+      
 
-        $produtos = new Produtos();
-        $categorias = $produtos->categoria();
-        $produto = $produtos->busca();
-        $quanidade_resultado = count($produto);
-
-        $views = [
-            'layouts/html_head',
-            'head',
-            'loja',
-            'rodape',
-            'layouts/html_footer',
-        ];
-        $dado = ['produtos' => $produto,'categorias'=> $categorias, 'quantidade' => $quanidade_resultado];
-
-        Functions::layout($views, $dado);
+        $comentarios = new comentarios();
+        $comentario = $comentarios->post_comentarios();
+        
+        $comentario = json_encode($comentario);
+       echo $comentario;
+       return;
+    
     }
 
     //=====================================================================================================================

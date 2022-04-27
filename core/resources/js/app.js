@@ -131,18 +131,11 @@ function add_comentario() {
 function aja() {
   var divcomentarios = document.getElementById('comentarioss')
   var comenta = document.getElementById('campo-momentario')
-
-   
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
+console.log('chegei')
 
   $.ajax({
       type: "POST",
-      url: 'http://localhost/eventos_bico/public/com',
+      url: '?a=post_comentario',
       data: {
           nome: 'Santos',
           comentario: comenta.value,
@@ -151,21 +144,19 @@ function aja() {
       success: function (dados) {
 
 
-          var objeto = JSON.parse(dados);
+         var objeto = JSON.parse(dados);
 
           console.log(objeto)
-
-
-
-
 
 
           var comentarios = objeto
           divcomentarios.innerHTML = ''
           comentarios.forEach((elemento, indice) => {
 
-              divcomentarios.innerHTML += '<p>' + elemento.comentario + '</p>'
-          });
+             divcomentarios.innerHTML += '<p>' + elemento.comentario + '</p>'
+          }
+          
+          );
 
 
 

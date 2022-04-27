@@ -9,7 +9,7 @@ define('APP_VERSION',     '1.0.0');
 
 //MYSQL
 define('MYSQL_SERVE',    'localhost');
-define('MYSQL_DATABASE', 'loja');
+define('MYSQL_DATABASE', 'eventos_bico');
 define('MYSQL_USER',     'root');
 define('MYSQL_PASS',     '');
 define('MYSQL_CHARSET',  'utf8');

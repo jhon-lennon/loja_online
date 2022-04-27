@@ -259,14 +259,13 @@
           </div>
         </div>
       </div>
+      
       <div class="col my-3">
-
         <div class="card shadow" style="width: 18rem;">
           <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Sexta Do Mellody</h5>
             <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
-
             <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
             <div class="info">
               <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
@@ -274,10 +273,7 @@
               <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
               <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
               <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
             </div>
-
-
           </div>
           <div class="foote-card">
             <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
@@ -287,13 +283,11 @@
       </div>
 
       <div class="col my-3">
-
         <div class="card shadow" style="width: 18rem;">
           <img src="../core/resources/images/gdkombi.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Sexta Do Mellody</h5>
             <span id="dia"><strong>Dia 23/05 sexta | Araguatins-TO</strong> </span>
-
             <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
             <div class="info">
               <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
@@ -301,10 +295,7 @@
               <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
               <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
               <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
             </div>
-
-
           </div>
           <div class="foote-card">
             <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""

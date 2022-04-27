@@ -4,23 +4,20 @@ namespace core\models;
 use core\classes\Database;
 use core\classes\Functions;
 
-class Clientes{
+class Comentarios{
 
-    public function verificar_email(){
-        
-        //verificar se o wmail ja esta cadastrado
-        $parametros = [
-            ':email' => strtolower(trim($_POST['text_email'])) 
-        ];
+    public function post_comentarios(){
        
         $db= new Database();
-        $usuario = $db->select("SELECT email FROM clientes WHERE email = :email" , $parametros);
-        if(count($usuario) > 0){
-            return false;
-        }else{
-            return true;
+$parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => null];
+        $db->insert('INSERT INTO comentarios VALUES  ( :id, :com ,:c, :u)',$parametro);
+
+        $comentarios = $db->select("SELECT * FROM comentarios");
+       
+            return $comentarios;
         }
-    }
+    
+    
     
     public function verificar_login($usuario, $senha){
         
