@@ -7,7 +7,8 @@ $rotas = [
     'login'      =>     'main@login',
     'ver_evento' => 'main@ver_evento',
     'post_comentario' => 'main@comentarios',
-    'get_comentarios' => 'main@get_comentarios'
+    'get_comentarios' => 'main@get_comentarios',
+    'get_comentario' => 'main@get_comentario',
 
 ];
 $acao = 'inicio';

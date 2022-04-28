@@ -119,20 +119,19 @@
       <div class="col-12">
         <div class="ver_evento">
 
-          <img src="../core/resources/images/noite_ev.jpg" class="d-block w-100  img_ver_evento" alt="...">
+          <img src="../core/resources/images/expoatins.jpeg" class="d-block w-100  img_ver_evento" alt="...">
         </div>
-      </div>
-
-      <div class="col-12">
+    
 
 
         <div class="ver_evento bg-transparente mb-3">
+        
           <div class="corpo_evento">
+  <br>
 
+            <h1 class="">XIX Expoatins</h1>
 
-            <h1>Festival do cupu</h1>
-
-            <h5>Carrasco bonito do tocantins - TO</h5>
+            <h5>Araguatins- TO</h5>
 
             <p id="dia"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </p>
 
@@ -166,7 +165,7 @@
             <span class="nome">jhon Lennon Silva</span><br>
             <form action="?a=post_comentario" method="post" id="text_comentario">
             <textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-momentario" rows="3"></textarea>
-            <span><button class="btn " onclick="comentar('text_comentario')" class="btn  mt-2">comentar</button></span><span class="n-comentarios">934 comentários</span>
+            <span><button class="btn mt-1" onclick="comentar('text_comentario')" >comentar</button></span><span class="n-comentarios">934 comentários</span>
             </form>
             <hr>
 

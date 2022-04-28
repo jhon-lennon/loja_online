@@ -88,23 +88,16 @@ class Main
 
     //=====================================================================================================================
     //view criar conta
-    public function criar_conta()
-    {
-        if (isset($_SESSION['usuario'])) {
-            Functions::redirect('inicio');
-            return;
-        }
-
-        $views = [
-            'layouts/html_head',
-            'head',
-            'criar_conta',
-            'rodape',
-            'layouts/html_footer'
-
-        ];
-        Functions::layout($views,);
+    public function get_comentario()
+    {   
+        
+        $comentarios = new Comentarios();
+         $res = json_encode( $comentarios->get_comentario($_GET['id_comentario']));
+          echo $res; 
+         
     }
+       
+    
 
     //========================================================================================================================
     //cadastro de usuario

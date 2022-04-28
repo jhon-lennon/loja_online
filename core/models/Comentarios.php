@@ -19,11 +19,21 @@ $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => 
     
     
     
-    public function get_comentario(){
-        $db= new Database();
+    public function get_comentario($id = null){
+        if($id != null){
+            $db= new Database();
+            $parametros = [':id' => $id];
+
+        $comentario = $db->select("SELECT * FROM comentarios WHERE id = :id", $parametros);
+        return $comentario;
+        }else{
+                 $db= new Database();
         $comentarios = $db->select("SELECT * FROM comentarios ORDER BY id DESC");
        
-            return $comentarios;
+            return $comentarios;  
+        }
+
+        
         
     }
         public function verificar_senha(){
