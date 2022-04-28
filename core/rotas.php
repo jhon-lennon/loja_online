@@ -9,6 +9,7 @@ $rotas = [
     'post_comentario' => 'main@comentarios',
     'get_comentarios' => 'main@get_comentarios',
     'get_comentario' => 'main@get_comentario',
+    'atualizar_comentario' => 'main@atualizar_comentario',
 
 ];
 $acao = 'inicio';

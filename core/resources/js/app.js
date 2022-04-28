@@ -28,6 +28,7 @@ function comentar(id_form) {
 
   //texto do comentario
   let frm = $('#' + id_form)
+  
 
   frm.submit(function (e) {
 
@@ -44,7 +45,6 @@ function comentar(id_form) {
 
       var objeto = JSON.parse(dados);
       var comentarios = objeto
-      
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
 
@@ -63,11 +63,73 @@ function comentar(id_form) {
   });
 
 }
+
+
+
+
+
+
+//atualizar comentario ========================================================================================================
+function atualizar_comentario(id) {
+  //div do comentario
+  console.log(id)
+  let divcomentarios = document.getElementById('edit-com-'+id)
+
+  //texto do comentario
+ let frm = $('#id-form-'+id)
+  console.log(divcomentarios)
+  console.log(frm)
+
+  frm.submit(function (e) {
+
+    e.preventDefault()
+
+
+  })
+  $.ajax({
+    type: "POST",
+    url: '?a=atualizar_comentario',
+    data:frm.serialize() + '&id_comentario=' + encodeURIComponent(id),
+
+    success: function (dados) {
+console.log(dados)
+
+      var objeto = JSON.parse(dados);
+      var comentarios = objeto
+      divcomentarios.innerHTML = ''
+      comentarios.forEach((elemento, indice) => {
+
+        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">  <span class="nome">Leticia Lima</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+
+      });
+
+    },
+    error: function (erro) {
+      console.log(erro)
+      divcomentarios.innerText = erro.statusCode(erro)
+    }
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // editar comentario  =========================================================================================================
 function editar_comentario(id) {
 
   
-  document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/logo3.jpg" alt="" class="img_perfil">     <span class="nome">jhon Lennon Silva</span><br><form action="?a=post_comentario" method="post" id="text_comentario"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '" value="" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="comentar(text_comentario)" c>Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button></form>  </div></div></div>'
+  document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12" id="edit-com-' + id+'"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/logo3.jpg" alt="" class="img_perfil">     <span class="nome">jhon Lennon Silva</span><br><form action="?a=atualizar_comentario" method="post" id="id-form-'+id +'"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '" value="" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="atualizar_comentario('+id+')">Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button></form>  </div></div></div>'
 
 }
 
