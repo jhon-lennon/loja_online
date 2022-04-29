@@ -45,4 +45,22 @@ $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => 
     return true;
  }
  
+
+public function cadastrar_usuario(){
+
+    $parametros = [
+        ':e' => $_POST['text_email'],
+        ':n'  => $_POST['text_nome'],
+        ':s'  => $_POST['text_senha']
+        
+    ];
+
+    $db = new Database();
+
+    $db->insert('INSERT INTO usuarios VALUES (0, :e, :n, :s, NOW(), NULL)',$parametros);
+
+
+
+}
+
 }

@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use com_exception;
 use core\classes\Database;
 use core\classes\EnviarEmail;
 use core\classes\Functions;
@@ -27,26 +28,55 @@ class Main
 
         Functions::layout($views);
     }
-    //=====================================================================================================================
-    //view loja
-    public function loja()
+
+
+
+    public function perfil()
     {
 
-        $produtos = new Produtos();
-        $resultado = $produtos->produtos_disponiveis();
-        $categorias = $produtos->categoria();
-
+     
 
         $views = [
-            'layouts/html_head',
-            'head',
-            'loja',
-            'rodape',
-            'layouts/html_footer',
+            'layout/head',
+            'cabecario',
+            'perfil',
+            'layout/footer',
         ];
-        $dado = ['produtos' => $resultado, 'categorias' => $categorias];
+        
 
-        Functions::layout($views, $dado);
+        Functions::layout($views);
+    }
+    //=====================================================================================================================
+    //view loja
+    public function login()
+    {
+
+     
+
+        $views = [
+            'layout/head',
+            'cabecario',
+            'login',
+            'layout/footer',
+        ];
+        
+
+        Functions::layout($views);
+    }
+    public function cadastro()
+    {
+
+     
+
+        $views = [
+            'layout/head',
+            'cabecario',
+            'cadastre_se',
+            'layout/footer',
+        ];
+        
+
+        Functions::layout($views);
     }
 
 
@@ -108,6 +138,56 @@ class Main
        $res = $comentario->get_comentario($_POST['id_comentario']);
         $res = json_encode($res);
         echo $res;
+
+    }
+
+    public function form_cadastro(){
+       
+        $erro =[];
+
+        if(!isset($_POST['text_nome'])){
+            array_push($erro, 'Erro metodo');
+        }
+
+        if(!filter_var($_POST['text_email'], FILTER_VALIDATE_EMAIL)){
+            array_push($erro, 'Email invalido');
+        }
+
+        if($_POST['text_senha'] != $_POST['text_confirma_senha']){
+            array_push($erro,'Senha e confirmar senha deve ser iguais');
+        }
+
+        if(strlen($_POST['text_senha']) < 8){
+            array_push($erro,'A senha deve ter no minimo 8 caracteres');
+        }
+        if(strlen($_POST['text_nome']) < 5){
+            array_push($erro, 'O nome deve ter no minimo 5 caracteres');
+        }
+
+        if(!empty($erro)){
+
+             foreach($erro as $e){
+           echo  $e.','; 
+        }
+         
+        }else{
+          echo true;
+        }
+
+      
+        
+        
+        
+       // $r = json_encode($erros);
+
+        //echo $r; 
+
+
+
+        //$u = new comentarios();
+        //$u->cadastrar_usuario();
+
+
 
     }
 

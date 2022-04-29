@@ -8,16 +8,16 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+            <a class="nav-link active" aria-current="page" href="?a=inicio">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('login')}}">Entrar</a>
+            <a class="nav-link" href="?a=login">Entrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('cadastrar')}}">Cadstrar</a>
+            <a class="nav-link" href="?a=cadastro">Cadstrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('perfil')}}">Perfil</a>
+            <a class="nav-link" href="?a=perfil">Perfil</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
