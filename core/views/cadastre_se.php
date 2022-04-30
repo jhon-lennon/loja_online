@@ -29,14 +29,12 @@
           </div>
           <div class="mt-2">
             <button onclick="form_cadastro('form-cadastro')" class="btn btn_form">Cadastrar</button>
-            <a href="{{route('login')}}" class="btn btn_form">Entrar</a>
+            <a href="?a=login" class="btn btn_form">Entrar</a>
 
           </div>
 
         </form>
-        <div id="info">
-          
-        </div>
+        <div id="info"><!-- mensagemns de erro --></div>
       </div>
     </div>
   </div>

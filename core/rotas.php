@@ -8,6 +8,7 @@ $rotas = [
     'perfil' => 'main@perfil',
     'cadastro' => 'main@cadastro',
     'form_cadastro' => 'main@form_cadastro',
+    'form_login' => 'main@form_login',
     'ver_evento' => 'main@ver_evento',
     'post_comentario' => 'main@comentarios',
     'get_comentarios' => 'main@get_comentarios',

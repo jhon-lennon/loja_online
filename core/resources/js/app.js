@@ -212,27 +212,54 @@ function form_cadastro(form) {
     success: function (dados) {
      console.log(dados)
       if(dados == 1){
-        console.log('deu certo')
+        
+        window.location.href = "?a=login";
       }else{
         let divmessagem = document.getElementById('info')
         let mesagem =''
         let erros = dados.split(",")
       erros.splice(-1,1)
       erros.forEach((elemento, indice) => {
-
         mesagem += elemento+' <br>'
-        
        })
 
     divmessagem.innerHTML =  `<div class="alert alert-danger mt-3" role="alert"> ${mesagem} </div>`
        
-       
-      
       }
     },
     error: function (erro) {
       console.log(erro)
       divcomentarios.innerText = erro.statusCode(erro)
+    }
+  });
+}
+function form_login(form) {
+  let frm = $('#' + form)
+  let divmessagem = document.getElementById('info')
+  console.log(frm)
+  frm.submit(function (e) {
+
+    e.preventDefault()
+
+  })
+  $.ajax({
+    type: "POST",
+    url: '?a=form_login',
+    data: frm.serialize(),
+    
+    success: function (dados) {
+     console.log(dados)
+     if(dados != 1){
+    divmessagem.innerHTML =  `<div class="alert alert-danger mt-3" role="alert"> ${dados} </div>`
+
+     }else{
+      window.location.href = "?a=inico";
+     }
+     
+    },
+    error: function (erro) {
+      console.log(erro)
+     
     }
   });
 }

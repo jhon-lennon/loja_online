@@ -49,15 +49,15 @@ $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => 
 public function cadastrar_usuario(){
 
     $parametros = [
-        ':e' => $_POST['text_email'],
         ':n'  => $_POST['text_nome'],
-        ':s'  => $_POST['text_senha']
+        ':e' => $_POST['text_email'],
+        ':s'  => password_hash($_POST['text_senha'], PASSWORD_DEFAULT) 
         
     ];
 
     $db = new Database();
 
-    $db->insert('INSERT INTO usuarios VALUES (0, :e, :n, :s, NOW(), NULL)',$parametros);
+    $db->insert('INSERT INTO usuarios VALUES (0, :n, :e, :s, NOW(), NULL)',$parametros);
 
 
 
@@ -67,7 +67,7 @@ public function verificar_usuario($email){
     $db = new Database();
     $parametro =[':email' => $email];
     $usuario = $db->select('SELECT * FROM usuarios WHERE email = :email',$parametro);
-    return count($usuario);
+    return $usuario;
 }
 
 }

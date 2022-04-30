@@ -8,7 +8,7 @@ class Admin_model{
 
     public function verificar_email(){
         
-        //verificar se o wmail ja esta cadastrado
+      /*   //verificar se o wmail ja esta cadastrado
         $parametros = [
             ':email' => strtolower(trim($_POST['text_email'])) 
         ];
@@ -354,7 +354,7 @@ class Admin_model{
     }
     
 
-
+ */
 
 
 
