@@ -63,4 +63,11 @@ public function cadastrar_usuario(){
 
 }
 
+public function verificar_usuario($email){
+    $db = new Database();
+    $parametro =[':email' => $email];
+    $usuario = $db->select('SELECT * FROM usuarios WHERE email = :email',$parametro);
+    return count($usuario);
+}
+
 }

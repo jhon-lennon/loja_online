@@ -210,16 +210,24 @@ function form_cadastro(form) {
     data: frm.serialize(),
     
     success: function (dados) {
-     
+     console.log(dados)
       if(dados == 1){
         console.log('deu certo')
       }else{
+        let divmessagem = document.getElementById('info')
+        let mesagem =''
         let erros = dados.split(",")
       erros.splice(-1,1)
       erros.forEach((elemento, indice) => {
-        console.log(elemento)
+
+        mesagem += elemento+' <br>'
+        
        })
 
+    divmessagem.innerHTML =  `<div class="alert alert-danger mt-3" role="alert"> ${mesagem} </div>`
+       
+       
+      
       }
     },
     error: function (erro) {

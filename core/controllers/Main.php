@@ -143,7 +143,17 @@ class Main
 
     public function form_cadastro(){
        
-        $erro =[];
+        $usuario = new comentarios();
+ $erro =[];
+        $res = $usuario->verificar_usuario($_POST['text_email']);
+        
+        if($res > 0){
+            
+           echo "Email ja cadastrado, ";
+           die;
+        }
+       
+       
 
         if(!isset($_POST['text_nome'])){
             array_push($erro, 'Erro metodo');
