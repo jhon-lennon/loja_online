@@ -1,3 +1,7 @@
+<?php use core\classes\Functions; ?>
+
+
+
 <nav class="navbar fixed-top navbar-expand-sm  navbar-dark " id="nav">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{route('home')}}"><img src="../core/resources/images/logo3.jpg" alt="" id="logo"></a>
@@ -10,15 +14,24 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="?a=inicio">Home</a>
           </li>
+          <?php if(Functions::check_session()): ?>
           <li class="nav-item">
-            <a class="nav-link" href="?a=login">Entrar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="?a=cadastro">Cadstrar</a>
+            <a class="nav-link" href="?a=sair">Sair</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?a=perfil">Perfil</a>
           </li>
+            <?php else: ?>
+          <li class="nav-item">
+              <a class="nav-link" href="?a=login">Entrar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="?a=cadastro">Cadastre-se</a>
+          </li>
+
+          <?php endif; ?>
+
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Cidades

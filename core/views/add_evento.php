@@ -1,8 +1,6 @@
 
-@extends('layout/layout')
-@section('home')
+
 <body class="bg-secundario">
-    @include('cabecario')
 
     <div class="container-fluid login-bg">
         <div class="row">
@@ -13,8 +11,8 @@
                 <div class="text-center">
                     <img src="../resources/images/Eventos.gif" class="img-login" alt="...">
                 </div>
-                <form action="{{ route('post') }}" method="post">
-                    @csrf
+                <form action="?a=form_cadastro_evento" method="post" id="form-evento">
+                   
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Titulo</label>
                         <input type="email" class="form-control" name="titulo" id="exampleFormControlInput1"
@@ -85,14 +83,14 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-check form_preco">
-                                <input class="form-check-input " type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                <input class="form-check-input " type="radio" name="entrada" id="flexRadioDefault1"
                                     checked onclick="valor_entrada()">
                                 <label class="form-check-label " for="flexRadioDefault1">
                                     Evento Gratis
                                 </label>
                             </div>
                             <div class="form-check form_preco">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                <input class="form-check-input" type="radio" name="entrada" id="flexRadioDefault2"
                                     onclick="valor_entrada()">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Evento Pago
@@ -109,11 +107,11 @@
                         <label for="exampleFormControlTextarea1" class="form-label">Descriçao</label>
                         <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn_form">Adicionar</button>
+                    <button type="submit" onclick="form_evento()" class="btn btn_form">Adicionar</button>
                     <button class="btn btn_form">Cancelar</button>
             </div>
             </form>
         </div>
     </div>
     </div>
-@endsection
+

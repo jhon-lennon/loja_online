@@ -48,7 +48,7 @@ class Functions{
 
 
     public static function redirect($rota = ""){
-        header("location: http://localhost/loja_online/public/?a=$rota");
+        header("location: http://localhost/bico_eventos/public/?a=$rota");
     }
 
 
@@ -66,6 +66,14 @@ class Functions{
  //-----usar para densencriptar--
  public static function desencriptar($valor_enc){
     return openssl_decrypt( hex2bin($valor_enc), 'aes-256-cbc','4Hzxso5WHSxMYA93flJ14R6qtd0HftKF', OPENSSL_RAW_DATA,'p4Sml4pAdinhB384');
+ }
+
+ public static function check_session(){
+        if(isset($_SESSION['usuario_email'])){
+            return true;
+        }else{
+            return false;
+        }
  }
 
 

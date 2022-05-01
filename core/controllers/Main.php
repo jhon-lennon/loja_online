@@ -33,8 +33,10 @@ class Main
 
     public function perfil()
     {
-
-
+        if(!Functions::check_session()){
+            Functions::redirect('inicio');
+            return;
+        }
 
         $views = [
             'layout/head',
@@ -43,15 +45,16 @@ class Main
             'layout/footer',
         ];
 
-
         Functions::layout($views);
     }
     //=====================================================================================================================
-    //view loja
+   
     public function login()
     {
-
-
+        if(Functions::check_session()){
+            Functions::redirect('inicio');
+            return;
+        }
 
         $views = [
             'layout/head',
@@ -59,14 +62,30 @@ class Main
             'login',
             'layout/footer',
         ];
+        Functions::layout($views);
+    }
 
+    public function sair()
+    {
+      unset( $_SESSION['usuario_email']); 
+       unset( $_SESSION['usuario_nome']); 
+
+        $views = [
+            'layout/head',
+            'cabecario',
+            'home',
+            'layout/footer',
+        ];
 
         Functions::layout($views);
     }
+
     public function cadastro()
     {
-
-
+        if(Functions::check_session()){
+            Functions::redirect('inicio');
+            return;
+        }
 
         $views = [
             'layout/head',
@@ -199,7 +218,9 @@ class Main
             die;
         }
 
-       
+        $_SESSION['usuario_email'] = $res[0]->email;
+        $_SESSION['usuario_nome'] = $res[0]->nome;
+
 
 
         echo 1;

@@ -5,6 +5,7 @@ use core\controladores\Main;
 $rotas = [
     'inicio'    =>     'main@index',
     'login'      =>     'main@login',
+    'sair'      =>     'main@sair',
     'perfil' => 'main@perfil',
     'cadastro' => 'main@cadastro',
     'form_cadastro' => 'main@form_cadastro',
@@ -14,6 +15,8 @@ $rotas = [
     'get_comentarios' => 'main@get_comentarios',
     'get_comentario' => 'main@get_comentario',
     'atualizar_comentario' => 'main@atualizar_comentario',
+    'cadastro_evento' => 'eventos@cadastro_evento',
+    'form_cadastro_evento' => 'eventos@form_cadastro_evento',
 
 ];
 $acao = 'inicio';

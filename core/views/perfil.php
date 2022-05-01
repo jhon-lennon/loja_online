@@ -1,6 +1,5 @@
-@include('cabecario')
-@extends('layout/layout')
-@section('home')
+
+
 <body class="bg-secundario">
 <h1>perfil</h1>
 
@@ -8,10 +7,10 @@
     <div class="row mt-5">
         <div class="col text-center">
             <div class="div-perfil">
-                <img class="img-perfil" src="../resources/images/jhon2.jpg" alt="">
-                <h2 class="mt-2">jhon lennon silva</h2>
+                <img class="img-perfil" src="../core/resources/images/usuarios/jhon.jpg" alt="">
+                <h2 class="mt-2"><?= $_SESSION['usuario_nome'] ?></h2>
 
-                <h6>jhonsilva@mail.com</h6>
+                <h6><?= $_SESSION['usuario_email'] ?></h6>
 
                 <a class="btn btn-form" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Editar</a>
                 <button class="btn btn-form">voltar</button>
@@ -33,11 +32,11 @@
             <form>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_email'] ?>" aria-describedby="emailHelp" placeholder="Seu email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nome</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu nome">
+                  <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_nome'] ?>" aria-describedby="emailHelp" placeholder="Seu nome">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Foto do perfil</label>
@@ -78,4 +77,4 @@
     </div>
   </div>
   
-    @endsection
+  

@@ -233,6 +233,8 @@ function form_cadastro(form) {
     }
   });
 }
+
+//receber dados formulario login==============================================================
 function form_login(form) {
   let frm = $('#' + form)
   let divmessagem = document.getElementById('info')
@@ -264,6 +266,33 @@ function form_login(form) {
   });
 }
 
+//receber dados formulario cadastro de evento ==============================================================
+function form_evento() {
+  let frm = $('#form-evento')
+
+  console.log(frm)
+  frm.submit(function (e) {
+
+    e.preventDefault()
+
+  })
+  $.ajax({
+    type: "POST",
+    url: '?a=form_cadastro_evento',
+    data: frm.serialize(),
+    
+    success: function (dados) {
+     console.log(dados)
+  
+     
+     
+    },
+    error: function (erro) {
+      console.log(erro)
+     
+    }
+  });
+}
 
 
 
