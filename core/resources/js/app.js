@@ -293,7 +293,29 @@ function form_evento() {
     }
   });
 }
+//receber dados formulario cadastro de evento ==============================================================
+function todos_eventos() {
+  
 
+  $.ajax({
+    type: "GET",
+    url: '?a=todos_eventos',
+    
+    
+    success: function (dados) {
+     
+     //let objeto = JSON.parse(dados);
+     //console.log(objeto)
+     console.log(dados)
+
+     
+    },
+    error: function (erro) {
+      console.log(erro)
+     
+    }
+  });
+}
 
 
 

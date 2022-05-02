@@ -4,7 +4,7 @@ namespace core\models;
 use core\classes\Database;
 use core\classes\Functions;
 
-class Comentarios{
+class Eventos_model{
     public function get_eventos()
     {
         $db = new Database();
@@ -12,6 +12,6 @@ class Comentarios{
         return $resultado;
     }
 
-    
+
 
 }

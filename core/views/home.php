@@ -1,7 +1,7 @@
 
 
 
-<body class="bg-main">
+<body class="bg-main" onload="todos_eventos()">
 
 
   <div class="container-fluid espacocarrocel">
@@ -73,34 +73,36 @@
   </div>
 
 
-  <div class="col my-3">
 
+
+  <div class="col my-3">
     <div class="card shadow" style="width: 18rem;">
       <img src="../core/resources/images/chambari.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Festival do chambarí</h5>
         <span id="dia"><strong>Dia 30/09 Sabado | Paraiso-TO</strong> </span>
-
-        <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
+        <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo</p>
         <div class="info">
           <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
           <br>
           <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
           <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
           <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
         </div>
-
-
       </div>
       <div class="foote-card">
         <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento" class="btn">Ver evento</a> 
           <a href=""class="btn btn-conf">Confirmar presença</a> </p>
-            
       </div>
     </div>
   </div>
   <div class="col my-3">
+
+
+
+
+
+
 
     <div class="card shadow" style="width: 18rem;">
       <img src="../core/resources/images/expoatins.jpeg" class="card-img-top" alt="...">
@@ -135,11 +137,9 @@
             <h5 class="card-title">Festa do cupu</h5>
             <span id="dia"><strong>Dia 16/05 Quinta | Esperantina-TO</strong> </span>
 
-            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
+            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomeloy...</p>
             <div class="info">
-              <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
-              <br>
-              <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">20,00 R$</strong></span> <br>
+            gratis
               <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
               <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
 
@@ -161,8 +161,9 @@
           <div class="card-body">
             <h5 class="card-title">Festa do Peixe</h5>
             <span id="dia"><strong>Dia 23/05 Quinta| São Sebastioão-TO</strong> </span>
+            <span id="dia"><strong>Dia 23/05 Quinta| São Sebastioão-TO</strong> </span>
 
-            <p class="card-text">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomelo...</p>
+            <p class="card-text">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww...</p>
             <div class="info">
               <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">Gratis</strong></span>
               <br>
@@ -308,4 +309,7 @@
     </div>
 
   </div>
+  <div style="overflow: hidden; width:105px; border:1px; white-space:nowrap;">
+    teste de texto de teste de texto de teste de texto de teste de texto 
+</div>
 
