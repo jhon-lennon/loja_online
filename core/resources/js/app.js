@@ -29,7 +29,7 @@ function comentar(id_form) {
   //texto do comentario
   let frm = $('#' + id_form)
 
-
+console.log(frm)
   frm.submit(function (e) {
 
     e.preventDefault()
@@ -41,7 +41,7 @@ function comentar(id_form) {
     data: frm.serialize(),
 
     success: function (dados) {
-
+      console.log(dados)
 
       var objeto = JSON.parse(dados);
       var comentarios = objeto
@@ -295,7 +295,8 @@ function form_evento() {
 }
 //receber dados formulario cadastro de evento ==============================================================
 function todos_eventos() {
-  
+  var div_eventos = document.getElementById('div_eventos')
+ //var div_eventos = $('#div_eventos')
 
   $.ajax({
     type: "GET",
@@ -304,9 +305,42 @@ function todos_eventos() {
     
     success: function (dados) {
      
-     //let objeto = JSON.parse(dados);
-     //console.log(objeto)
-     console.log(dados)
+     let objeto = JSON.parse(dados);
+     console.log(objeto)
+     //console.log(dados)
+
+
+     var eventos = objeto
+   
+     eventos.forEach((evento, indice) => {
+
+      div_eventos.innerHTML +=   `<div class="col my-3" id="div_evento_${evento.id_evento}">
+
+      <div class="card shadow" style="width: 18rem;">
+        <img src="../core/resources/images/${evento.imagem}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title ">${evento.titulo}</h5>
+          <span id="cidade" ><strong>${evento.cidade}</strong> </span><br>
+          <span id="dia" ><strong>${evento.data}</strong> </span>
+          
+          <p class="card-text text-start">${evento.descricao} </p>
+          <div class="info text-start">
+            <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">${evento.valor_mulher}</strong></span>
+            <br>
+            <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">${evento.valor_homem}</strong></span> <br>
+            <span><i class="fa-solid fa-location-dot"></i> Local: <strong>${evento.local}</strong> </span> <br>
+            <span><i class="fa-solid fa-clock"></i> Horario: <strong>${evento.horario} </strong> </span>
+          </div>
+        </div>
+        <div class="foote-card">
+          <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> <button
+            id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>
+        </div>
+      </div>
+    </div>`
+
+     });
+
 
      
     },

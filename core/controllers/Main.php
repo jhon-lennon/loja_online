@@ -105,7 +105,11 @@ class Main
         $views = [
 
 
+            'layout/head',
+            'cabecario',
             'mostrar_evento',
+            'layout/footer',
+           
 
         ];
 
@@ -121,7 +125,7 @@ class Main
         $comentario = json_encode($comentario);
         echo $comentario;
 
-        die;
+        
     }
 
     //=====================================================================================================================

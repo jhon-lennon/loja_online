@@ -18,6 +18,7 @@ $rotas = [
     'cadastro_evento' => 'eventos@cadastro_evento',
     'form_cadastro_evento' => 'eventos@form_cadastro_evento',
     'todos_eventos' => 'eventos@todos_eventos',
+    
 
 ];
 $acao = 'inicio';

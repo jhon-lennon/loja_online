@@ -27,7 +27,7 @@ class Eventos
 
         $db = new Eventos_model();
         $eventos = $db->get_eventos();
-        print_r($eventos);
+       // print_r($eventos);
 
         $resultado_com_filtro = [];
 
@@ -38,22 +38,36 @@ class Eventos
 
 
             if ($evento->valor_homem > 0) {
-                $vh = $evento->valor_homem;
+                $vh = $evento->valor_homem.' R$';
             }
             if ($evento->valor_mulher > 0) {
-                $vm = $evento->valor_mulher;
+                $vm = $evento->valor_mulher.' R$';
             }
 
             $hi = date('H:i',  strtotime($evento->data_inicio));
             $hf = date('H:i',  strtotime($evento->data_fim));
-            $di = date('d/m/y',  strtotime($evento->data_fim));
+            $di = date('d/m/y',  strtotime($evento->data_inicio));
             $df = date('d/m/y',  strtotime($evento->data_fim));
 
 
 
-            
+            $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexts', 'Sabado'];
+
+            $dia_sem_num_i = date('w', strtotime($evento->data_inicio));
+            $dia_sem_num_f = date('w', strtotime($evento->data_fim));
+
+           
+             $nome_dia_i =  $dias[$dia_sem_num_i];
+             $nome_dia_f =  $dias[$dia_sem_num_f];
 
 
+             $text_dia = '';
+
+            if($di ==  $df){
+                $text_dia = 'Dia '.$di.' '.$nome_dia_i;
+            } else{
+                 $text_dia = 'Dia '.$di.' '.$nome_dia_i.' à '.$df.' '.$nome_dia_f;
+            }
 
 
 
@@ -68,64 +82,25 @@ class Eventos
                 'cidade' => $evento->cidade,
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
-                'data' => 'Dia '.$di.' > '.$df
+                'data' => $text_dia
 
             ];
-
-
-
-            //array_push($teste, ['nome' => 'jhon']);
 
 
             array_push($resultado_com_filtro, $res);
         }
 
-        /*    [id-evento] => 6
-        [id_usuario] => 1
-        [titulo_evento] => Festival do chambarí
-        [descricao] => descriçao: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur error, laboriosam architecto doloribus ad commodi repudiandae consequuntur totam quas tempore reiciendis, blanditiis, delectus autem temporibus dolor molestias. Eos.
-        [valor_homen] => 10.00
-        [valor_mulher] => 10.00
-        [data_inicio] => 2022-05-01 06:44:08
-        [data_fim] => 2022-05-01 06:44:12
-        [local] => Parque de exposiçao
-        [endereco] => avenida araguaia 5567
-        [cidade] => araguatins - TO
-        [imagem] => festa_do_peixe.jpg
- */
 
 
 
 
 
-
- $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
-
-
- $hoje = date('Y-m-d');
-
- $dia_sem_num = date('w', strtotime($hoje));
-
-echo $dias[$dia_sem_num];
+         $r = json_encode($resultado_com_filtro);
+          echo $r;
 
 
-
-
-
-
-
-
-
-
-
-
-
-        //  $r = json_encode($resultado_com_filtro);
-        //  echo $r;
-
-
-        print_r($resultado_com_filtro);
-        //
+       // print_r($resultado_com_filtro);
+        
 
 
     }
@@ -140,5 +115,26 @@ echo $dias[$dia_sem_num];
 
         print_r($_POST);
         echo "teste";
+    }
+
+    public function ver_evento(){
+
+
+        $db = new Eventos_model();
+        $evento = $db->get_eventos($_GET['ev']);
+
+        print_r($evento);
+
+
+        $views = [
+            'layout/head',
+            'cabecario',
+            'mostrar_evento',
+            'layout/footer',
+        ];
+
+        Functions::layout($views);
+
+
     }
 }

@@ -1,115 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-  
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-  </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
- 
-  <link rel="stylesheet" href="../core/resources/css/app.css">
-
-
-  <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/fontawesome.css">
-  <script src="fontawesome-free-6.1.1-web/js/all.js"></script>
-  <script src="../core/resources/js/axios.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-
-</head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<nav class="navbar fixed-top navbar-expand-sm  navbar-dark " id="nav">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{route('home')}}"><img src="../core/resources/images/logo3.jpg" alt="" id="logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('login')}}">Entrar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('cadastrar')}}">Cadstrar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('perfil')}}">Perfil</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cidades
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Araguatins</a></li>
-            <li><a class="dropdown-item" href="#">Augustinopolis</a></li>
-            <li><a class="dropdown-item" href="#">Axixá</a></li>
-            <li><a class="dropdown-item" href="#">Butiri do Tocantins</a></li>
-            <li><a class="dropdown-item" href="#">Esperantina</a></li>
-            <li><a class="dropdown-item" href="#">Carrasco bonito</a></li>
-            <li><a class="dropdown-item" href="#">São sebastião</a></li>
-            <li><a class="dropdown-item" href="#">Araguatins</a></li>
-            <li><a class="dropdown-item" href="#">Augustinopolis</a></li>
-            <li><a class="dropdown-item" href="#">Axixá</a></li>
-            <li><a class="dropdown-item" href="#">Butiri do Tocantins</a></li>
-            <li><a class="dropdown-item" href="#">Esperantina</a></li>
-            <li><a class="dropdown-item" href="#">Carrasco bonito</a></li>
-            <li><a class="dropdown-item" href="#">São sebastião</a></li>
-            <li><a class="dropdown-item" href="#">Araguatins</a></li>
-            <li><a class="dropdown-item" href="#">Augustinopolis</a></li>
-            <li><a class="dropdown-item" href="#">Axixá</a></li>
-            <li><a class="dropdown-item" href="#">Butiri do Tocantins</a></li>
-            <li><a class="dropdown-item" href="#">Esperantina</a></li>
-            <li><a class="dropdown-item" href="#">Carrasco bonito</a></li>
-            <li><a class="dropdown-item" href="#">São sebastião</a></li>
-
-          </ul>
-        </li>
-
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Cidade ou evento" aria-label="Search">
-        <button class="btn btn_form" type="submit">Buscar</button>
-      </form>
-
-    </div>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -124,18 +12,20 @@
     
 
 
-        <div class="ver_evento bg-transparente mb-3">
+        <div class="ver_evento bg-transparente mb-3  ">
         
           <div class="corpo_evento">
   <br>
 
-            <h1 class="">XIX Expoatins</h1>
+            <h1 class="text-center">XIX Expoatins</h1>
 
-            <h5>Araguatins- TO</h5>
+            <h5 class="text-center">Araguatins- TO</h5>
 
-            <p id="dia"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </p>
+            <p id="dia" class="text-center"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </p>
 
-            <p class="">descriçao: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <p class=""> scriçao: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Voluptas molestiae consectetur error, laboriosam architecto doloribus ad commodi repudiandae
+              consequuntur totam quas tempore reiciendis, blanditiis, delectus autem tedescriçao: Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptas molestiae consectetur error, laboriosam architecto doloribus ad commodi repudiandae
               consequuntur totam quas tempore reiciendis, blanditiis, delectus autem temporibus dolor
               molestias. Eos.</p>
@@ -237,16 +127,3 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-  <script src="../core/resources/js/app.js"></script>
-</body>
-
-</html>
