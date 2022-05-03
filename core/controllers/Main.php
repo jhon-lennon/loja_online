@@ -122,8 +122,9 @@ class Main
         $comentarios = new comentarios();
         $comentario = $comentarios->post_comentarios();
 
-        $comentario = json_encode($comentario);
+       $comentario = json_encode($comentario);
         echo $comentario;
+        //print_r($_POST);
 
         
     }
@@ -132,8 +133,8 @@ class Main
     //view login
     public function get_comentarios()
     {
-        $comentarios = new Comentarios();
-        $res = json_encode($comentarios->get_comentario());
+       $comentarios = new Comentarios();
+        $res = json_encode($comentarios->get_comentario(null, $_GET['id_evento']));
         echo $res;
 
         return;
@@ -224,6 +225,7 @@ class Main
 
         $_SESSION['usuario_email'] = $res[0]->email;
         $_SESSION['usuario_nome'] = $res[0]->nome;
+        $_SESSION['id_usuario'] = $res[0]->id_usuario;
 
 
 

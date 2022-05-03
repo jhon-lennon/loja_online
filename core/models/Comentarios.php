@@ -9,17 +9,17 @@ class Comentarios{
     public function post_comentarios(){
        
         $db= new Database();
-$parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => null];
-        $db->insert('INSERT INTO comentarios VALUES  ( :id, :com ,:c, :u)',$parametro);
-
-        $comentarios = $db->select("SELECT * FROM comentarios ORDER BY id DESC");
+$parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => null, ':id_e' => $_POST['id_evento'], ':id_u' => $_SESSION['id_usuario']];
+        $db->insert('INSERT INTO comentarios VALUES  ( :id, :id_e, :id_u, :com ,:c, :u)',$parametro);
+        $param = [':id_e' => $_POST['id_evento']];
+        $comentarios = $db->select("SELECT comentarios.* , usuarios.nome ,usuarios.foto  FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario AND comentarios.id_evento = :id_e ORDER BY id DESC",$param);
        
             return $comentarios;
         }
     
+    //SELECT comentarios.* , usuarios.nome ,usuarios.email  FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
     
-    
-    public function get_comentario($id = null){
+    public function get_comentario($id = null, $id_evento){
         if($id != null){
             $db= new Database();
             $parametros = [':id' => $id];
@@ -28,7 +28,8 @@ $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => 
         return $comentario;
         }else{
                  $db= new Database();
-        $comentarios = $db->select("SELECT * FROM comentarios ORDER BY id DESC");
+                 $parametros = [':id_e' => $id_evento];
+        $comentarios = $db->select("SELECT comentarios.* , usuarios.nome ,usuarios.foto  FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario AND comentarios.id_evento = :id_e ORDER BY id DESC", $parametros);
        
             return $comentarios;  
         }

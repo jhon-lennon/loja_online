@@ -22,12 +22,12 @@ function valor_entrada() {
 
 
 //add comentario ========================================================================================================
-function comentar(id_form) {
+function comentar(id_evento) {
   //div dos comentarios
   let divcomentarios = document.getElementById('comentarios')
 
   //texto do comentario
-  let frm = $('#' + id_form)
+  let frm = $('#text_comentario_' + id_evento)
 
 console.log(frm)
   frm.submit(function (e) {
@@ -38,17 +38,17 @@ console.log(frm)
   $.ajax({
     type: "POST",
     url: '?a=post_comentario',
-    data: frm.serialize(),
+    data: frm.serialize() + '&id_evento=' + encodeURIComponent(id_evento),
 
     success: function (dados) {
       console.log(dados)
-
+      
       var objeto = JSON.parse(dados);
       var comentarios = objeto
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
 
-        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">  <span class="nome">Leticia Lima</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto +'" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
       });
 
@@ -138,24 +138,24 @@ function editar_comentario(id) {
 }
 
 // ao iniciar view mostar evento =============================================================================================
-function inicio() {
-
+function inicio(id) {
+console.log(id)
   let divcomentarios = document.getElementById('comentarios')
   $.ajax({
     type: "GET",
-    url: '?a=get_comentarios',
+    url: '?a=get_comentarios&id_evento='+id,
 
     success: function (dados) {
-console.log(dados)
+
 
       var objeto = JSON.parse(dados);
-console.log(objeto)
 
+console.log(dados)
       var comentarios = objeto
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
 
-        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/m.jpg" alt="" class="img_perfil">  <span class="nome">Leticia Lima</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/'+elemento.foto+'" alt="" class="img_perfil">  <span class="nome">'+elemento.nome+'</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
       });
       document.getElementsByName('comentario').value = ''
