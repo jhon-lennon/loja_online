@@ -51,7 +51,7 @@
             <span class="nome"><?=$_SESSION['usuario_nome'] ?></span><br>
             <form action="?a=post_comentario" method="post" id="text_comentario_<?=$evento->id_evento?>">
             <textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-momentario" rows="3"></textarea>
-            <span><button class="btn mt-1" onclick="comentar('<?=$evento->id_evento?>')" >comentar</button></span><span class="n-comentarios">934 comentários</span>
+            <span><button class="btn mt-1" onclick="comentar('<?=$evento->id_evento?>')" >comentar</button></span><span id="n-comentarios" class="n-comentarios"></span>
             </form>
             <hr>
 

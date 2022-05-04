@@ -69,6 +69,7 @@ class Eventos
                 $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i . ' à ' . $df . ' ' . $nome_dia_f;
             }
 
+           
 
 
             $res = [
@@ -83,6 +84,7 @@ class Eventos
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
                 'data' => $text_dia
+                
 
             ];
 

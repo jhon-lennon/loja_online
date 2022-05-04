@@ -2,6 +2,7 @@
 
 namespace core\controllers;
 
+use ArrayObject;
 use com_exception;
 use core\classes\Database;
 use core\classes\EnviarEmail;
@@ -33,7 +34,7 @@ class Main
 
     public function perfil()
     {
-        if(!Functions::check_session()){
+        if (!Functions::check_session()) {
             Functions::redirect('inicio');
             return;
         }
@@ -48,10 +49,10 @@ class Main
         Functions::layout($views);
     }
     //=====================================================================================================================
-   
+
     public function login()
     {
-        if(Functions::check_session()){
+        if (Functions::check_session()) {
             Functions::redirect('inicio');
             return;
         }
@@ -67,8 +68,9 @@ class Main
 
     public function sair()
     {
-      unset( $_SESSION['usuario_email']); 
-       unset( $_SESSION['usuario_nome']); 
+        unset($_SESSION['usuario_email']);
+        unset($_SESSION['usuario_nome']);
+        unset($_SESSION['id_usuario']);
 
         $views = [
             'layout/head',
@@ -82,7 +84,7 @@ class Main
 
     public function cadastro()
     {
-        if(Functions::check_session()){
+        if (Functions::check_session()) {
             Functions::redirect('inicio');
             return;
         }
@@ -109,7 +111,7 @@ class Main
             'cabecario',
             'mostrar_evento',
             'layout/footer',
-           
+
 
         ];
 
@@ -122,22 +124,55 @@ class Main
         $comentarios = new comentarios();
         $comentario = $comentarios->post_comentarios();
 
-       $comentario = json_encode($comentario);
+        $comentario = json_encode($comentario);
         echo $comentario;
         //print_r($_POST);
 
-        
+
     }
 
     //=====================================================================================================================
     //view login
     public function get_comentarios()
     {
-       $comentarios = new Comentarios();
-        $res = json_encode($comentarios->get_comentario(null, $_GET['id_evento']));
-        echo $res;
+        $comentarios = new Comentarios();
 
-        return;
+
+        $comen = $comentarios->get_comentarios($_GET['id_evento']);
+
+        $filtro_comentarios = [];
+
+
+        foreach ($comen as $com) {
+            if (isset($_SESSION['id_usuario'])) {
+
+
+
+                if ($com->id_usuario == $_SESSION['id_usuario']) {
+
+                    $array = (array) $com;
+                    $array['pertence'] = 1;
+                    array_push($filtro_comentarios, $array);
+                } else {
+
+                    $array = (array) $com;
+                    $array['pertence'] = 0;
+                    array_push($filtro_comentarios, $array);
+                }
+            } else {
+                $array = (array) $com;
+                $array['pertence'] = 0;
+                array_push($filtro_comentarios, $array);
+            }
+        }
+
+
+
+
+        $res = json_encode($filtro_comentarios);
+        echo $res;
+        //  print_r($filtro_comentarios);
+        // return;
     }
 
     //=====================================================================================================================
@@ -157,10 +192,18 @@ class Main
     public function atualizar_comentario()
     {
         $comentario = new comentarios();
-        $comentario->editar_comentario();
         $res = $comentario->get_comentario($_POST['id_comentario']);
-        $res = json_encode($res);
-        echo $res;
+
+        if ($res[0]->id_usuario != $_SESSION['id_usuario']) {
+
+            echo 'nao pertence';
+        } else {
+
+            $comentario->editar_comentario();
+            $res = $comentario->get_comentario($_POST['id_comentario']);
+            $res = json_encode($res);
+            echo $res;
+        }
     }
 
     public function form_cadastro()
@@ -208,17 +251,18 @@ class Main
             echo true;
         }
     }
-    public function form_login(){
+    public function form_login()
+    {
 
         $usuario = new comentarios();
-        
+
         $res = $usuario->verificar_usuario($_POST['text_email']);
-        
-        if ( count($res)  != 1) {
+
+        if (count($res)  != 1) {
 
             echo "Email não cadastrado ";
             die;
-        }elseif(!password_verify($_POST['senha'],$res[0]->senha)){
+        } elseif (!password_verify($_POST['senha'], $res[0]->senha)) {
             echo "Senha invalida ";
             die;
         }
