@@ -344,9 +344,9 @@ function todos_eventos() {
       btn_presenca = '<a href="?a=login" class="btn btn-n-c  btn-conf  ">Confirmar presença</a>  '
       eventos.forEach((evento, indice) => {
         if(evento.presenca == 0){
-          btn_presenca = ' <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>'
+          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>`
         }else if(evento.presenca == 1){
-          btn_presenca = ' <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>'
+          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>`
 
         }
 
@@ -385,6 +385,32 @@ function todos_eventos() {
 
     }
   });
+}
+
+function confirmar_presenca(id_evento){
+  console.log(id_evento)
+
+
+  $.ajax({
+    type: "POST",
+    url: '?a=confirmar_presenca',
+    data: {"id_evento": id_evento},
+
+    success: function (dados) {
+      console.log(dados)
+      
+    
+
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+
+
+
+
 }
 
 

@@ -22,7 +22,7 @@
 
             <h5 class="text-center"><?=$evento->cidade?></h5>
 
-            <p id="dia" class="text-center"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </p>
+            <p class="dia_evento" class="text-center"><strong>Dia 07/09 sexta à 15/09 Sabado</strong> </p>
 
             <p class=""><?=$evento->descricao?></p>
             <div class="info">
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-
+      <?php if(isset($_SESSION['id_usuario'])): ?>
       <div class="col-12">
         <div class="ver_evento">
           <div class="corpo_evento">
@@ -59,67 +59,13 @@
           </div>
         </div>
       </div>
-      <div class="row" id="comentarios"><!--comentarios sao exibidos aqui-->
-      <div class="col-12 mt-2">
-                    <div class="ver_evento">
-                        <div class="corpo_evento">
-                                <img src="../resources/images/m.jpg" alt="" class="img_perfil">
-                                <span class="nome">Leticia Lima</span>
-                                <div class="seta"></div>
-                                
-                            <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi facilis mollitia reprehenderit modi itaque dicta ea pariatur nobis. Officia sunt quibusdam
-                                 dolores consectetur aliquam, perferendis possimus eaque accusamus pariatur inventore.</p>
-                                 
-                                 <div class="row">
-                                     <div class="col-12 text-end">
-                                         <button class="btn-editar-comentario m-end" onclick="editar_comentario()">Editar</button>
-                                     </div>
-                                 </div>
-                        </div>
-                    </div>
-                </div>
+      <?php else: ?>
+        <div class="col-12">
+        <div class="ver_evento">
+      <p class="text-center">  Conecte-se e deixe seu comentario <a href="">aqui</a></p>
+        </div>                
+        </div>
+        <?php endif; ?>
+      <div class="row" id="comentarios"><!--comentarios sao exibidos aqui--></div>
+     
 
-  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel">Editar perfil</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Comentário</label>
-              <textarea class="form-control mt-1" placeholder="Faça um comentário." name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-
-            <div class="mt-2">
-              <button type="submit" class="btn btn_form">Salvar</button>
-              <a href="{{route('login')}}" class="btn btn_form">Cancelar</a>
-
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Excluir comentário</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel2">Excluir comentário</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Quer excluir esse comentário? <button class="btn btn-form">Sim</button>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Voltar</button>
-        </div>
-      </div>
-    </div>
-  </div>

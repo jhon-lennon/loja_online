@@ -5,6 +5,7 @@ namespace core\controllers;
 use core\classes\Functions;
 use core\models\Admin as ModelsAdmin;
 use core\models\Eventos_model;
+use core\models\Presenca_model;
 
 class Eventos
 {
@@ -94,7 +95,7 @@ class Eventos
                 'descricao' => substr($evento->descricao, 0, 60) . '...',
                 'valor_homem' => $vh,
                 'valor_mulher' => $vm,
-                'local' => substr($evento->local, 0, 30),
+                'local' => substr($evento->local, 0, 28),
                 'cidade' => $evento->cidade,
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
@@ -158,5 +159,17 @@ class Eventos
         ];
 
         Functions::layout($views, $dados);
+    }
+
+    public function confirmar_presenca(){
+        $pre = new Presenca_model();
+        $presenca = $pre->get_presenca_user($_POST['id_evento']);
+       if(count($presenca) == 0){
+            $res = $pre->insere_presenca($_POST['id_evento']);
+           echo 0;
+       }else{
+            $pre->remove_presenca($presenca[0]->id_presenca);
+            echo 1;
+       }
     }
 }

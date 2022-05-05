@@ -63,6 +63,13 @@ img {
     font-size: 11px;
     
 }
+
+.dia_evento {
+    color: rgb(255, 168, 27);
+    font-size: 18px;
+    text-align: center;
+    
+}
 #cidade {
     color: rgb(255, 168, 27);
     
