@@ -334,15 +334,21 @@ function todos_eventos() {
 
 
     success: function (dados) {
-
+      console.log(dados)
       let objeto = JSON.parse(dados);
       console.log(objeto)
       //console.log(dados)
 
-
+      
       var eventos = objeto
-
+      btn_presenca = '<a href="?a=login" class="btn btn-n-c  btn-conf  ">Confirmar presença</a>  '
       eventos.forEach((evento, indice) => {
+        if(evento.presenca == 0){
+          btn_presenca = ' <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>'
+        }else if(evento.presenca == 1){
+          btn_presenca = ' <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>'
+
+        }
 
         div_eventos.innerHTML += `<div class="col my-3" id="div_evento_${evento.id_evento}">
 
@@ -363,8 +369,8 @@ function todos_eventos() {
           </div>
         </div>
         <div class="foote-card">
-          <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> <button
-            id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>
+          <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> 
+                 ${btn_presenca}
         </div>
       </div>
     </div>`

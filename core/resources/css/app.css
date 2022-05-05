@@ -60,7 +60,7 @@ img {
 
 #dia {
     color: rgb(255, 168, 27);
-    font-size: 12px;
+    font-size: 11px;
     
 }
 #cidade {
@@ -104,6 +104,10 @@ img {
 
 .btn-c {
     background-color: rgba(9, 121, 52, 0.672);
+
+}
+.btn-n-c {
+    background-color: rgba(53, 9, 136, 0.653);
 
 }
 

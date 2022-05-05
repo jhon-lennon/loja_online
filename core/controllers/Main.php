@@ -2,20 +2,15 @@
 
 namespace core\controllers;
 
-use ArrayObject;
-use com_exception;
-use core\classes\Database;
-use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Comentarios;
-use core\models\Endereco;
-use core\models\Produtos;
+
 
 class Main
 {
 
 
-
+//mostrar pagina inicial=======================================================================
     public function index()
     {
 
@@ -31,7 +26,7 @@ class Main
     }
 
 
-
+    //mostrar view do perfil====================================================================
     public function perfil()
     {
         if (!Functions::check_session()) {
@@ -49,7 +44,7 @@ class Main
         Functions::layout($views);
     }
     //=====================================================================================================================
-
+    //mostar view de login
     public function login()
     {
         if (Functions::check_session()) {
@@ -66,6 +61,7 @@ class Main
         Functions::layout($views);
     }
 
+    //  Sair - deslogar ==========================================================================
     public function sair()
     {
         unset($_SESSION['usuario_email']);
@@ -82,6 +78,7 @@ class Main
         Functions::layout($views);
     }
 
+    // Apresenta a view de criar conta de usuario =================================================================
     public function cadastro()
     {
         if (Functions::check_session()) {
@@ -119,6 +116,8 @@ class Main
         Functions::layout($views);
     }
 
+
+    //funçao comentar============================================================================
     public function comentarios()
     {
         $comentarios = new comentarios();
@@ -126,13 +125,13 @@ class Main
 
         $comentario = json_encode($comentario);
         echo $comentario;
-        //print_r($_POST);
+        
 
 
     }
 
     //=====================================================================================================================
-    //view login
+    //todos os comentarios de um evento  (Usada no ajax para apresentar os comentarios) 
     public function get_comentarios()
     {
         $comentarios = new Comentarios();
@@ -147,7 +146,7 @@ class Main
             if (isset($_SESSION['id_usuario'])) {
 
 
-
+                //verificar se o comentario pertence ao usuario logado, para a apresentar a opçao de editar
                 if ($com->id_usuario == $_SESSION['id_usuario']) {
 
                     $array = (array) $com;
@@ -171,12 +170,11 @@ class Main
 
         $res = json_encode($filtro_comentarios);
         echo $res;
-        //  print_r($filtro_comentarios);
-        // return;
+
     }
 
     //=====================================================================================================================
-    //view criar conta
+    //busca um comentario (Usado no ajax para apresentar o comentario apos a cancelar a ediçao)
     public function get_comentario()
     {
 
@@ -185,10 +183,8 @@ class Main
         echo $res;
     }
 
-
-
     //========================================================================================================================
-    //cadastro de usuario
+    //Editar comentario
     public function atualizar_comentario()
     {
         $comentario = new comentarios();
@@ -206,6 +202,7 @@ class Main
         }
     }
 
+    // Recebe os dados do formulario via post faz a validaçao e cadastra um usuario ====================
     public function form_cadastro()
     {
 
@@ -251,6 +248,9 @@ class Main
             echo true;
         }
     }
+
+
+    //funçao entrar - logar ==================================================================
     public function form_login()
     {
 
@@ -270,8 +270,6 @@ class Main
         $_SESSION['usuario_email'] = $res[0]->email;
         $_SESSION['usuario_nome'] = $res[0]->nome;
         $_SESSION['id_usuario'] = $res[0]->id_usuario;
-
-
 
         echo 1;
     }

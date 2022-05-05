@@ -20,6 +20,12 @@ class Eventos_model{
         }
       
     }
+    public function get_presenca($id_evento){
+        $db = new Database();
+        $paramentros =[':id_e' => $id_evento];
+        $res = $db->select('SELECT * from presenca WHERE id_evento = :id_e', $paramentros);
+        return $res;
+    }
 
 
 

@@ -32,6 +32,21 @@ class Eventos
         $resultado_com_filtro = [];
 
         foreach ($eventos as $evento) {
+            $presenca_confirma = 'nao logado';
+            if (isset($_SESSION['id_usuario'])) {
+                $presenca_confirma = 0;
+                $presen = new Eventos_model();
+                $presenca = $presen->get_presenca($evento->id_evento);
+
+                foreach ($presenca as $p) {
+
+                    if ($p->id_usuario == $_SESSION['id_usuario']) {
+                        $presenca_confirma = 1;
+                    }
+                }
+            }
+
+
 
             $vh = 'Gratis';
             $vm = 'Gratis';
@@ -69,7 +84,7 @@ class Eventos
                 $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i . ' à ' . $df . ' ' . $nome_dia_f;
             }
 
-           
+
 
 
             $res = [
@@ -83,8 +98,8 @@ class Eventos
                 'cidade' => $evento->cidade,
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
-                'data' => $text_dia
-                
+                'data' => $text_dia,
+                'presenca' => $presenca_confirma
 
             ];
 
