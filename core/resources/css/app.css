@@ -117,6 +117,10 @@ img {
     background-color: rgba(53, 9, 136, 0.653);
 
 }
+.btn-c:hover {
+    background-color: rgba(44, 248, 105, 0.404)
+
+}
 
 .carrocel {
 

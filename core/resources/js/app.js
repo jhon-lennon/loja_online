@@ -368,7 +368,7 @@ function todos_eventos() {
             <span><i class="fa-solid fa-clock"></i> Horario: <strong>${evento.horario} </strong> </span>
           </div>
         </div>
-        <div class="foote-card">
+        <div class="foote-card" id="card_footer_${evento.id_evento}">
           <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> 
                  ${btn_presenca}
         </div>
@@ -397,6 +397,16 @@ function confirmar_presenca(id_evento){
     data: {"id_evento": id_evento},
 
     success: function (dados) {
+
+      if(dados == 0){
+        document.getElementById('card_footer_'+id_evento).innerHTML = `<p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${id_evento}" class="btn  ">Ver evento</a> 
+        <button  id="btn_presenca_${id_evento}"  onclick="confirmar_presenca(${id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>`
+      }else if(dados == 1){
+        document.getElementById('card_footer_'+id_evento).innerHTML = `<p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${id_evento}" class="btn  ">Ver evento</a> 
+        <button  id="btn_presenca_${id_evento}"  onclick="confirmar_presenca(${id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>`
+      }
+
+     
       console.log(dados)
       
     

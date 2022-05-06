@@ -4,7 +4,7 @@
 
 <nav class="navbar fixed-top navbar-expand-sm  navbar-dark " id="nav">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{route('home')}}"><img src="../core/resources/images/logo3.jpg" alt="" id="logo"></a>
+      <a class="navbar-brand" href="?a=inicio"><img src="../core/resources/images/logo3.jpg" alt="" id="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,24 +16,24 @@
           </li>
           <?php if(Functions::check_session()): ?>
           <li class="nav-item">
-            <a class="nav-link" href="?a=sair">Sair</a>
+            <a class="nav-link active" href="?a=sair">Sair</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?a=perfil">Perfil</a>
+            <a class="nav-link active" href="?a=perfil">Perfil</a>
           </li>
             <?php else: ?>
           <li class="nav-item">
-              <a class="nav-link" href="?a=login">Entrar</a>
+              <a class="nav-link active" href="?a=login">Entrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?a=cadastro">Cadastre-se</a>
+            <a class="nav-link active" href="?a=cadastro">Cadastre-se</a>
           </li>
 
           <?php endif; ?>
 
           
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Cidades
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
