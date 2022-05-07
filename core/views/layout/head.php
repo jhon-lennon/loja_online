@@ -15,7 +15,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
     <link rel="stylesheet" href="../core/resources/css/app.css">
-
+   
 
     <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/fontawesome.css">
     <script src="fontawesome-free-6.1.1-web/js/all.js"></script>

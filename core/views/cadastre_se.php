@@ -7,7 +7,7 @@
           <h1 class="text-center h1-login">Cadastre-se</h1>
         </div>
         <div class="text-center">
-          <img src="../resources/images/Eventos.gif" class="img-login" alt="...">
+          <img src="../core/resources/images/Eventos.gif" class="img-login" alt="...">
         </div>
 
         <form id="form-cadastro" action="?a=form_cadasto" method="post">

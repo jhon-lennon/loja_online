@@ -8,13 +8,9 @@ use core\models\Comentarios;
 
 class Main
 {
-
-
 //mostrar pagina inicial=======================================================================
     public function index()
     {
-
-
         $views = [
             'layout/head',
             'cabecario',
@@ -24,8 +20,6 @@ class Main
 
         Functions::layout($views);
     }
-
-
     //mostrar view do perfil====================================================================
     public function perfil()
     {
@@ -85,7 +79,6 @@ class Main
             Functions::redirect('inicio');
             return;
         }
-
         $views = [
             'layout/head',
             'cabecario',
@@ -93,25 +86,16 @@ class Main
             'layout/footer',
         ];
 
-
         Functions::layout($views);
     }
-
-
     public function ver_evento()
     {
-
         $views = [
-
-
             'layout/head',
             'cabecario',
             'mostrar_evento',
             'layout/footer',
-
-
         ];
-
 
         Functions::layout($views);
     }
@@ -125,9 +109,6 @@ class Main
 
         $comentario = json_encode($comentario);
         echo $comentario;
-        
-
-
     }
 
     //=====================================================================================================================
@@ -164,9 +145,6 @@ class Main
                 array_push($filtro_comentarios, $array);
             }
         }
-
-
-
 
         $res = json_encode($filtro_comentarios);
         echo $res;
@@ -205,7 +183,6 @@ class Main
     // Recebe os dados do formulario via post faz a validaçao e cadastra um usuario ====================
     public function form_cadastro()
     {
-
         $usuario = new comentarios();
         $erro = [];
         $res = $usuario->verificar_usuario($_POST['text_email']);
@@ -215,8 +192,6 @@ class Main
             echo "Email ja cadastrado, ";
             die;
         }
-
-
 
         if (!isset($_POST['text_nome'])) {
             array_push($erro, 'Erro metodo');

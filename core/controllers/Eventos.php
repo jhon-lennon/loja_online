@@ -142,13 +142,116 @@ class Eventos
             Functions::redirect('inicio');
         }
         $db = new Eventos_model();
-        $evento = $db->get_eventos($_GET['ev']);
+        $event = $db->get_eventos($_GET['ev']);
 
-        if (count($evento) == 0) {
+        if (count($event) == 0) {
             Functions::redirect('inicio');
         }
+        $evento = $event[0];
 
-        $dados = ['evento' => $evento[0]];
+
+        $presenca_confirma = 'nao logado';
+        $presen = new Eventos_model();
+        $presenca = $presen->get_presenca($evento->id_evento);
+        $presencas_confirmandas = count($presenca);
+            if (isset($_SESSION['id_usuario'])) {
+                $presenca_confirma = 0;
+                
+              
+
+                foreach ($presenca as $p) {
+
+                    if ($p->id_usuario == $_SESSION['id_usuario']) {
+                        $presenca_confirma = 1;
+                    }
+                }
+            }
+
+
+
+
+        
+
+
+
+        $vh = 'Gratis';
+        $vm = 'Gratis';
+
+
+        if ($evento->valor_homem > 0) {
+            $vh = $evento->valor_homem . ' R$';
+        }
+        if ($evento->valor_mulher > 0) {
+            $vm = $evento->valor_mulher . ' R$';
+        }
+
+        $hi = date('H:i',  strtotime($evento->data_inicio));
+        $hf = date('H:i',  strtotime($evento->data_fim));
+        $di = date('d/m/y',  strtotime($evento->data_inicio));
+        $df = date('d/m/y',  strtotime($evento->data_fim));
+
+
+
+        $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexts', 'Sabado'];
+
+        $dia_sem_num_i = date('w', strtotime($evento->data_inicio));
+        $dia_sem_num_f = date('w', strtotime($evento->data_fim));
+
+
+        $nome_dia_i =  $dias[$dia_sem_num_i];
+        $nome_dia_f =  $dias[$dia_sem_num_f];
+
+
+        $text_dia = '';
+
+        if ($di ==  $df) {
+            $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i;
+        } else {
+            $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i . ' à ' . $df . ' ' . $nome_dia_f;
+        }
+
+
+
+
+        $res = [
+            'id_evento' => $evento->id_evento,
+            'id_usuario' => $evento->id_usuario,
+            'titulo' => substr($evento->titulo_evento, 0, 25),
+            'descricao' => $evento->descricao, 
+            'valor_homem' => $vh,
+            'valor_mulher' => $vm,
+            'local' => substr($evento->local, 0, 28),
+            'cidade' => $evento->cidade,
+            'imagem' => $evento->imagem,
+            'horario' => $hi . ' as ' . $hf,
+            'data' => $text_dia,
+            'presenca' => $presenca_confirma,
+            'n_presencas' => $presencas_confirmandas ,
+
+        ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $object = (object) $res;
+
+
+        $dados = ['evento' => $object];
 
         $views = [
             'layout/head',
@@ -171,5 +274,13 @@ class Eventos
             $pre->remove_presenca($presenca[0]->id_presenca);
             echo 1;
        }
+    }
+
+    public function numero_presenca(){
+
+        $presen = new Eventos_model();
+        $presenca = $presen->get_presenca($_POST['id_evento']);
+       $presenca = count($presenca);
+     echo $presenca;
     }
 }

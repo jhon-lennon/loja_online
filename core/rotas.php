@@ -19,6 +19,7 @@ $rotas = [
     'form_cadastro_evento' => 'eventos@form_cadastro_evento',
     'todos_eventos' => 'eventos@todos_eventos',
     'confirmar_presenca' => 'eventos@confirmar_presenca',
+    'numero_presenca' => 'eventos@numero_presenca',
     
 
 ];

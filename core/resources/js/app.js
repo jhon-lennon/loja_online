@@ -427,3 +427,82 @@ function confirmar_presenca(id_evento){
 
 
 
+
+
+function get_presenca(id_evento){
+
+
+  $.ajax({
+    type: "POST",
+    url: '?a=numero_presenca',
+    data: {"id_evento": id_evento},
+
+    success: function (dados) {
+    
+      document.getElementById('confir_pre').innerText = dados+' pessoas confirmaram presença'
+      console.log(dados)
+      
+    
+
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function confirmar_presenca_no_ver_evento(id_evento){
+  var paragrafo = document.getElementById('evento_'+id_evento)
+  console.log(paragrafo)
+
+
+  $.ajax({
+    type: "POST",
+    url: '?a=confirmar_presenca',
+    data: {"id_evento": id_evento},
+
+    success: function (dados) {
+      paragrafo.innerHTML =''
+      if(dados == 0){
+        paragrafo.innerHTML =`<p ><a href="" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(${id_evento})" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></button></p>`
+        console.log('cadas')
+      }else if(dados == 1){
+        paragrafo.innerHTML = `<p ><a href="" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(${id_evento})" class="btn btn-n-c">Confirmar presença <i class="fa-solid fa-circle-check"></i></button></p>`
+        console.log('remo')
+      }
+     
+     
+      //console.log(dados)
+     get_presenca(id_evento)
+        //console.log(presenca)
+
+
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+
+
+}
+
+
+
+
+
+
