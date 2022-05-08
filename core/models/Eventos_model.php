@@ -34,6 +34,12 @@ class Eventos_model{
         return $res;
     }
 
+    public function delete_comentario($id_comentario){
+        $db = new Database();
+        $paramentros = [ ':id_c' => $id_comentario, ':id_u' => $_SESSION['id_usuario']];
+        $db->delete('DELETE FROM comentarios WHERE id = :id_c AND id_usuario = :id_u', $paramentros);
+    }
+
 
 
 }

@@ -49,7 +49,16 @@ function comentar(id_evento) {
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
 
-        divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+
+        if (elemento.pertence == 0) {
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"></div> </div> </div> </div></div>'
+        } else if (elemento.pertence == 1) {
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+
+        }
+
+
+       // divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
       });
 
@@ -143,7 +152,7 @@ function editar_comentario(id) {
 
       var objeto = JSON.parse(dados);
 
-      document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12" id="edit-com-' + id + '" onblur="sair_da_edicao()"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/' + objeto[0].foto + '" alt="" class="img_perfil">     <span class="nome">' + objeto[0].nome + '</span><br><form action="?a=atualizar_comentario" method="post" id="id-form-' + id + '" onblur="sair_da_edicao()"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '"  onblur="cancelar_editar_comentario(' + id + ')" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="atualizar_comentario(' + id + ')">Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button></form>  </div></div></div>'
+      document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12" id="edit-com-' + id + '" onblur="sair_da_edicao()"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/' + objeto[0].foto + '" alt="" class="img_perfil">     <span class="nome">' + objeto[0].nome + '</span><br><form action="?a=atualizar_comentario" method="post" id="id-form-' + id + '" onblur="sair_da_edicao()"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '"  onblur="cancelar_editar_comentario(' + id + ')" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="atualizar_comentario(' + id + ')">Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="excluir_comentario(' + id + ' )">Excluir</button> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button> </form>  </div></div></div>'
       document.getElementById('campo-comentario-' + id).focus()
 
 
@@ -181,8 +190,6 @@ console.log(dados)
           divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
         }
-
-
 
       });
       document.getElementsByName('comentario').value = ''
@@ -224,7 +231,7 @@ function cancelar_editar_comentario(id) {
 
 }
 
-
+//================================================================================================
 function form_cadastro(form) {
   let frm = $('#' + form)
 
@@ -314,8 +321,6 @@ function form_evento() {
     success: function (dados) {
       console.log(dados)
 
-
-
     },
     error: function (erro) {
       console.log(erro)
@@ -377,8 +382,6 @@ function todos_eventos() {
 
       });
 
-
-
     },
     error: function (erro) {
       console.log(erro)
@@ -386,10 +389,9 @@ function todos_eventos() {
     }
   });
 }
-
+//===========================================================================================
 function confirmar_presenca(id_evento){
   console.log(id_evento)
-
 
   $.ajax({
     type: "POST",
@@ -405,12 +407,6 @@ function confirmar_presenca(id_evento){
         document.getElementById('card_footer_'+id_evento).innerHTML = `<p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${id_evento}" class="btn  ">Ver evento</a> 
         <button  id="btn_presenca_${id_evento}"  onclick="confirmar_presenca(${id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>`
       }
-
-     
-      console.log(dados)
-      
-    
-
     },
     error: function (erro) {
       console.log(erro)
@@ -418,19 +414,10 @@ function confirmar_presenca(id_evento){
     }
   });
 
-
-
-
 }
 
-
-
-
-
-
-
+//===============================================================================================
 function get_presenca(id_evento){
-
 
   $.ajax({
     type: "POST",
@@ -441,9 +428,6 @@ function get_presenca(id_evento){
     
       document.getElementById('confir_pre').innerText = dados+' pessoas confirmaram presença'
       console.log(dados)
-      
-    
-
     },
     error: function (erro) {
       console.log(erro)
@@ -453,18 +437,7 @@ function get_presenca(id_evento){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//============================================================================================
 function confirmar_presenca_no_ver_evento(id_evento){
   var paragrafo = document.getElementById('evento_'+id_evento)
   console.log(paragrafo)
@@ -498,6 +471,27 @@ function confirmar_presenca_no_ver_evento(id_evento){
     }
   });
 
+
+}
+
+function excluir_comentario(id_comentario){
+  let divcomentarios = document.getElementById('edit-com-' + id_comentario)
+  $.ajax({
+    type: "POST",
+    url: '?a=excluir_comentario',
+    data: {"id_comentario": id_comentario},
+
+    success: function (dados) {
+    
+      console.log(document.getElementById('edit-com-' + id_comentario))
+      document.getElementById('edit-com-' + id_comentario).innerHTML=''
+      console.log(dados)
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
 
 }
 

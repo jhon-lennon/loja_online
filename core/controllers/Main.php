@@ -109,6 +109,7 @@ class Main
 
         $comentario = json_encode($comentario);
         echo $comentario;
+        $this->get_comentario();
     }
 
     //=====================================================================================================================

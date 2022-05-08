@@ -67,7 +67,7 @@ class Eventos
 
 
 
-            $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexts', 'Sabado'];
+            $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
 
             $dia_sem_num_i = date('w', strtotime($evento->data_inicio));
             $dia_sem_num_f = date('w', strtotime($evento->data_fim));
@@ -283,4 +283,13 @@ class Eventos
        $presenca = count($presenca);
      echo $presenca;
     }
+
+
+   public function excluir_comentario(){
+      
+       $db = new Eventos_model();
+       $db->delete_comentario($_POST['id_comentario']);
+ print_r($_POST);
+} 
 }
+
