@@ -61,6 +61,7 @@ class Main
         unset($_SESSION['usuario_email']);
         unset($_SESSION['usuario_nome']);
         unset($_SESSION['id_usuario']);
+        unset($_SESSION['usuario_foto']);
 
         $views = [
             'layout/head',
@@ -107,19 +108,23 @@ class Main
         $comentarios = new comentarios();
         $comentario = $comentarios->post_comentarios();
 
-        $comentario = json_encode($comentario);
-        echo $comentario;
-        $this->get_comentario();
+       
+        
+        $this->get_comentarios($_POST['id_evento']);
     }
 
     //=====================================================================================================================
     //todos os comentarios de um evento  (Usada no ajax para apresentar os comentarios) 
-    public function get_comentarios()
+    public function get_comentarios($id_even = null)
     {
+        if(isset($_GET['id_evento'])){
+            $id_even =$_GET['id_evento'];
+        }
+
         $comentarios = new Comentarios();
 
 
-        $comen = $comentarios->get_comentarios($_GET['id_evento']);
+        $comen = $comentarios->get_comentarios($id_even);
 
         $filtro_comentarios = [];
 
@@ -246,6 +251,8 @@ class Main
         $_SESSION['usuario_email'] = $res[0]->email;
         $_SESSION['usuario_nome'] = $res[0]->nome;
         $_SESSION['id_usuario'] = $res[0]->id_usuario;
+        $_SESSION['usuario_foto'] = $res[0]->foto;
+
 
         echo 1;
     }

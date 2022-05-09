@@ -7,7 +7,7 @@
     <div class="row mt-5">
         <div class="col text-center">
             <div class="div-perfil">
-                <img class="img-perfil" src="../core/resources/images/usuarios/jhon.jpg" alt="">
+                <img class="img-perfil" src="../core/resources/images/usuarios/<?= $_SESSION['usuario_foto']?>" alt="">
                 <h2 class="mt-2"><?= $_SESSION['usuario_nome'] ?></h2>
 
                 <h6><?= $_SESSION['usuario_email'] ?></h6>
@@ -16,7 +16,7 @@
                 <button class="btn btn-form">voltar</button>
 
             </div>
-            
+           
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace core\controllers;
 
 use core\classes\Functions;
 use core\models\Admin as ModelsAdmin;
+use core\models\Comentarios;
 use core\models\Eventos_model;
 use core\models\Presenca_model;
 
@@ -289,7 +290,18 @@ class Eventos
       
        $db = new Eventos_model();
        $db->delete_comentario($_POST['id_comentario']);
- print_r($_POST);
-} 
+
+}
+
+    public function count_comentario(){
+
+        $n_c = new Comentarios();
+       $r = $n_c->n_comentario();
+       echo count($r);
+    
+      
+    }
+
+
 }
 

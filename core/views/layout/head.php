@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="../core/resources/css/app.css">
    
 
-    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/fontawesome.css">
-    <script src="fontawesome-free-6.1.1-web/js/all.js"></script>
+    <link rel="stylesheet" href="../core/resources/fontawesome/css/fontawesome.css">
+    <script src="../core/resources/fontawesome/js/all.js"></script>
     <script src="../core/resources/js/axios.min.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

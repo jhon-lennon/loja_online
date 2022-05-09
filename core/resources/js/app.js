@@ -56,14 +56,14 @@ function comentar(id_evento) {
           divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
         }
-
+       
 
        // divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
       });
 
       document.getElementById('campo-momentario').value = ''
-      n_comentarios.innerText = comentarios.length + ' comentarios'
+      n_comentarios.innerText = comentarios.length + ' Comentarios'
       return
 
     },
@@ -193,7 +193,7 @@ console.log(dados)
 
       });
       document.getElementsByName('comentario').value = ''
-      n_comentarios.innerText = comentarios.length + ' comentarios'
+      n_comentarios.innerText = comentarios.length + ' Comentarios'
       console.log(comentarios.length)
       return
 
@@ -274,7 +274,7 @@ function form_cadastro(form) {
 //receber dados formulario login==============================================================
 function form_login(form) {
   let frm = $('#' + form)
-  let divmessagem = document.getElementById('info')
+  let divmessagem = document.getElementById('info_login')
   console.log(frm)
   frm.submit(function (e) {
 
@@ -287,8 +287,10 @@ function form_login(form) {
     data: frm.serialize(),
 
     success: function (dados) {
-      console.log(dados)
+      
+
       if (dados != 1) {
+        console.log(dados)
         divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> ${dados} </div>`
 
       } else {
@@ -349,7 +351,7 @@ function todos_eventos() {
       btn_presenca = '<a href="?a=login" class="btn btn-n-c  btn-conf  ">Confirmar presença</a>  '
       eventos.forEach((evento, indice) => {
         if(evento.presenca == 0){
-          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-circle-check"></i></button>`
+          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-check"></i></button>`
         }else if(evento.presenca == 1){
           btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>`
 
@@ -376,6 +378,7 @@ function todos_eventos() {
         <div class="foote-card" id="card_footer_${evento.id_evento}">
           <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> 
                  ${btn_presenca}
+                 </p>
         </div>
       </div>
     </div>`
@@ -474,8 +477,33 @@ function confirmar_presenca_no_ver_evento(id_evento){
 
 }
 
+
+function count_comentario(id_com){
+  $.ajax({
+    type: "POST",
+    url: '?a=count_comentario',
+    data: {"id_comentario": id_com},
+
+    success: function (dados) {
+      console.log(Number(dados))
+      document.getElementById('n-comentarios').innerText = Number(dados) - 1+' Comentarios'
+   
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+
+  
+}
+
+
+
+
 function excluir_comentario(id_comentario){
   let divcomentarios = document.getElementById('edit-com-' + id_comentario)
+  let n_c = count_comentario(id_comentario)
   $.ajax({
     type: "POST",
     url: '?a=excluir_comentario',
@@ -485,7 +513,7 @@ function excluir_comentario(id_comentario){
     
       console.log(document.getElementById('edit-com-' + id_comentario))
       document.getElementById('edit-com-' + id_comentario).innerHTML=''
-      console.log(dados)
+     
     },
     error: function (erro) {
       console.log(erro)

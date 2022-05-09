@@ -15,6 +15,7 @@ class Comentarios
         $parametro = [':id' => 0, ':com' => $_POST['comentario'], ':c' => null, ':u' => null, ':id_e' => $_POST['id_evento'], ':id_u' => $_SESSION['id_usuario']];
         $db->insert('INSERT INTO comentarios VALUES  ( :id, :id_e, :id_u, :com ,:c, :u)', $parametro);
         $param = [':id_e' => $_POST['id_evento']];
+
         $comentarios = $db->select("SELECT comentarios.* , usuarios.nome ,usuarios.foto  FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario AND comentarios.id_evento = :id_e ORDER BY id DESC", $param);
 
         return $comentarios;
@@ -68,7 +69,7 @@ class Comentarios
 
         $db = new Database();
 
-        $db->insert('INSERT INTO usuarios VALUES (0, :n, :e, :s, NOW(), NULL)', $parametros);
+        $db->insert('INSERT INTO usuarios VALUES (0, :n, :e, :s, null, NOW(), NULL)', $parametros);
     }
 
     public function verificar_usuario($email)
@@ -77,5 +78,14 @@ class Comentarios
         $parametro = [':email' => $email];
         $usuario = $db->select('SELECT * FROM usuarios WHERE email = :email', $parametro);
         return $usuario;
+    }
+
+    public function n_comentario(){
+
+        $db = new Database();
+        $parametros = [':id_c' => $_POST['id_comentario']];
+        $comentarios = $db->select("SELECT * FROM comentarios WHERE id_evento = (SELECT id_evento FROM comentarios WHERE id =  :id_c  )", $parametros);
+
+        return $comentarios;
     }
 }
