@@ -21,7 +21,8 @@ $rotas = [
     'confirmar_presenca' => 'eventos@confirmar_presenca',
     'numero_presenca' => 'eventos@numero_presenca',
     'excluir_comentario' =>'eventos@excluir_comentario',
-    'count_comentario' => 'eventos@count_comentario',   
+    'count_comentario' => 'eventos@count_comentario',  
+    'excluir_perfil' => 'main@excluir_perfil', 
 
 ];
 $acao = 'inicio';

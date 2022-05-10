@@ -392,7 +392,7 @@ function todos_eventos() {
     }
   });
 }
-//===========================================================================================
+//==========================================================================================================================
 function confirmar_presenca(id_evento){
   console.log(id_evento)
 
@@ -419,7 +419,7 @@ function confirmar_presenca(id_evento){
 
 }
 
-//===============================================================================================
+//==========================================================================================================================
 function get_presenca(id_evento){
 
   $.ajax({
@@ -440,7 +440,7 @@ function get_presenca(id_evento){
 
 }
 
-//============================================================================================
+//=========================================================================================================================
 function confirmar_presenca_no_ver_evento(id_evento){
   var paragrafo = document.getElementById('evento_'+id_evento)
   console.log(paragrafo)
@@ -500,9 +500,9 @@ function count_comentario(id_com){
 
 
 
-
+//==========================================================================================================================
 function excluir_comentario(id_comentario){
-  let divcomentarios = document.getElementById('edit-com-' + id_comentario)
+  
   let n_c = count_comentario(id_comentario)
   $.ajax({
     type: "POST",
@@ -514,6 +514,43 @@ function excluir_comentario(id_comentario){
       console.log(document.getElementById('edit-com-' + id_comentario))
       document.getElementById('edit-com-' + id_comentario).innerHTML=''
      
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+
+}
+
+//exluir perfil==================================================================================
+
+function excluir_perfil(form){
+
+var frmm = $('#'+form)
+var msg = document.getElementById('erro_senha_ex_per')
+
+  console.log(msg)
+  frmm.submit(function (e) {
+
+    e.preventDefault()
+
+  })
+  $.ajax({
+    type: "POST",
+    url: '?a=excluir_perfil',
+    data: frmm.serialize(),
+
+    success: function (dados) {
+      console.log(dados)
+      if(dados == 0){
+        msg.innerText = 'Senha invalida'
+      }else if(dados == 1){
+        window.location.href = "?a=inicio";
+      } else{
+        msg.innerText = 'erro'
+      }
+
     },
     error: function (erro) {
       console.log(erro)

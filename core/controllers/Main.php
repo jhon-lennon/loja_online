@@ -4,7 +4,7 @@ namespace core\controllers;
 
 use core\classes\Functions;
 use core\models\Comentarios;
-
+use core\models\Usuario_model;
 
 class Main
 {
@@ -255,5 +255,29 @@ class Main
 
 
         echo 1;
+    }
+
+    public function excluir_perfil(){
+        
+        $usuario = new comentarios();
+
+        $res = $usuario->verificar_usuario($_SESSION['usuario_email']);
+
+      if (!password_verify($_POST['senha'], $res[0]->senha)) {
+            echo 0;
+            die;
+        }else{
+            $user = new Usuario_model();
+            $user->remove_todas_presenca_usuario();
+            $user->remove_todos_comentarios_usuario();
+            $user->excluir_usuario();
+
+            unset($_SESSION['usuario_email']);
+            unset($_SESSION['usuario_nome']);
+            unset($_SESSION['id_usuario']);
+            unset($_SESSION['usuario_foto']);
+            echo 1;
+        }
+
     }
 }

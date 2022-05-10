@@ -68,7 +68,20 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Deseja realmente excluir seu perfil? <button class="btn btn-form">Sim</button>
+        <form action="?a=excluir_perfil" method="POST" id="ex_pe_fo">
+                <div class="form-group">
+        
+                <label for="exampleInputPassword1"> Para exluir seu perfil digite sua senha e confirma</label>
+                <p id="erro_senha_ex_per" style="color: red;"></p>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="sua senha">
+
+                  <button type="button" onclick="excluir_perfil('ex_pe_fo')" class="btn btn-form mt-1">Excluir</button>
+                  
+
+                </div>
+                
+              </form>
+         
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Voltar</button>

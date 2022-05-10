@@ -24,7 +24,7 @@
     margin: auto;
     border-radius: 10px 10px 10px 10px;
     font-size: 14px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', cursive, Verdana, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     background-color: rgba(251, 251, 251, 0.196);
 
 }
@@ -105,14 +105,16 @@ img {
 
 }
 
+/* botao presença posiçao */
 .btn-conf {
     margin-left: 30px;
 }
-
+/* botao presença confirmada */
 .btn-c {
     background-color: rgba(9, 121, 52, 0.672);
 
 }
+/* botao presença nao confirmada */
 .btn-n-c {
     background-color: rgba(53, 9, 136, 0.653);
 

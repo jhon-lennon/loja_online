@@ -36,15 +36,15 @@
 
              
                    <?php if ($evento->presenca == 1) : ?>
-                          <p><a href="" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(<?= $evento->id_evento ?>)" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></button></p>
+                          <p><a href="?a=inicio" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(<?= $evento->id_evento ?>)" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></button></p>
                    <?php elseif ($evento->presenca == 0) : ?>
-                          <p><a href="" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(<?= $evento->id_evento ?>)" class="btn btn-n-c">Confirmar presença <i class="fa-solid fa-circle-check"></i></button></p>
+                          <p><a href="?a=inicio" class="btn  ">Voltar</a> <button onclick="confirmar_presenca_no_ver_evento(<?= $evento->id_evento ?>)" class="btn btn-n-c">Confirmar presença <i class="fa-solid fa-circle-check"></i></button></p>
                    <?php else : ?>
-                        <p><a href="" class="btn  ">Voltar</a> <a href="?a=login" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></a></p>
+                        <p><a href="?a=inicio" class="btn  ">Voltar</a> <a href="?a=login" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></a></p>
                   <?php endif; ?>
                   </div>
               <?php else : ?>
-                <p><a href="" class="btn  ">Voltar</a> <a href="?a=login" class="btn btn-c">Presença confirmada <i class="fa-solid fa-circle-check"></i></a></p>
+                <p><a href="?a=inicio" class="btn  ">Voltar</a> <a href="?a=login" class="btn btn-n-c">Confirmar presença  <i class="fa-solid fa-check"></i></a></p>
               <?php endif; ?>
 
             
