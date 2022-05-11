@@ -20,6 +20,10 @@
             <input type="text" class="form-control" id="exampleInputEmail1" name="text_nome" aria-describedby="emailHelp" placeholder="Seu nome">
           </div>
           <div class="form-group">
+                  <label for="exampleInputPassword1">Foto do perfil</label>
+                  <input type="file" class="form-control" name="imagem" aria-label="Upload">
+                </div>
+          <div class="form-group">
             <label for="exampleInputPassword1">Senha</label>
             <input type="password" class="form-control" id="exampleInputPassword1" name="text_senha" placeholder="senha">
           </div>

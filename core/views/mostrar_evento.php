@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="ver_evento">
 
-          <img src="../core/resources/images/<?= $evento->imagem ?>" class="d-block w-100  img_ver_evento" alt="...">
+          <img src="../core/resources/images/<?= $evento->imagem ?>" class="d-block w-100  img_ver_evento" alt="teste">
         </div>
 
 
@@ -59,7 +59,7 @@
         <div class="col-12">
           <div class="ver_evento">
             <div class="corpo_evento">
-              <img src="../core/resources/images/<?= $_SESSION['usuario_foto']?>" alt="" class="img_perfil">
+            <img class="img_perfil" src="../core/resources/images/usuarios/<?= $_SESSION['usuario_foto']?>" alt="">
               <span class="nome"><?= $_SESSION['usuario_nome'] ?></span><br>
               <form action="?a=post_comentario" method="post" id="text_comentario_<?= $evento->id_evento ?>">
                 <textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-momentario" rows="3"></textarea>

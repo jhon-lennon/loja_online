@@ -51,9 +51,9 @@ function comentar(id_evento) {
 
 
         if (elemento.pertence == 0) {
-          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"></div> </div> </div> </div></div>'
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/usuarios/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"></div> </div> </div> </div></div>'
         } else if (elemento.pertence == 1) {
-          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/usuarios/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
         }
        
@@ -110,7 +110,7 @@ function atualizar_comentario(id) {
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
 
-        divcomentarios.innerHTML = ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+        divcomentarios.innerHTML = ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/usuarios' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
       });
 
@@ -152,7 +152,7 @@ function editar_comentario(id) {
 
       var objeto = JSON.parse(dados);
 
-      document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12" id="edit-com-' + id + '" onblur="sair_da_edicao()"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/' + objeto[0].foto + '" alt="" class="img_perfil">     <span class="nome">' + objeto[0].nome + '</span><br><form action="?a=atualizar_comentario" method="post" id="id-form-' + id + '" onblur="sair_da_edicao()"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '"  onblur="cancelar_editar_comentario(' + id + ')" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="atualizar_comentario(' + id + ')">Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="excluir_comentario(' + id + ' )">Excluir</button> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button> </form>  </div></div></div>'
+      document.getElementById('edit-com-' + id).innerHTML = ' <div class="col-12" id="edit-com-' + id + '" onblur="sair_da_edicao()"> <div class="ver_evento">  <div class="corpo_evento"> <img src="../core/resources/images/usuarios/' + objeto[0].foto + '" alt="" class="img_perfil">     <span class="nome">' + objeto[0].nome + '</span><br><form action="?a=atualizar_comentario" method="post" id="id-form-' + id + '" onblur="sair_da_edicao()"><textarea class="form-control mt-1" placeholder="Faça um comentário." name="comentario" id="campo-comentario-' + id + '"  onblur="cancelar_editar_comentario(' + id + ')" rows="3">' + document.getElementById(id).innerText + '</textarea><span><button class="btn mt-1" onclick="atualizar_comentario(' + id + ')">Atualizar</button></span> <button type="button" class="btn mt-1 " onclick="excluir_comentario(' + id + ' )">Excluir</button> <button type="button" class="btn mt-1 " onclick="cancelar_editar_comentario(' + id + ' )">Cancelar</button> </form>  </div></div></div>'
       document.getElementById('campo-comentario-' + id).focus()
 
 
@@ -185,9 +185,9 @@ console.log(dados)
       divcomentarios.innerHTML = ''
       comentarios.forEach((elemento, indice) => {
         if (elemento.pertence == 0) {
-          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"></div> </div> </div> </div></div>'
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img class="img_perfil" src="../core/resources/images/usuarios/' + elemento.foto + '" alt="" >  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"></div> </div> </div> </div></div>'
         } else if (elemento.pertence == 1) {
-          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + elemento.foto + '" alt="" class="img_perfil">  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
+          divcomentarios.innerHTML += ' <div class="col-12 mt-2"  id="edit-com-' + elemento.id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img class="img_perfil" src="../core/resources/images/usuarios/' + elemento.foto + '" alt="" >  <span class="nome">' + elemento.nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + elemento.id + '">' + elemento.comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + elemento.id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
         }
 
@@ -219,7 +219,7 @@ function cancelar_editar_comentario(id) {
 
         var objeto = JSON.parse(dados);
 
-        divcomentarios.innerHTML = ' <div class="col-12 mt-2"  id="edit-com-' + id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/' + objeto[0].foto + '" alt="" class="img_perfil">  <span class="nome">' + objeto[0].nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + id + '">' + objeto[0].comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + id + ')">Editar</a>  </div> </div> </div> </div></div>'
+        divcomentarios.innerHTML = ' <div class="col-12 mt-2"  id="edit-com-' + id + '"> <div class="ver_evento"> <div class="corpo_evento">  <img src="../core/resources/images/usuarios/' + objeto[0].foto + '" alt="" class="img_perfil">  <span class="nome">' + objeto[0].nome + '</span><div class="seta"></div><div ><p class="comentario" id="' + id + '">' + objeto[0].comentario + '</p></div><div class="row"><div class="col-12 text-end"> <a class="btn-editar-comentario m-end" onclick="editar_comentario(' + id + ')">Editar</a>  </div> </div> </div> </div></div>'
 
 
       },

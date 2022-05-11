@@ -217,6 +217,19 @@ class Main
         if (strlen($_POST['text_nome']) < 5) {
             array_push($erro, 'O nome deve ter no minimo 5 caracteres');
         }
+        if ($_FILES['foto']['error'] == 0) {
+
+            if ($_FILES['foto']['type'] == 'image/jpeg' || $_FILES['foto']['type'] == 'image/png' || $_FILES['foto']['type'] == 'image/jpg') {
+
+                $nome_foto = rand(11111, 99999) . 'primeiro.jpeg';
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
+                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
+               
+                return;
+            }
+
+        }
+
 
         if (!empty($erro)) {
 
