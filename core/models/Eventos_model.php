@@ -40,6 +40,13 @@ class Eventos_model{
         $db->delete('DELETE FROM comentarios WHERE id = :id_c AND id_usuario = :id_u', $paramentros);
     }
 
+    public function pesquisa($text){
+        $db = new Database();
+        $paramentros =[':texto' => '%'.$text.'%'];
+        $res = $db->select('SELECT * from eventos WHERE cidade like :texto or titulo_evento like :texto', $paramentros);
+        return $res;
+    }
+
 
 
 }

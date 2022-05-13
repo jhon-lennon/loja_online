@@ -63,9 +63,10 @@
           </li>
    
          </ul>
-              <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Cidade ou evento" aria-label="Search">
-            <button class="btn btn_form" type="submit">Buscar</button>
+              <form class="d-flex" id="pesquisa" action="?a=pesquisa_eventos" method="POST">
+            <input class="form-control me-2" type="search" name="pesquisa" placeholder="Cidade ou evento" aria-label="Search">
+            <button class="btn btn_form" onclick="pesquisa_eventos('pesquisa')" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">Buscar</button>
           </form>
         
       </div>

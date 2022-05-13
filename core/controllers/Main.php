@@ -4,6 +4,7 @@ namespace core\controllers;
 
 use core\classes\Functions;
 use core\models\Comentarios;
+use core\models\Eventos_model;
 use core\models\Usuario_model;
 
 class Main
@@ -37,6 +38,8 @@ class Main
 
         Functions::layout($views);
     }
+ 
+
     //=====================================================================================================================
     //mostar view de login
     public function login()
@@ -189,6 +192,7 @@ class Main
     // Recebe os dados do formulario via post faz a validaçao e cadastra um usuario ====================
     public function form_cadastro()
     {
+       
         $usuario = new comentarios();
         $erro = [];
         $res = $usuario->verificar_usuario($_POST['text_email']);
@@ -217,15 +221,21 @@ class Main
         if (strlen($_POST['text_nome']) < 5) {
             array_push($erro, 'O nome deve ter no minimo 5 caracteres');
         }
+
+        $img = '';
+        print_r($_FILES);
+        die;
         if ($_FILES['foto']['error'] == 0) {
 
             if ($_FILES['foto']['type'] == 'image/jpeg' || $_FILES['foto']['type'] == 'image/png' || $_FILES['foto']['type'] == 'image/jpg') {
 
-                $nome_foto = rand(11111, 99999) . 'primeiro.jpeg';
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
-                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
+                $img = rand(11111, 99999) . 'primeiro.jpeg';
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../core/resources/images/usuarios/' . $img);
+              
+    
+            }else{
+                array_push($erro, 'imagem invalida');
                
-                return;
             }
 
         }
@@ -237,7 +247,7 @@ class Main
                 echo  $e . ',';
             }
         } else {
-            $usuario->cadastrar_usuario();
+            $usuario->cadastrar_usuario($img);
             $_SESSION['mensagem'] = 'Cadastrado com sucesso! Entre.';
             echo true;
         }

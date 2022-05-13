@@ -6,6 +6,7 @@ $rotas = [
     'inicio'    =>     'main@index',
     'login'      =>     'main@login',
     'sair'      =>     'main@sair',
+    'pesquisa_eventos' =>'eventos@pesquisa_eventos',
     'perfil' => 'main@perfil',
     'cadastro' => 'main@cadastro',
     'form_cadastro' => 'main@form_cadastro',

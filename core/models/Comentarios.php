@@ -57,10 +57,11 @@ class Comentarios
     }
 
 
-    public function cadastrar_usuario()
+    public function cadastrar_usuario($img)
     {
 
         $parametros = [
+            ':img' => $img,
             ':n'  => $_POST['text_nome'],
             ':e' => $_POST['text_email'],
             ':s'  => password_hash($_POST['text_senha'], PASSWORD_DEFAULT)
@@ -69,7 +70,7 @@ class Comentarios
 
         $db = new Database();
 
-        $db->insert('INSERT INTO usuarios VALUES (0, :n, :e, :s, null, NOW(), NULL)', $parametros);
+        $db->insert('INSERT INTO usuarios VALUES (0, :n, :e, :s, :img, NOW(), NULL)', $parametros);
     }
 
     public function verificar_usuario($email)
