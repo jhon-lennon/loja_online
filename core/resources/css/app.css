@@ -1,3 +1,10 @@
+
+@font-face {
+    font-family: 'titulo';
+    src: url('PinkChicken-Regular.ttf');
+}
+
+
 .bg-main {
     background: fixed;
     background-image: linear-gradient(220deg, #5814b8, #825ea5, #683fbc, #997cc0, #5817b2, #a074cc, #7144ca, #B895E6);
@@ -231,7 +238,7 @@ img {
 .corpo_evento{
     margin-left: 10px;
     color: white;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'titulo';
 }
 
 .img_perfil{
@@ -306,4 +313,10 @@ img {
     height: auto;
     margin: auto;
     color: rgba(240, 248, 255, 0.689);
+}
+.titulo-city{
+    color: aliceblue;
+    font-family:'titulo';
+    font-weight: normal;
+   
 }

@@ -55,6 +55,13 @@ class Comentarios
         $db->update("UPDATE comentarios SET  comentario = :c, updated_at= NOW() WHERE id = :id_c", $parametros);
         return true;
     }
+    public function cidades()
+    {
+
+        $db = new Database();
+        $comentario = $db->select("SELECT * FROM cidades");
+        return $comentario;
+    }
 
 
     public function cadastrar_usuario($img)

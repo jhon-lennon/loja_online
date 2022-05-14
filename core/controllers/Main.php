@@ -14,7 +14,7 @@ class Main
     {
         $views = [
             'layout/head',
-            'cabecario',
+           // 'cabecario',
             'home',
             'layout/footer',
         ];
@@ -75,6 +75,116 @@ class Main
 
         Functions::layout($views);
     }
+
+    public function get_cidades(){
+        $city = new comentarios();
+        $cidades = $city->cidades();
+        $cidades = json_encode($cidades);
+        echo $cidades;
+    }
+    public function view_cidade()
+    {
+        $dados = ['cidade' => $_GET['city']];
+        $views = [
+            'layout/head',
+           // 'cabecario',
+            'eventos_cidade',
+            'layout/footer',
+        ];
+
+        Functions::layout($views, $dados);
+    }
+
+    public function cidades_eventos(){
+    
+
+        $db = new Eventos_model();
+        $eventos = $db->eventos_city($_GET['city']);
+        // print_r($eventos);
+
+        $resultado_com_filtro = [];
+
+        foreach ($eventos as $evento) {
+            $presenca_confirma = 'nao logado';
+            if (isset($_SESSION['id_usuario'])) {
+                $presenca_confirma = 0;
+                $presen = new Eventos_model();
+                $presenca = $presen->get_presenca($evento->id_evento);
+
+                foreach ($presenca as $p) {
+
+                    if ($p->id_usuario == $_SESSION['id_usuario']) {
+                        $presenca_confirma = 1;
+                    }
+                }
+            }
+
+
+
+            $vh = 'Gratis';
+            $vm = 'Gratis';
+
+
+            if ($evento->valor_homem > 0) {
+                $vh = $evento->valor_homem . ' R$';
+            }
+            if ($evento->valor_mulher > 0) {
+                $vm = $evento->valor_mulher . ' R$';
+            }
+
+            $hi = date('H:i',  strtotime($evento->data_inicio));
+            $hf = date('H:i',  strtotime($evento->data_fim));
+            $di = date('d/m/y',  strtotime($evento->data_inicio));
+            $df = date('d/m/y',  strtotime($evento->data_fim));
+
+
+
+            $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
+
+            $dia_sem_num_i = date('w', strtotime($evento->data_inicio));
+            $dia_sem_num_f = date('w', strtotime($evento->data_fim));
+
+
+            $nome_dia_i =  $dias[$dia_sem_num_i];
+            $nome_dia_f =  $dias[$dia_sem_num_f];
+
+
+            $text_dia = '';
+
+            if ($di ==  $df) {
+                $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i;
+            } else {
+                $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i . ' à ' . $df . ' ' . $nome_dia_f;
+            }
+
+
+
+
+            $res = [
+                'id_evento' => $evento->id_evento,
+                'id_usuario' => $evento->id_usuario,
+                'titulo' => substr($evento->titulo_evento, 0, 25),
+                'descricao' => substr($evento->descricao, 0, 60) . '...',
+                'valor_homem' => $vh,
+                'valor_mulher' => $vm,
+                'local' => substr($evento->local, 0, 28),
+                'cidade' => $evento->cidade,
+                'imagem' => $evento->imagem,
+                'horario' => $hi . ' as ' . $hf,
+                'data' => $text_dia,
+                'presenca' => $presenca_confirma
+
+            ];
+
+
+            array_push($resultado_com_filtro, $res);
+        }
+
+
+        $r = json_encode($resultado_com_filtro);
+        echo $r;
+    }
+        
 
     // Apresenta a view de criar conta de usuario =================================================================
     public function cadastro()

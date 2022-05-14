@@ -19,6 +19,29 @@ function valor_entrada() {
   }
 }
 
+function get_cidades(){
+  
+  $.ajax({
+    type: "GET",
+    url: '?a=get_cidades',
+
+    success: function (dados) {
+      var objeto = JSON.parse(dados);
+     
+    document.getElementById('city').innerHTML =''
+      objeto.forEach((cidade, indice) => {
+        document.getElementById('city').innerHTML += `<li><a class="dropdown-item" href="?a=cidades&city=${cidade.cidade}">${cidade.cidade}</a></li> `
+
+      })
+    },
+    error: function (erro) {
+      console.log(erro)
+    }
+  });
+
+
+}
+
 
 
 //add comentario ========================================================================================================
@@ -330,6 +353,7 @@ function form_evento() {
     }
   });
 }
+
 //receber dados formulario cadastro de evento ==============================================================
 function todos_eventos() {
   var div_eventos = document.getElementById('div_eventos')
@@ -341,7 +365,69 @@ function todos_eventos() {
 
 
     success: function (dados) {
-      console.log(dados)
+     // console.log(dados)
+      let objeto = JSON.parse(dados);
+      console.log(objeto)
+      //console.log(dados)
+
+      
+      var eventos = objeto
+      btn_presenca = '<a href="?a=login" class="btn btn-n-c  btn-conf  ">Confirmar presença</a>  '
+      eventos.forEach((evento, indice) => {
+        if(evento.presenca == 0){
+          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-n-c  btn-conf">Confirmar presença <i class="fa-solid fa-check"></i></button>`
+        }else if(evento.presenca == 1){
+          btn_presenca = ` <button  id="btn_presenca_${evento.id_evento}"  onclick="confirmar_presenca(${evento.id_evento})" class="btn btn-c  btn-conf">Presença confirmada <i class="fa-solid fa-circle-check"></i></button>`
+
+        }
+
+        div_eventos.innerHTML += `<div class="col my-3" id="div_evento_${evento.id_evento}">
+
+      <div class="card shadow" style="width: 18rem;">
+        <img src="../core/resources/images/${evento.imagem}" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title ">${evento.titulo}</h5>
+          <span id="cidade" ><strong>${evento.cidade}</strong> </span><br>
+          <span id="dia" ><strong>${evento.data}</strong> </span>
+          
+          <p class="card-text text-start">${evento.descricao} </p>
+          <div class="info text-start">
+            <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada">${evento.valor_mulher}</strong></span>
+            <br>
+            <span><i class="fa-solid fa-person"></i> Entrada Homen: <strong id="entrada">${evento.valor_homem}</strong></span> <br>
+            <span><i class="fa-solid fa-location-dot"></i> Local: <strong>${evento.local}</strong> </span> <br>
+            <span><i class="fa-solid fa-clock"></i> Horario: <strong>${evento.horario} </strong> </span>
+          </div>
+        </div>
+        <div class="foote-card" id="card_footer_${evento.id_evento}">
+          <p class="mt-3 ma-5 pfooter"><a href="?a=ver_evento&ev=${evento.id_evento}" class="btn  ">Ver evento</a> 
+                 ${btn_presenca}
+                 </p>
+        </div>
+      </div>
+    </div>`
+
+      });
+
+    },
+    error: function (erro) {
+      console.log(erro)
+
+    }
+  });
+}
+
+function eventos_cidade(cidad) {
+ var div_eventos = document.getElementById('div_eventos')
+//var div_eventos = $('#div_eventos')
+console.log(cidad)
+  $.ajax({
+    type: "GET",
+    url: '?a=cidades_eventos&city='+cidad,
+
+
+    success: function (dados) {
+     // console.log(dados)
       let objeto = JSON.parse(dados);
       console.log(objeto)
       //console.log(dados)

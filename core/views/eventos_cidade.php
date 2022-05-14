@@ -1,15 +1,15 @@
 
 
 
-<body class="bg-main" onload="todos_eventos()">
+<body class="bg-main" onload="eventos_cidade('<?=$cidade?>')">
 <?php include 'cabecario.php'; ?>
 
 
 
   <div class="container-fluid espacocarrocel" onload="get_cidades()">
     <div class="row" id="div_carrocel">
-
-<div class="col-12 my-5">
+<div class="text-center"><h2 class="titulo-city">Destaques de <?=$cidade?></h2></div>
+<div class="col-12 my-2">
   <div class="carcad">
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -44,6 +44,7 @@
   </nav>
 
 <div class="row" id='div_eventos'>
+  
   <div class="col-12">
     <nav class="navbar navbar-expand-md navbar-light ">
         <div class="container-fluid">
@@ -78,8 +79,8 @@
 
 
 
- 
-      <div class="col my-3">
+  <div class="text-center"><h2 class="titulo-city">Eventos de <?=$cidade?></h2></div>
+      <div class="col my-2">
         <div class="card shadow" style="width: 18rem;">
           <img src="../core/resources/images/festa_do_cupu.jpg" class="card-img-top" alt="...">
           <div class="card-body ">

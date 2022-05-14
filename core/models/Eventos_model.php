@@ -46,7 +46,12 @@ class Eventos_model{
         $res = $db->select('SELECT * from eventos WHERE cidade like :texto or titulo_evento like :texto', $paramentros);
         return $res;
     }
-
+    public function eventos_city($cidade){
+        $db = new Database();
+        $paramentros = [ ':c' => $cidade];
+       $eventos = $db->select('SELECT * FROM eventos WHERE cidade = :c', $paramentros);
+        return $eventos;
+    }
 
 
 }
