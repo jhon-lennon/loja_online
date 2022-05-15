@@ -301,8 +301,10 @@ class Main
 
     // Recebe os dados do formulario via post faz a validaçao e cadastra um usuario ====================
     public function form_cadastro()
-    {
-       
+    {echo 'pre';
+        print_r($_POST);
+       print_r($_FILES);
+       die;
         $usuario = new comentarios();
         $erro = [];
         $res = $usuario->verificar_usuario($_POST['text_email']);

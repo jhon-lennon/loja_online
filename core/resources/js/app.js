@@ -745,20 +745,28 @@ var msg = document.getElementById('erro_senha_ex_per')
 
 
 function form_cadastroo(form) {
-  let frmm = $('#' + form)
- // let frm = document.getElementById('form-cadastro')
- var formData = new FormData(frmm);
-  console.log(frm)
+ 
   
-  frm.submit(function (e) {
+   var dados = $('#' + form)
+   console.log(dados)
+   // dados = new FormData(dados)
+ dados.submit(function (e) {
 
     e.preventDefault()
+    var formdata = new FormData($(this)[0]);
+   
+  
+ //dadoss = new FormData(dados[0])
 
-  })
   $.ajax({
     type: "POST",
     url: '?a=form_cadastro',
-    data: formData,
+    data: formdata,
+    async: false,
+    cache: false,
+    contentType: false,
+    enctype: 'multipart/form-data',
+    processData: false,
   
 
     success: function (dados) {
@@ -771,5 +779,5 @@ function form_cadastroo(form) {
 
 
 
-    });
-  }
+    })});
+    }

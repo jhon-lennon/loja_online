@@ -10,7 +10,7 @@
           <img src="../core/resources/images/Eventos.gif" class="img-login" alt="...">
         </div>
 
-        <form id="form-cadastro"  method="post" enctype="multipart/form-data">
+        <form id="form-cadastro" action="?a=form_cadastro" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input type="email" class="form-control" id="exampleInputEmail1" name="text_email" aria-describedby="emailHelp" placeholder="Seu email">
