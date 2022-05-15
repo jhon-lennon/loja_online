@@ -10,6 +10,7 @@ $rotas = [
     'get_cidades' => 'main@get_cidades',
     'cidades' => 'main@view_cidade',
     'cidades_eventos' => 'main@cidades_eventos',
+    'form_edit_perfil' => 'usuarios@form_edit_perfil',
     'perfil' => 'main@perfil',
     'cadastro' => 'main@cadastro',
     'form_cadastro' => 'main@form_cadastro',

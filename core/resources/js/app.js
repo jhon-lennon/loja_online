@@ -256,18 +256,24 @@ function cancelar_editar_comentario(id) {
 
 //================================================================================================
 function form_cadastro(form) {
-  let frm = $('#' + form)
+  var dados = $('#' + form)
 
-  console.log(frm)
-  frm.submit(function (e) {
-
-    e.preventDefault()
-
-  })
-  $.ajax({
-    type: "POST",
-    url: '?a=form_cadastro',
-    data: frm.serialize(),
+   
+  dados.submit(function (e) {
+ 
+     e.preventDefault()
+     var formdata = new FormData($(this)[0]);
+   
+ 
+   $.ajax({
+     type: "POST",
+     url: '?a=form_cadastro',
+     data: formdata,
+     async: false,
+     cache: false,
+     contentType: false,
+     enctype: 'multipart/form-data',
+     processData: false,
 
     success: function (dados) {
       console.log(dados)
@@ -291,7 +297,7 @@ function form_cadastro(form) {
       console.log(erro)
       divcomentarios.innerText = erro.statusCode(erro)
     }
-  });
+  })});
 }
 
 //receber dados formulario login==============================================================
@@ -744,23 +750,21 @@ var msg = document.getElementById('erro_senha_ex_per')
 
 
 
-function form_cadastroo(form) {
+function form_edit(){
  
   
-   var dados = $('#' + form)
-   console.log(dados)
-   // dados = new FormData(dados)
+   var dados = $('#edit-perfil')
+
+   
  dados.submit(function (e) {
 
     e.preventDefault()
     var formdata = new FormData($(this)[0]);
-   
   
- //dadoss = new FormData(dados[0])
 
   $.ajax({
     type: "POST",
-    url: '?a=form_cadastro',
+    url: '?a=form_edit_perfil',
     data: formdata,
     async: false,
     cache: false,
@@ -771,6 +775,11 @@ function form_cadastroo(form) {
 
     success: function (dados) {
       console.log(dados)
+      if(dados == 1){
+        document.location.reload(true);
+      }else{
+        document.getElementById('info').innerText = dados
+      }
     },
     error: function (erro) {
       console.log(erro)
@@ -781,3 +790,5 @@ function form_cadastroo(form) {
 
     })});
     }
+
+   

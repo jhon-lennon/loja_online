@@ -32,7 +32,7 @@
             <input type="password" class="form-control" id="exampleInputPassword1" name="text_confirma_senha" placeholder="confirme sua senha">
           </div>
           <div class="mt-2">
-            <button onclick="form_cadastroo('form-cadastro')"  class="btn btn_form">Cadastrar</button>
+            <button onclick="form_cadastro('form-cadastro')"  class="btn btn_form">Cadastrar</button>
             <a href="?a=login" class="btn btn_form">Entrar</a>
 
           </div>

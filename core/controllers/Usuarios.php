@@ -1,69 +1,87 @@
-
 <?php
-
 namespace core\controllers;
 
 use core\classes\Functions;
+use core\models\Admin as ModelsAdmin;
 use core\models\Comentarios;
+use core\models\Eventos_model;
+use core\models\Presenca_model;
 use core\models\Usuario_model;
 
-class Usuarios
-{
+class Usuarios{
 
-    public function form_cadastre_se()
-    {
+    public function form_edit_perfil(){
 
-
-
-
-        if ($_FILES['foto']['error'] == 0) {
-
-            if ($_FILES['foto']['type'] == 'image/jpeg') {
-
-
-                $nome_foto = rand(11111, 99999) . 'primeiro.jpeg';
-                $atualizar = new Admin_model();
-                $atualizar->adicionar_produto($nome_foto);
-
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
-                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
-                $this->adicionar_produto();
-                return;
-            } elseif ($_FILES['foto']['type'] == 'image/png') {
-
-                $nome_foto = rand(11111, 99999) . 'primeiro.jpeg';
-
-                $atualizar = new Admin_model();
-                $atualizar->adicionar_produto($nome_foto);
-
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
-                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
-                $this->adicionar_produto();
-                return;
-            } elseif ($_FILES['foto']['type'] == 'image/jpg') {
-
-                $nome_foto = rand(11111, 99999) . 'primeiro.jpeg';
-
-                $atualizar = new Admin_model();
-                $atualizar->adicionar_produto($nome_foto);
-
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../assets/images/' . $nome_foto);
-                $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
-                $this->adicionar_produto();
-                return;
-            } else {
-                $_SESSION['erro'] = 'A imagem deve ser do tipo JPG, JPEG ou PNG';
-                $this->adicionar_produto();
-                return;
-            }
-        } else {
-
-            $atualizar = new Admin_model();
-
-            $atualizar->adicionar_produto('sem_imagem.jpg');
-            $_SESSION['cadastrado'] = 'O produto foi cadastrado.';
-            $this->adicionar_produto();
+        if (!Functions::check_session()) {
+            Functions::redirect('inicio');
             return;
         }
+        $user = new Usuario_model();
+        $res= $user->verificar_usuario($_SESSION['usuario_email']); 
+
+        $email = $_POST['email'];
+        
+        if($_SESSION['usuario_email'] != $email ){
+            $usuario = $user->verificar_usuario($_POST['email']); 
+            
+            if(count($usuario) > 0){
+                echo "Esse email ja está em uso";
+                die;
+                return;
+            }
+        }
+
+        if(strlen($_POST['nome']) < 5){
+            echo "O nome deve ter no minimo 5 caracteres";
+            die;
+            return;
+        }
+
+
+
+        $img = null;
+        if ($_FILES['foto']['error'] == 0) {
+
+            if ($_FILES['foto']['type'] == 'image/jpeg' || $_FILES['foto']['type'] == 'image/png' || $_FILES['foto']['type'] == 'image/jpg') {
+
+                $img = $_SESSION['id_usuario'].'.jpeg';
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../core/resources/images/usuarios/' . $img);
+              
+    
+            }else{
+                echo "Imagen invalida";
+                die;
+                return;
+               
+            }
+
+        }
+
+
+
+        
+        if (!password_verify($_POST['senha'], $res[0]->senha)) {
+            echo "Senha invalida ";
+            die;
+            return;
+        }
+
+        if ($img == null){
+           $user->atualizar_user_sem_foto($email, $_POST['nome']);
+
+        } else{
+            $user->atualizar_user_com_foto($email, $_POST['nome'],$img);
+          
+        }
+        $usuario_atualizado = $user->verificar_usuario($email); 
+        
+        $_SESSION['usuario_email'] = $usuario_atualizado[0]->email;
+        $_SESSION['usuario_nome'] = $usuario_atualizado[0]->nome;
+        $_SESSION['id_usuario'] = $usuario_atualizado[0]->id_usuario;
+        $_SESSION['usuario_foto'] = $usuario_atualizado[0]->foto;
+        
+        echo 1;
+
     }
+   
 }

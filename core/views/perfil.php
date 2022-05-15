@@ -29,30 +29,31 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form>
+            <form  id="edit-perfil" action="?a=form_edit_perfil" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_email'] ?>" aria-describedby="emailHelp" placeholder="Seu email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_email'] ?>" aria-describedby="emailHelp" name="email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nome</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_nome'] ?>" aria-describedby="emailHelp" placeholder="Seu nome">
+                  <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_nome'] ?>" aria-describedby="emailHelp" name="nome">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Foto do perfil</label>
-                  <input type="file" class="form-control" name="imagem" aria-label="Upload">
+                  <input type="file" class="form-control" name="foto" aria-label="Upload" accept="image/*">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">senha</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="sua senha">
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="sua senha">
                 </div>
                 <div class="mt-2">
-                  <button type="submit" class="btn btn_form">Salvar</button>
+                <button class="btn btn_form" onclick="form_edit()" >Salvar</button>
                   <a href="{{route('login')}}" class="btn btn_form">Alterar senha</a>
 
                 </div>
                 
               </form>
+              <div class="my-2 alert " id="info" style="color: red;"><!-- mensagemns de erro --></div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Excluir meu perfil</button>

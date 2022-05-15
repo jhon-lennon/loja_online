@@ -301,10 +301,7 @@ class Main
 
     // Recebe os dados do formulario via post faz a validaçao e cadastra um usuario ====================
     public function form_cadastro()
-    {echo 'pre';
-        print_r($_POST);
-       print_r($_FILES);
-       die;
+    {
         $usuario = new comentarios();
         $erro = [];
         $res = $usuario->verificar_usuario($_POST['text_email']);
@@ -334,9 +331,8 @@ class Main
             array_push($erro, 'O nome deve ter no minimo 5 caracteres');
         }
 
-        $img = '';
-        print_r($_FILES);
-        die;
+        $img = 'sombra.png';
+        
         if ($_FILES['foto']['error'] == 0) {
 
             if ($_FILES['foto']['type'] == 'image/jpeg' || $_FILES['foto']['type'] == 'image/png' || $_FILES['foto']['type'] == 'image/jpg') {
@@ -359,6 +355,7 @@ class Main
                 echo  $e . ',';
             }
         } else {
+           // die('ok');
             $usuario->cadastrar_usuario($img);
             $_SESSION['mensagem'] = 'Cadastrado com sucesso! Entre.';
             echo true;

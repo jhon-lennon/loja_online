@@ -4,7 +4,7 @@ date_default_timezone_set('America/Araguaina');
 
 
 //APP
-define('APP_NAME',        'Casa Das Ferramentas');
+define('APP_NAME',        'Bico Eventos');
 define('APP_VERSION',     '1.0.0');
 
 //MYSQL
