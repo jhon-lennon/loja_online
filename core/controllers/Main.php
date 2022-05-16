@@ -376,7 +376,7 @@ class Main
             echo "Email não cadastrado ";
             die;
         } elseif (!password_verify($_POST['senha'], $res[0]->senha)) {
-            echo "Senha invalida ";
+            echo 0;
             die;
         }
 

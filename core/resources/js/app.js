@@ -318,11 +318,14 @@ function form_login(form) {
     success: function (dados) {
       
 
-      if (dados != 1) {
+      if (dados != 1 && dados != 0 ) {
         console.log(dados)
         divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> ${dados} </div>`
 
-      } else {
+      } else if(dados == 0) {
+        divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Senha invalida <a href=""> esqueci a senha</a> </div>`
+
+      }else if(dados == 1){
         window.location.href = "?a=inico";
       }
 
@@ -791,4 +794,33 @@ function form_edit(){
     })});
     }
 
-   
+    
+    function alterar_senha(){
+    var form = $('#form-alterar-senha')
+
+      form.submit(function(e){
+        e.preventDefault()
+      })
+
+      $.ajax({
+        type: "POST",
+        url: '?a=alterar_senha',
+        data: form.serialize(),
+    
+        success: function (dados) {
+        
+          console.log(dados)
+          if(dados != 1){
+            document.getElementById('info-aterar-senha').innerText = dados
+          }else{
+            document.getElementById('info-aterar-senha-suc').innerText = 'Senha alterada com sucesso.'
+          }
+       
+         
+        },
+        error: function (erro) {
+          console.log(erro)
+    
+        }
+      });
+    }

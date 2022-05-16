@@ -83,5 +83,40 @@ class Usuarios{
         echo 1;
 
     }
+    public function alterar_senha(){
+
+        $ns = $_POST['nova_senha'];
+       $rns = $_POST['repete_nova_senha'];
+      $sa =  $_POST['senha_atual'];
+
+        if(strlen($ns) < 8){
+            echo 'Nova senha ter no minimo 8 caracteres';
+            die;
+            return;
+        }
+        if($ns != $rns){
+            echo 'Nova senha e repetir nova senha devem ser iguais';
+            die;
+            return;
+        }
+        if(strlen($sa) < 1){
+            echo 'Informe sua senha';
+            die;
+            return;
+        }
+
+        $user = new Usuario_model();
+        $res= $user->verificar_usuario($_SESSION['usuario_email']); 
+        if (!password_verify($sa, $res[0]->senha)) {
+            echo "Senha invalida ";
+            die;
+            return;
+        }
+        $senha = password_hash($ns, PASSWORD_DEFAULT);
+        $user->alterar_senha_user($senha);
+        echo 1;
+
+       
+    }
    
 }

@@ -48,7 +48,9 @@
                 </div>
                 <div class="mt-2">
                 <button class="btn btn_form" onclick="form_edit()" >Salvar</button>
-                  <a href="{{route('login')}}" class="btn btn_form">Alterar senha</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Alterar senha
+</button>
 
                 </div>
                 
@@ -91,4 +93,45 @@
     </div>
   </div>
   
+  <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alter Senha</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="?a=alterar_senha" id="form-alterar-senha">
+        <div class="form-group">
+                  <label for="exampleInputPassword1">Nova senha</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="nova_senha">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Repetir nova senha</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="repete_nova_senha">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Senha atual</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha_atual">
+                </div>
+        </form>
+      </div>
+      
+      <p style="margin-left: 17px; color: red;" class="text-start" id="info-aterar-senha"></p>
+      <p style="margin-left: 17px; color: green;" class="text-start" id="info-aterar-senha-suc"></p>
+     
+      <div class="modal-footer">
+        
+        <button type="button" onclick="alterar_senha()" class="btn btn-primary">Alterar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
   

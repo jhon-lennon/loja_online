@@ -11,6 +11,7 @@ $rotas = [
     'cidades' => 'main@view_cidade',
     'cidades_eventos' => 'main@cidades_eventos',
     'form_edit_perfil' => 'usuarios@form_edit_perfil',
+    'alterar_senha' => 'usuarios@alterar_senha',
     'perfil' => 'main@perfil',
     'cadastro' => 'main@cadastro',
     'form_cadastro' => 'main@form_cadastro',

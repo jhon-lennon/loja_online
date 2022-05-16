@@ -54,6 +54,16 @@ class Usuario_model{
         return true;
     }
 
+    public function alterar_senha_user($senha)
+    {
+        $db = new Database();
+
+        $parametros = [':id_u' => $_SESSION['id_usuario'], ':s' => $senha];
+
+        $db->update("UPDATE usuarios SET senha = :s,  updated_at= NOW() WHERE id_usuario = :id_u", $parametros);
+        return true;
+    }
+
 
 
 }
