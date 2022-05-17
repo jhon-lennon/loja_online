@@ -115,7 +115,7 @@ class Usuarios{
             return;
         }
         $senha = password_hash($ns, PASSWORD_DEFAULT);
-        $user->alterar_senha_user($senha);
+        $user->alterar_senha_user( $_SESSION['id_usuario'],$senha);
         echo 1;
 
        
@@ -153,6 +153,7 @@ class Usuarios{
            
             $cod = new Email_codigo();
             $cod->email_codigo($_POST['email'], $res[0]->nome);
+            $_SESSION['email_recupera'] = $_POST['email'];
             echo 1;
         }
     }
@@ -183,6 +184,39 @@ class Usuarios{
             echo 2;
             die;
         }
+        
+    }
+    public function salvar_senha(){
+       
+        if (Functions::check_session()) {
+            echo 0;
+            return;
+            die;
+        }
+
+        if(strlen($_POST['nova_senha']) < 8){
+            echo 3;
+            return;
+
+            die;
+        }elseif($_POST['nova_senha'] != $_POST['repete_senha']){
+            echo 2;
+            return;
+
+            die;
+        }else{
+            $user = new Usuario_model();
+            $senha = password_hash($_POST['nova_senha'], PASSWORD_DEFAULT);
+            $user->recuperar_senha_user( $_SESSION['email_recupera'] ,$senha);
+            unset($_SESSION['email_recupera']);
+            unset($_SESSION['codigo']);
+            $_SESSION['mensagem'] = 'Senha recuperada. Entre.';
+            
+            echo 1;
+            return;
+            die;
+        }
+
         
     }
    

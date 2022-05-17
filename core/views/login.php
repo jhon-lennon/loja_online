@@ -32,8 +32,10 @@
  
 
         <?php if (isset($_SESSION['mensagem'])): ?>
+          <div id="msg">
           <div class="alert alert-success mt-3" role="alert"><?= $_SESSION['mensagem']?></div>
-           <?php 
+        </div>
+          <?php 
           unset($_SESSION['mensagem']);
         endif;
 

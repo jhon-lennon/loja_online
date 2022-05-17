@@ -15,6 +15,7 @@ $rotas = [
     'recuperar_senha' => 'usuarios@recuperar_senha',
     'recuperar_senha_2' => 'usuarios@recuperar_senha_2',
     'valida_codigo' => 'usuarios@valida_codigo',
+    'salvar_senha' => 'usuarios@salvar_senha',
     'valida_recuperar_senha' => 'usuarios@valida_recuperar_senha',
 
     'perfil' => 'main@perfil',

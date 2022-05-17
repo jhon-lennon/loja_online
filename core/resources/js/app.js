@@ -321,10 +321,10 @@ function form_login(form) {
       if (dados != 1 && dados != 0 ) {
         console.log(dados)
         divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> ${dados} </div>`
-
+        document.getElementById('msg').innerHTML = ''
       } else if(dados == 0) {
         divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Senha invalida <a href="?a=recuperar_senha"> esqueci a senha</a> </div>`
-
+        document.getElementById('msg').innerHTML = ''
       }else if(dados == 1){
         window.location.href = "?a=inico";
       }
@@ -881,14 +881,14 @@ function form_edit(){
            document.getElementById('info_cod').innerHTML = ''
             document.getElementById('campo_codigo').innerHTML = `  <div class="form-group">
             <label for="exampleInputPassword1">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" name="nova_senha" placeholder="Nova senha">
           </div>
           <div class="form-group">
           <label for="exampleInputPassword1">Confirmar senha</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="repete_senha" placeholder="Repetir nova senha">
         </div>`;
         document.getElementById('btn_recup').innerHTML = ''
-        document.getElementById('btn_recup').innerHTML = '<button type="button"  onclick="defenir_senha()" class="btn btn_form">Recuperar</button>';
+        document.getElementById('btn_recup').innerHTML = '<button type="button"  onclick="salvar_senha()" class="btn btn_form">Recuperar</button>';
  
             
 
@@ -901,4 +901,38 @@ function form_edit(){
         }
       });
 
+    }
+
+    function salvar_senha(){
+      var form = $('#recupera_senha_2')
+
+      form.submit(function(e){
+        e.preventDefault()
+      })
+
+      $.ajax({
+        type: "POST",
+        url: '?a=salvar_senha',
+        data: form.serialize(),
+    
+        success: function (dados) {
+        
+          if(dados == 0){
+            window.location.href = "?a=inico";
+          }else if(dados == 2){
+            document.getElementById('info_cod').innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Senha e repetir senha devem ser iguais </div>`
+          }else if(dados == 3){
+            document.getElementById('info_cod').innerHTML = `<div class="alert alert-danger mt-3" role="alert"> A senha deve ter no minimo 8 caracteres</div>`
+            
+          }else if(dados == 1){
+            window.location.href = "?a=login";
+          }
+          console.log(dados)
+        },
+        error: function (erro) {
+          console.log(erro)
+    
+        }
+      });
+    
     }
