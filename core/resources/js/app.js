@@ -323,7 +323,7 @@ function form_login(form) {
         divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> ${dados} </div>`
 
       } else if(dados == 0) {
-        divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Senha invalida <a href=""> esqueci a senha</a> </div>`
+        divmessagem.innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Senha invalida <a href="?a=recuperar_senha"> esqueci a senha</a> </div>`
 
       }else if(dados == 1){
         window.location.href = "?a=inico";
@@ -809,6 +809,7 @@ function form_edit(){
     
         success: function (dados) {
         
+     
           console.log(dados)
           if(dados != 1){
             document.getElementById('info-aterar-senha').innerText = dados
@@ -823,4 +824,81 @@ function form_edit(){
     
         }
       });
+    }
+
+    function enviar_codigo(){
+     
+      var form = $('#recupera_senha')
+
+      form.submit(function(e){
+        e.preventDefault()
+      })
+
+      $.ajax({
+        type: "POST",
+        url: '?a=valida_recuperar_senha',
+        data: form.serialize(),
+    
+        success: function (dados) {
+        
+          if(dados == 0){
+            window.location.href = "?a=inico";
+          }else if(dados == 2){
+            document.getElementById('info_cod').innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Email não cadastrado </div>`
+          }else if(dados == 1){
+            window.location.href = "?a=recuperar_senha_2";
+          }
+          console.log(dados)
+        },
+        error: function (erro) {
+          console.log(erro)
+    
+        }
+      });
+    }
+
+
+    function defenir_senha(){
+      
+      var form = $('#recupera_senha_2')
+
+      form.submit(function(e){
+        e.preventDefault()
+      })
+
+      $.ajax({
+        type: "POST",
+        url: '?a=valida_codigo',
+        data: form.serialize(),
+    
+        success: function (dados) {
+          console.log(dados)
+          if(dados == 0){
+            window.location.href = "?a=inico";
+          }else if(dados == 2){
+            document.getElementById('info_cod').innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Codigo invalido </div>`
+          }else if(dados == 1){
+           document.getElementById('info_cod').innerHTML = ''
+            document.getElementById('campo_codigo').innerHTML = `  <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+          </div>
+          <div class="form-group">
+          <label for="exampleInputPassword1">Confirmar senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+        </div>`;
+        document.getElementById('btn_recup').innerHTML = ''
+        document.getElementById('btn_recup').innerHTML = '<button type="button"  onclick="defenir_senha()" class="btn btn_form">Recuperar</button>';
+ 
+            
+
+          }
+          
+        },
+        error: function (erro) {
+          console.log(erro)
+    
+        }
+      });
+
     }

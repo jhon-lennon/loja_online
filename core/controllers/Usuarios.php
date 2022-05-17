@@ -1,6 +1,8 @@
 <?php
 namespace core\controllers;
 
+use core\classes\Email_codigo;
+use core\classes\EnviarEmail;
 use core\classes\Functions;
 use core\models\Admin as ModelsAdmin;
 use core\models\Comentarios;
@@ -117,6 +119,71 @@ class Usuarios{
         echo 1;
 
        
+    }
+    public function recuperar_senha(){
+
+        if (Functions::check_session()) {
+            Functions::redirect('inicio');
+            return;
+        }
+
+        $views = [
+            'layout/head',
+            'cabecario',
+            'recuperar_senha',
+            'layout/footer',
+        ];
+
+        Functions::layout($views);
+    }
+    public function valida_recuperar_senha(){
+        if (Functions::check_session()) {
+            echo 0;
+            return;
+            die;
+        }
+        $user = new Usuario_model();
+        $res= $user->verificar_usuario($_POST['email']); 
+        if (count($res) != 1){
+            echo 2;
+            return;
+            die;
+        }else{
+            $_SESSION['codigo'] = random_int(1111, 9999);
+           
+            $cod = new Email_codigo();
+            $cod->email_codigo($_POST['email'], $res[0]->nome);
+            echo 1;
+        }
+    }
+    public function recuperar_senha_2(){
+
+        if (Functions::check_session()) {
+            Functions::redirect('inicio');
+            return;
+            
+        }
+      
+        $views = [
+            'layout/head',
+            'cabecario',
+            'recuperar_senha_2',
+            'layout/footer',
+        ];
+
+        Functions::layout($views);
+    }
+
+    public function valida_codigo(){
+
+        if($_SESSION['codigo'] == $_POST['codigo']){
+            echo 1;
+            die;
+        }else{
+            echo 2;
+            die;
+        }
+        
     }
    
 }

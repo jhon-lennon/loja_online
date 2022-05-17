@@ -4,7 +4,7 @@ use  PHPMailer\PHPMailer\PHPMailer;
 use  PHPMailer\PHPMailer\SMTP;
 use  PHPMailer\PHPMailer\Exception;
 class Email_codigo{
-    public function email_codigo(){
+    public function email_codigo($email, $nome){
 
         //Cria uma instância; passar `true` habilita exceções 
         try {
@@ -22,12 +22,12 @@ class Email_codigo{
     
         //Recipients
         $mail->setFrom(MAIL_USERNAME, APP_NAME);
-        $mail->addAddress($_POST['text_email']);     //Add a recipient
+        $mail->addAddress($email);     //Add a recipient
        
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Recuperar senha';
-        $mail->Body    = '<h1>codigo de recuperação</h1></b> <p>Ola esse é o seu codigo de recuperação '.$_SESSION['codigo'];
+        $mail->Body    = '<h1>codigo de recuperação</h1></b> <p>Ola '.$nome.', esse é o seu codigo de recuperação <strong>'.$_SESSION['codigo'].'</strong>';
         
     
         $mail->send();
