@@ -13,15 +13,16 @@ class Eventos
 
     public function cadastro_evento()
     {
-
+        $cid = new Eventos_model();
+        $cidades = $cid->get_all_cidades();
         $views = [
             'layout/head',
             'cabecario',
             'add_evento',
             'layout/footer',
         ];
-
-        Functions::layout($views);
+        $dados = ['cidades' => $cidades];
+        Functions::layout($views, $dados);
     }
 
     public function todos_eventos()
@@ -216,9 +217,44 @@ class Eventos
     public function form_cadastro_evento()
     {
 
+         if( $_FILES['imagem']['error'] != 0 || empty($_POST['titulo']) || empty( $_POST['local']) || empty( $_POST['endereco']) || empty( $_POST['data_inicio']) || empty( $_POST['data_final']) || empty( $_POST['hora_inicio']) || empty( $_POST['hora_final']) || empty( $_POST['descricao'])){
 
-        print_r($_POST);
-        echo "teste";
+            echo 0;
+            die;
+
+        } 
+        $ent_h = 0;
+        $ent_m = 0;
+        if(isset($_POST['preco_homem'])){
+            $ent_h = $_POST['preco_homem'];
+            $ent_m = $_POST['preco_mulher'];
+        }
+
+        $dados = [
+        'id_usuario' => $_SESSION['id_usuario'],
+        'titulo' => $_POST['titulo'],
+        'local' => $_POST['local'],
+        'cidade' => $_POST['cidade'],
+        'endereco' => $_POST['endereco'],
+        'data_i' => date($_POST['data_inicio'].' '.$_POST['hora_inicio']),
+        'data_f' => date($_POST['data_final'].' '.$_POST['hora_final']),
+        'preco_h' => $ent_h,
+        'preco_m' => $ent_m,
+        'descr' => $_POST['descricao'],
+        'img' => $_FILES['imagem']['name']
+
+
+
+        ];
+        $img = rand(11111, 99999) . 'primeiro.jpg';
+        move_uploaded_file($_FILES['imagem']['tmp_name'], '../core/resources/images/'. $img);
+        $add = new Eventos_model();
+        $add->adicionar_evento($dados);
+        echo 1;
+      //  print_r($dados);
+
+       // print_r($_FILES);
+       
     }
 
     public function ver_evento()

@@ -10,9 +10,9 @@ function valor_entrada() {
   console.log(entrada.checked)
   if (entrada.checked == true) {
     preco_homem.innerHTML =
-      '<label for="exampleFormControlInput1" class="form-label">Homem</label><input class="form-control" name="preco_homem" type="number" value="00.00">'
+      '<label for="exampleFormControlInput1" class="form-label">Homem</label><input class="form-control" name="preco_homem" type="number" step="0.010">'
     preco_mulher.innerHTML =
-      '<label for="exampleFormControlInput1" class="form-label">Mulher</label><input class="form-control" name="preco_mulher" type="number" value="00.00">'
+      '<label for="exampleFormControlInput1" class="form-label">Mulher</label><input class="form-control" name="preco_mulher" type="number" step="0.010">'
   } else {
     preco_homem.innerHTML = ''
     preco_mulher.innerHTML = ''
@@ -339,29 +339,40 @@ function form_login(form) {
 
 //receber dados formulario cadastro de evento ==============================================================
 function form_evento() {
-  let frm = $('#form-evento')
+  
+  let dados = $('#form-evento')
 
-  console.log(frm)
-  frm.submit(function (e) {
-
-    e.preventDefault()
-
-  })
-  $.ajax({
-    type: "POST",
-    url: '?a=form_cadastro_evento',
-    data: frm.serialize(),
-
+   
+  dados.submit(function (e) {
+ 
+     e.preventDefault()
+     var formdata = new FormData($(this)[0]);
+   
+ 
+   $.ajax({
+     type: "POST",
+     url: '?a=form_cadastro_evento',
+     data: formdata,
+     async: false,
+     cache: false,
+     contentType: false,
+     enctype: 'multipart/form-data',
+     processData: false,
+ 
     success: function (dados) {
       console.log(dados)
+      if(dados == 0){
+        document.getElementById('info_cad').innerHTML = `<div class="alert alert-danger mt-3" role="alert">Preencha todos os campos</div>`
+      }
 
     },
     error: function (erro) {
       console.log(erro)
 
     }
-  });
+  })});
 }
+
 
 //receber dados formulario cadastro de evento ==============================================================
 function todos_eventos() {
@@ -829,7 +840,9 @@ function form_edit(){
     function enviar_codigo(){
      
       var form = $('#recupera_senha')
-
+      document.getElementById('btn_recupera').innerHTML = `<div class="spinner-grow text-info" role="status">
+      <span class="visually-hidden" ></span>
+    </div> <span style="color: white;"> Enviando código...</span>`
       form.submit(function(e){
         e.preventDefault()
       })
@@ -845,6 +858,7 @@ function form_edit(){
             window.location.href = "?a=inico";
           }else if(dados == 2){
             document.getElementById('info_cod').innerHTML = `<div class="alert alert-danger mt-3" role="alert"> Email não cadastrado </div>`
+            document.getElementById('btn_recupera').innerHTML = `<button type="submit"  onclick="enviar_codigo()" class="btn btn_form">Enviar</button>`
           }else if(dados == 1){
             window.location.href = "?a=recuperar_senha_2";
           }

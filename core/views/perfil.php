@@ -32,11 +32,11 @@
             <form  id="edit-perfil" action="?a=form_edit_perfil" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_email'] ?>" aria-describedby="emailHelp" name="email">
+                  <input type="email" class="form-control"  value="<?= $_SESSION['usuario_email'] ?>" aria-describedby="emailHelp" name="email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nome</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $_SESSION['usuario_nome'] ?>" aria-describedby="emailHelp" name="nome">
+                  <input type="text" class="form-control"  value="<?= $_SESSION['usuario_nome'] ?>" aria-describedby="emailHelp" name="nome">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Foto do perfil</label>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">senha</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="sua senha">
+                  <input type="password" class="form-control"  name="senha" placeholder="sua senha">
                 </div>
                 <div class="mt-2">
                 <button class="btn btn_form" onclick="form_edit()" >Salvar</button>
@@ -76,7 +76,7 @@
         
                 <label for="exampleInputPassword1"> Para exluir seu perfil digite sua senha e confirma</label>
                 <p id="erro_senha_ex_per" style="color: red;"></p>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="sua senha">
+                  <input type="password" class="form-control"  name="senha" placeholder="sua senha">
 
                   <button type="button" onclick="excluir_perfil('ex_pe_fo')" class="btn btn-form mt-1">Excluir</button>
                   
@@ -108,15 +108,15 @@
         <form action="?a=alterar_senha" id="form-alterar-senha">
         <div class="form-group">
                   <label for="exampleInputPassword1">Nova senha</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="nova_senha">
+                  <input type="password" class="form-control"  name="nova_senha">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir nova senha</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="repete_nova_senha">
+                  <input type="password" class="form-control"  name="repete_nova_senha">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Senha atual</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="senha_atual">
+                  <input type="password" class="form-control"  name="senha_atual">
                 </div>
         </form>
       </div>

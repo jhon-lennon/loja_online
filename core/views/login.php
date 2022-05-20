@@ -14,11 +14,11 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">Usuario</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="text_email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control"  name="text_email" aria-describedby="emailHelp" placeholder="Enter email">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+            <input type="password" class="form-control"  name="senha" placeholder="Password">
           </div>
           <div class="mt-2">
             <button type="submit" onclick="form_login('login')" class="btn btn_form">Entrar</button>
