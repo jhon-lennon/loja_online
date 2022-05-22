@@ -102,7 +102,8 @@ class Eventos
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
                 'data' => $text_dia,
-                'presenca' => $presenca_confirma
+                'presenca' => $presenca_confirma,
+                'endereco' => $evento->endereco,
 
             ];
 
@@ -195,7 +196,8 @@ class Eventos
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
                 'data' => $text_dia,
-                'presenca' => $presenca_confirma
+                'presenca' => $presenca_confirma,
+                'endereco' => $evento->endereco,
 
             ];
 
@@ -216,13 +218,18 @@ class Eventos
 
     public function form_cadastro_evento()
     {
+        if(empty($_POST)){
+            return;
+            die;
+        }
 
          if( $_FILES['imagem']['error'] != 0 || empty($_POST['titulo']) || empty( $_POST['local']) || empty( $_POST['endereco']) || empty( $_POST['data_inicio']) || empty( $_POST['data_final']) || empty( $_POST['hora_inicio']) || empty( $_POST['hora_final']) || empty( $_POST['descricao'])){
 
             echo 0;
             die;
 
-        } 
+        }
+        $img = rand(11111, 99999) . 'primeiro.jpg';
         $ent_h = 0;
         $ent_m = 0;
         if(isset($_POST['preco_homem'])){
@@ -241,19 +248,19 @@ class Eventos
         'preco_h' => $ent_h,
         'preco_m' => $ent_m,
         'descr' => $_POST['descricao'],
-        'img' => $_FILES['imagem']['name']
+        'img' => $img
 
 
 
         ];
-        $img = rand(11111, 99999) . 'primeiro.jpg';
+      
         move_uploaded_file($_FILES['imagem']['tmp_name'], '../core/resources/images/'. $img);
         $add = new Eventos_model();
         $add->adicionar_evento($dados);
+        unset($_POST);
         echo 1;
-      //  print_r($dados);
-
-       // print_r($_FILES);
+        die;
+  
        
     }
 
@@ -348,7 +355,10 @@ class Eventos
             'horario' => $hi . ' as ' . $hf,
             'data' => $text_dia,
             'presenca' => $presenca_confirma,
+            'endereco' => $evento->endereco,
+            'autor' => $evento->nome, 
             'n_presencas' => $presencas_confirmandas ,
+
 
         ];
 

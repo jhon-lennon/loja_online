@@ -25,8 +25,12 @@
               <span><i class="fa-solid fa-person-dress"></i> Entrada Mulher: <strong id="entrada"><?= $evento->valor_mulher ?></strong></span>
               <br>
               <span><i class="fa-solid fa-person"></i> Entrada Homem: <strong id="entrada"><?= $evento->valor_homem ?></strong></span> <br>
+              <span><i class="fa-solid fa-clock"></i> Horario: <strong><?= $evento->horario ?></strong> </span><br>
               <span><i class="fa-solid fa-location-dot"></i> Local: <strong><?= $evento->local ?></strong> </span> <br>
-              <span><i class="fa-solid fa-clock"></i> Horario: <strong><?= $evento->horario ?></strong> </span>
+              <span><i class="fa-solid fa-location-dot"></i> Endereço: <strong><?= $evento->endereco ?></strong> </span><br> 
+              <span><i class="fa-solid fa-location-dot"></i> Publicado por: <strong><?= $evento->autor ?></strong> </span> 
+
+              
               <p id="confir_pre"><?= $evento->n_presencas ?> pessoas confirmaram presença</p>
 
             </div>

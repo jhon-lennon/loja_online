@@ -47,7 +47,7 @@
   <div class="col-12">
     <nav class="navbar navbar-expand-md navbar-light ">
         <div class="container-fluid">
-            <a href="" class="btn me-1 ">Esta semana</a>
+            <a href="?a=cadastro_evento" class="btn me-1 ">Esta semana</a>
          
           <a href="" class="btn me-1 ">Este mes</a>
           <button class=" btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >

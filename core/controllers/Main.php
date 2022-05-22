@@ -172,7 +172,8 @@ class Main
                 'imagem' => $evento->imagem,
                 'horario' => $hi . ' as ' . $hf,
                 'data' => $text_dia,
-                'presenca' => $presenca_confirma
+                'presenca' => $presenca_confirma,
+                'endereco' => $evento->endereco,
 
             ];
 
@@ -379,11 +380,14 @@ class Main
             echo 0;
             die;
         }
+       
 
         $_SESSION['usuario_email'] = $res[0]->email;
         $_SESSION['usuario_nome'] = $res[0]->nome;
         $_SESSION['id_usuario'] = $res[0]->id_usuario;
         $_SESSION['usuario_foto'] = $res[0]->foto;
+        $_SESSION['produtor'] = $res[0]->produtor;
+
 
 
         echo 1;

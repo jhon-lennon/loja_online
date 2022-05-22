@@ -17,7 +17,7 @@ class Eventos_model
         } else {
             $db = new Database();
             $paramentros = [':id_e' => $evento];
-            $resultado = $db->select('SELECT * FROM eventos WHERE id_evento = :id_e', $paramentros);
+            $resultado = $db->select('SELECT eventos.*, usuarios.nome FROM eventos INNER JOIN usuarios on eventos.id_usuario = usuarios.id_usuario WHERE eventos.id_evento = :id_e', $paramentros);
             return $resultado;
         }
     }
@@ -68,8 +68,7 @@ class Eventos_model
 
     public function adicionar_evento($dados)
     {
-        //   return print_r($dados);
-
+        
         $paramentros = [
             'id_u' => $_SESSION['id_usuario'],
             ':ti' => $dados['titulo'],

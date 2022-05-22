@@ -22,6 +22,13 @@ use core\classes\Functions; ?>
             <li class="nav-item">
               <a class="nav-link active" href="?a=perfil">Perfil</a>
             </li>
+            <?php if ($_SESSION['produtor'] == 1) : ?>
+              <li class="nav-item">
+              <a class="nav-link active" href="?a=cadastro_evento">Publicar evento</a>
+            </li>
+              <?php endif; ?>
+
+
           <?php else : ?>
             <li class="nav-item">
               <a class="nav-link active" href="?a=login">Entrar</a>

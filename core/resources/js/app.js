@@ -363,6 +363,11 @@ function form_evento() {
       console.log(dados)
       if(dados == 0){
         document.getElementById('info_cad').innerHTML = `<div class="alert alert-danger mt-3" role="alert">Preencha todos os campos</div>`
+      }else if(dados == 1){
+        
+          document.getElementById('form_add_e').innerHTML = `<div class="alert alert-success mt-3" role="alert">Evento adicionado. <a href="?a=cadastro_evento"> Aicionar outro</a></div>`
+           document.getElementById('info_cad').innerHTML = ``
+
       }
 
     },

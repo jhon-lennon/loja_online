@@ -9,8 +9,11 @@
                     <h1 class="text-center h1-login">Adicionar Evento</h1>
                 </div>
                 <div class="text-center">
-                    <img src="../resources/images/Eventos.gif" class="img-login" alt="...">
+                    <img src="../core/resources/images/Eventos.gif" class="img-login" alt="...">
                 </div>
+                <div id="form_add_e">
+
+                
                 <form action="?a=form_cadastro_evento" method="post" id="form-evento">
                    
                     <div class="mb-3">
@@ -56,7 +59,7 @@
                             </div>
                         </div>
                         <label for="exampleFormControlInput1" class="form-label">Imagem</label>
-                        <input type="file" class="form-control" name="imagem" aria-label="Upload">
+                        <input type="file" class="form-control" name="imagem" aria-label="Upload"  accept="image/*">
                     </div>
                     <div class="row">
                         <div class="col-4">
@@ -92,6 +95,7 @@
                     <button class="btn btn_form">Cancelar</button>
             </div>
             </form>
+            </div>
 
             <div id="info_cad">
           <!-- mensagemns de erro -->
