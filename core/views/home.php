@@ -44,67 +44,6 @@
   </nav>
 
 <div class="row" id='div_eventos'>
-  <div class="col-12">
-    <nav class="navbar navbar-expand-md navbar-light ">
-        <div class="container-fluid">
-            <a href="?a=cadastro_evento" class="btn me-1 ">Esta semana</a>
-         
-          <a href="" class="btn me-1 ">Este mes</a>
-          <button class=" btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
-           mais filtros
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="" class="btn me-1 my-1 ">desta semana</a>
-                  </li>
-           
-              <li class="nav-item">
-                <a href="" class="btn me-1 my-1 ">desta semana</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="btn me-1 my-1 ">deste mês</a> 
-              </li>
-              <li class="nav-item">
-                <a href="" class="btn me-1 my-1 ">aberto ao publico</a> 
-              </li>
-            </ul>
-          </div>
-        </div>
-   
-  </div>
-
-
-
-
-
- 
-      <div class="col my-3">
-        <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/festa_do_cupu.jpg" class="card-img-top" alt="...">
-          <div class="card-body ">
-            <h5 class="card-title text-center ">Festa do cupu</h5>
-            <span id="dia"><strong>Dia 16/05 Quinta | Esperantina-TO</strong> </span>
-
-            <p class="card-text text-center">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomeloy...</p>
-            <div class="info">
-            gratis
-              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
-              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
-            </div>
-
-
-          </div>
-          <div class="foote-card">
-            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
-                class="btn btn-conf">Confirmar presença</a>
-          </div>
-        </div>
-      </div>
-
-
-
 
 
     </div>

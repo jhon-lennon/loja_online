@@ -6,9 +6,9 @@ use core\classes\Functions;
 
 class Admin_model{
 
-    public function verificar_email(){
+    /* public function verificar_email(){
         
-      /*   //verificar se o wmail ja esta cadastrado
+        //verificar se o wmail ja esta cadastrado
         $parametros = [
             ':email' => strtolower(trim($_POST['text_email'])) 
         ];
@@ -24,28 +24,28 @@ class Admin_model{
     //==========================================================================================================================
 
     
-    public function verificar_login($usuario, $senha){
+*/    public function verificar_login($us, $senha){
         
         //verificar se o wmail ja esta cadastrado
         $parametros = [
-            ':email' => $usuario
+            ':u' => $us
         ];
        
         $db= new Database();
-        $usuario = $db->select("SELECT * FROM user_admin WHERE email = :email" , $parametros);
-        if(count($usuario) != 1){
-            $_SESSION['erro'] = "Usuario não Cadastrado";
-            
-            Functions::redirect_admin('login');
-            return;
+        $usuario = $db->select("SELECT * FROM user_admin WHERE user_admin = :u" , $parametros);
+         if(count($usuario) != 1){
+           
+            return false;
 
-        }elseif(!password_verify($senha, $usuario[0]->senha)){
-            $_SESSION['erro'] = "Senha errada";
-            Functions::redirect_admin('login');
-            return;
+        }elseif(!password_verify($senha, $usuario[0]->senha_admin)){
+           
+
+            return false;
+        }else{
+           return $usuario; 
         }
-        return $usuario;
-    }
+        
+    } /* 
     //==========================================================================================================================
 
     public function todas_categorias(){

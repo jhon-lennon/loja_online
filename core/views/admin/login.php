@@ -1,47 +1,53 @@
-<div class="container">
-    <div class="row my-5">
-    <div class="col-sm-4 offset-sm-4 text-center">
-    <img src="../assets/images/logo.png" class="p-3 mb-5 bg-body rounded" alt="...">
-
-</div>
+<body class="bg-secundario">
 
 
-        <div class="col-sm-4 offset-sm-4 ">
-            <h3 class="text-center">Login admin</h3>
+  <div class="container-fluid login-bg">
+    <div class="row">
+      <div class="login mt-2">
+        <div>
+          <h1 class="text-center h1-login">Login Admin</h1>
+        </div>
+        <div class="text-center">
+          <img src="../../core/resources/images/Eventos.gif" class="img-login" alt="...">
+        </div>
+        <form action="" method="post" id="login">
 
-            <form action="?a=login_form" method="post">
-                <div class="my-2">
-                    <label>Usuario:</label>
-                    <input type="text" name="text_email" class="form-control" require>
-                </div>
-
-                <div class="my-2">
-                    <label>Senha:</label>
-                    <input type="password" name="text_senha" class="form-control" require>
-                </div>
-
-                <div class="my-2">
-                    <input type="submit" value="Entrar" class="btn btn-primary">
-                </div>
-            </form>
-
-            <?php if (isset($_SESSION['erro'])) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= $_SESSION['erro'] ?>
-                    <?php unset($_SESSION['erro']); ?>
-                    <a href="?a=esqueci_senha" class="alert-link">esqueci a senha</a>
-                </div>
-            <?php endif ?>
-
-
-            <?php if (isset($_SESSION['mensagem'])) : ?>
-                <div class="alert alert-success" role="alert">
-                    <?= $_SESSION['mensagem'] ?>
-                    <?php unset($_SESSION['mensagem']); ?>
-                </div>
-            <?php endif ?>
-
+          <div class="form-group">
+            <label for="exampleInputEmail1">Usuario</label>
+            <input type="text" class="form-control"  name="text_user" aria-describedby="emailHelp" placeholder="user">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input type="password" class="form-control"  name="text_senha" placeholder="Password">
+          </div>
+          <div class="mt-2">
+            <button type="submit" onclick="form_login('login')" class="btn btn_form">Entrar</button>
+           
+          </div>
+        </form>
+        <div id="info_login">
+          <!-- mensagemns de erro -->
         </div>
 
+ 
+
+        <?php if (isset($_SESSION['mensagem'])): ?>
+          <div id="msg">
+          <div class="alert alert-success mt-3" role="alert"><?= $_SESSION['mensagem']?></div>
+        </div>
+          <?php 
+          unset($_SESSION['mensagem']);
+        endif;
+
+          ?>
+
+        
+
+
+
+
+
+
+      </div>
     </div>
-</div>
+  </div>

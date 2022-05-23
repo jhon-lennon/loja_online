@@ -53,7 +53,7 @@ class Functions{
 
 
     public static function redirect_admin($rota = ""){
-        header("location: http://localhost/loja_online/public/admin/?a=$rota");
+        header("location: http://localhost/bico_eventos/public/admin/?a=$rota");
     }
 
 

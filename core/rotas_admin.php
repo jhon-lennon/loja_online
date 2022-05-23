@@ -5,8 +5,9 @@ use core\controladores\Main;
 use core\controllers\Admin;
 
 $rotas = [
-            'inicio'    =>     'admin@index',
+            'inicio'    =>     'admin@inicio',
             'login'      =>     'admin@login',
+            'form_login_admin' => 'admin@form_login_admin',
             'ver_evento' => 'main@ver_evento',
 
 ];

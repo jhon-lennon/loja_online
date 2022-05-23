@@ -76,37 +76,8 @@
   </div>
 
 
-
-
-
   <div class="text-center"><h2 class="titulo-city">Eventos de <?=$cidade?></h2></div>
-      <div class="col my-2">
-        <div class="card shadow" style="width: 18rem;">
-          <img src="../core/resources/images/festa_do_cupu.jpg" class="card-img-top" alt="...">
-          <div class="card-body ">
-            <h5 class="card-title text-center ">Festa do cupu</h5>
-            <span id="dia"><strong>Dia 16/05 Quinta | Esperantina-TO</strong> </span>
-
-            <p class="card-text text-center">Na AAbb de Araguatins dj Jhon tocando os melhores tecnomeloy...</p>
-            <div class="info">
-            gratis
-              <span><i class="fa-solid fa-location-dot"></i> Local: <strong>AABB</strong> </span> <br>
-              <span><i class="fa-solid fa-clock"></i> Horario: <strong>23:00 h</strong> </span>
-
-            </div>
-
-
-          </div>
-          <div class="foote-card">
-            <p class="mt-3 ma-5 pfooter"><a href="" class="btn  ">Ver evento</a> <a href=""
-                class="btn btn-conf">Confirmar presença</a>
-          </div>
-        </div>
-      </div>
-
-
-
-
+    
 
     </div>
 
