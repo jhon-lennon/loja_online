@@ -7,8 +7,15 @@ use core\controllers\Admin;
 $rotas = [
             'inicio'    =>     'admin@inicio',
             'login'      =>     'admin@login',
-            'form_login_admin' => 'admin@form_login_admin',
-            'ver_evento' => 'main@ver_evento',
+            'sair' => 'admin@sair',
+            'form_login_admin' => 'admin@form_login_admin', //ajax
+            'buscar_usuario' => 'admin@buscar_usuario',     //ajax
+            'excluir_usuario' => 'admin@excluir_usuario',   //ajax
+            'add_produtor' => 'admin@add_produtor',         //ajax
+            'remover_produtor' => 'admin@remover_produtor', //ajax
+            'eventos_usuario' => 'admin@eventos_usuario',   //ajax
+            'get_cidades' => 'admin@get_cidades',           //ajax
+            'erro' =>   'admin@erro',
 
 ];
 $acao = 'inicio';

@@ -12,6 +12,10 @@
 .bg-secundario{
     background-color: black;
 }
+.bg-admin{
+    background-color: rgb(24, 24, 24);
+}
+
 .bg-transparente{
     background-color: rgba(0, 0, 0, 0.36);
 }
@@ -119,6 +123,10 @@ img {
 /* botao presença confirmada */
 .btn-c {
     background-color: rgba(9, 121, 52, 0.672);
+
+}
+.btn-r {
+    background-color: rgba(218, 13, 13, 0.672);
 
 }
 /* botao presença nao confirmada */
