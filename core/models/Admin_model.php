@@ -85,4 +85,20 @@ class Admin_model
         $eventos = $db->select('SELECT * FROM eventos WHERE id_usuario = :id_u', $parametros);
         return $eventos;
     }
+    public function delete_tudo_de_usuario($id_evento){
+        $db = new Database();
+        $paramentros = [':id_e' => $id_evento];
+        $db->delete('DELETE FROM presenca WHERE id_evento = :id_e', $paramentros);
+        $db->delete('DELETE FROM comentarios WHERE id_evento = :id_e', $paramentros);
+        $db->delete('DELETE FROM eventos WHERE id_evento = :id_e', $paramentros);
+        
+        $res = $db->select('SELECT * FROM eventos WHERE id_evento = :id_e', $paramentros);
+
+        if(count($res) > 0){
+            return false;
+        }else{
+            return true;
+        }
+       
+    }
 }

@@ -196,14 +196,123 @@ class Admin
             return;
         }
         $user = new Admin_model();
-        $eventos = $user->eventos_do_produtor($_POST['id_usuario']);
+        $eventos = $user->eventos_do_produtor($_GET['id_u']);
         if(count($eventos) > 0){
           $ev = json_encode($eventos);
         echo $ev;   
         }else{
             echo 0;
         }
-       
-        
+
+    }
+    public function eventos_usuario_count(){
+        if(!Functions::isAjax()){
+            Functions::redirect_admin('erro');
+            return;
+        }
+        $user = new Admin_model();
+        $eventos = $user->eventos_do_produtor($_POST['id_usuario']);
+        if(count($eventos) > 0){
+          
+        echo 1;   
+        }else{
+            echo 0;
+        }
+
+    }
+    public function eventos_do_usuario(){
+        if (!isset($_SESSION['admin'])) {
+            Functions::redirect_admin('inicio');
+            return;
+        }
+
+        $db = new Admin_model();
+        $eventos = $db->eventos_do_produtor($_GET['id_u']);
+        // print_r($eventos);
+
+        $resultado_com_filtro = [];
+
+        foreach ($eventos as $evento) {
+         
+            $vh = 'Gratis';
+            $vm = 'Gratis';
+
+
+            if ($evento->valor_homem > 0) {
+                $vh = $evento->valor_homem . ' R$';
+            }
+            if ($evento->valor_mulher > 0) {
+                $vm = $evento->valor_mulher . ' R$';
+            }
+
+            $hi = date('H:i',  strtotime($evento->data_inicio));
+            $hf = date('H:i',  strtotime($evento->data_fim));
+            $di = date('d/m/y',  strtotime($evento->data_inicio));
+            $df = date('d/m/y',  strtotime($evento->data_fim));
+
+
+
+            $dias = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'];
+
+            $dia_sem_num_i = date('w', strtotime($evento->data_inicio));
+            $dia_sem_num_f = date('w', strtotime($evento->data_fim));
+
+
+            $nome_dia_i =  $dias[$dia_sem_num_i];
+            $nome_dia_f =  $dias[$dia_sem_num_f];
+
+
+            $text_dia = '';
+
+            if ($di ==  $df) {
+                $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i;
+            } else {
+                $text_dia = 'Dia ' . $di . ' ' . $nome_dia_i . ' à ' . $df . ' ' . $nome_dia_f;
+            }
+
+            $res = [
+                'id_evento' => $evento->id_evento,
+                'id_usuario' => $evento->id_usuario,
+                'titulo' => substr($evento->titulo_evento, 0, 25),
+                'descricao' => substr($evento->descricao, 0, 60) . '...',
+                'valor_homem' => $vh,
+                'valor_mulher' => $vm,
+                'local' => substr($evento->local, 0, 28),
+                'cidade' => $evento->cidade,
+                'imagem' => $evento->imagem,
+                'horario' => $hi . ' as ' . $hf,
+                'data' => $text_dia,
+                
+                'endereco' => $evento->endereco,
+
+            ];
+
+
+            array_push($resultado_com_filtro, $res);
+        }
+
+
+
+        $dados = ['eventos' => $resultado_com_filtro];
+        $views = [
+            'admin/layout/head',
+            'admin/cabecario',
+            'admin/eventos_usuario',
+            'admin/layout/footer',
+
+        ];
+
+        Functions::layout_admin($views, $dados);
+        return;
+    }
+    public function delete_usuario(){
+
+        $usu = new Admin_model();
+        $usuario = $usu->delete_tudo_de_usuario($_POST['id_evento']);
+        if($usuario == true){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 }

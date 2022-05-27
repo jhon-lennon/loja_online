@@ -13,10 +13,13 @@ $rotas = [
             'excluir_usuario' => 'admin@excluir_usuario',   //ajax
             'add_produtor' => 'admin@add_produtor',         //ajax
             'remover_produtor' => 'admin@remover_produtor', //ajax
-            'eventos_usuario' => 'admin@eventos_usuario',   //ajax
+            'eventos_usuario_count' => 'admin@eventos_usuario_count',   //ajax
             'get_cidades' => 'admin@get_cidades',           //ajax
+            'eventos_usuario' => 'admin@eventos_usuario',   //ajax
+            'delete_usuario' => 'admin@delete_usuario',     //ajax
+           'eventos_do_usuario' => 'admin@eventos_do_usuario',
             'erro' =>   'admin@erro',
-
+            
 ];
 $acao = 'inicio';
 
